@@ -24,5 +24,5 @@ export const splashVideoReducer = createReducer(
   on(svActions.reset, (state) => ({
     ...state,
     done: false,
-  }))
+  })),
 );
