@@ -4,9 +4,12 @@
   Splash-Video state > done:
   <strong>{{ (svState$ | async).done }}</strong>
 </div>
-<button (click)="closeSplashVideo()">Close</button>
-<button (click)="endSplashVideo()">End</button>
-<button (click)="skipSplashVideo()">Skip</button>
-<button (click)="resetSplashVideo()">Reset unplayed</button>
+<button (click)="closeSplashVideo()" class="btn btn-primary">Close</button
+>&nbsp;
+<button (click)="endSplashVideo()" class="btn btn-primary">End</button>&nbsp;
+<button (click)="skipSplashVideo()" class="btn btn-primary">Skip</button>&nbsp;
+<button (click)="resetSplashVideo()" class="btn btn-primary">
+  Reset unplayed
+</button>
 
 <router-outlet></router-outlet>
