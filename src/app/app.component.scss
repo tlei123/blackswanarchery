@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/_functions";
+@import "../scss/partials/bootstrap-overrides";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins.scss";
+
+// TODO: Separate typography styling to its own partial.
+
+h1,
+h2 {
+  color: $gray-600;
+
+  @include media-breakpoint-up(md) {
+    color: $black;
+  }
+}

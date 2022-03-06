@@ -1,15 +1,21 @@
-<h1>Black Swan Archery</h1>
-<h2>Splash Video [NGRX test]</h2>
-<div>
-  Splash-Video state > done:
-  <strong>{{ (svState$ | async).done }}</strong>
-</div>
-<button (click)="closeSplashVideo()" class="btn btn-primary">Close</button
->&nbsp;
-<button (click)="endSplashVideo()" class="btn btn-primary">End</button>&nbsp;
-<button (click)="skipSplashVideo()" class="btn btn-primary">Skip</button>&nbsp;
-<button (click)="resetSplashVideo()" class="btn btn-primary">
-  Reset unplayed
-</button>
+<div class="container">
+  <h1>Black Swan Archery</h1>
 
-<router-outlet></router-outlet>
+  <p>This is a brand-new web-app, rebuilt from the ground up!</p>
+
+  <h2>Splash Video [NGRX test]</h2>
+  <p>
+    Splash-Video state > done:
+    <strong>{{ (svState$ | async).done }}</strong>
+  </p>
+  <button (click)="closeSplashVideo()" class="btn btn-primary">Close</button
+  >&nbsp;
+  <button (click)="endSplashVideo()" class="btn btn-primary">End</button>&nbsp;
+  <button (click)="skipSplashVideo()" class="btn btn-primary">Skip</button
+  >&nbsp;
+  <button (click)="resetSplashVideo()" class="btn btn-primary">
+    Reset unplayed
+  </button>
+
+  <router-outlet></router-outlet>
+</div>
