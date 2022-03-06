@@ -1,12 +1,12 @@
 <h1>Black Swan Archery</h1>
 <h2>Splash Video [NGRX test]</h2>
 <div>
-  App state > splashVideoDone:
-  <strong>{{ (app$ | async).splashVideoDone }}</strong>
+  Splash-Video state > done:
+  <strong>{{ (svState$ | async).done }}</strong>
 </div>
-<button (click)="closeSplash()">Close</button>
-<button (click)="endSplash()">End</button>
-<button (click)="skipSplash()">Skip</button>
-<button (click)="resetSplash()">Reset unplayed</button>
+<button (click)="closeSplashVideo()">Close</button>
+<button (click)="endSplashVideo()">End</button>
+<button (click)="skipSplashVideo()">Skip</button>
+<button (click)="resetSplashVideo()">Reset unplayed</button>
 
 <router-outlet></router-outlet>

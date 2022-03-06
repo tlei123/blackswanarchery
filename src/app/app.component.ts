@@ -1,14 +1,10 @@
+import { AppState } from './models/app-state.model';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import {
-  closeSplashVideo,
-  endSplashVideo,
-  resetSplashVideo,
-  skipSplashVideo,
-} from './store/actions/app.actions';
+import * as svActions from './store/actions/splash-video.actions';
 
 @Component({
   selector: 'app-root',
@@ -18,26 +14,26 @@ import {
 export class AppComponent {
   title = 'blackswanarchery';
 
-  app$: Observable<object>;
+  svState$: Observable<object>;
   count$: Observable<number>;
 
-  constructor(private store: Store<{ app: object; count: number }>) {
-    this.app$ = store.select('app');
+  constructor(private store: Store<AppState>) {
+    this.svState$ = store.select('splashVideo');
   }
 
-  closeSplash() {
-    this.store.dispatch(closeSplashVideo());
+  closeSplashVideo() {
+    this.store.dispatch(svActions.close());
   }
 
-  endSplash() {
-    this.store.dispatch(endSplashVideo());
+  endSplashVideo() {
+    this.store.dispatch(svActions.end());
   }
 
-  skipSplash() {
-    this.store.dispatch(skipSplashVideo());
+  skipSplashVideo() {
+    this.store.dispatch(svActions.skip());
   }
 
-  resetSplash() {
-    this.store.dispatch(resetSplashVideo());
+  resetSplashVideo() {
+    this.store.dispatch(svActions.reset());
   }
 }

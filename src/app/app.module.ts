@@ -7,14 +7,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { appReducer } from './store/reducers/app.reducer';
+import { splashVideoReducer } from './store/reducers/splash-video.reducer';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ app: appReducer }),
+    StoreModule.forRoot({ splashVideo: splashVideoReducer }),
     StoreDevtoolsModule.instrument({
       name: 'blackswanarchery',
       logOnly: environment.production,
