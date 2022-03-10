@@ -1,12 +1,44 @@
 import { TestBed } from '@angular/core/testing';
+import { LocationStrategy } from '@angular/common';
+import { MockLocationStrategy } from '@angular/common/testing';
+
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { AppState } from './models/app-state.model';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let store: MockStore;
+
+  const initialState: AppState = {
+    router: {
+      state: {
+        root: {
+          children: [],
+          data: {},
+          outlet: 'primary',
+          params: {},
+          queryParams: {},
+          url: [],
+        },
+        url: '/',
+      },
+      navigationId: 1,
+    },
+    splashVideo: {
+      done: false,
+    },
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
+      providers: [
+        { provide: LocationStrategy, useClass: MockLocationStrategy },
+        provideMockStore({ initialState }),
+      ],
     }).compileComponents();
   });
 
@@ -16,18 +48,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it.only(`should have as title 'blackswanarchery'`, () => {
+  it(`should have as title 'Black Swan Archery'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('blackswanarchery');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain(
-      'blackswanarchery app is running!',
-    );
+    expect(app.title).toEqual('Black Swan Archery');
   });
 });
