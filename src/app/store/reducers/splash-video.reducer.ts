@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { on } from '@ngrx/store';
 
 import { SplashVideoState } from './../../models/splash-video-state.model';
 import * as svActions from '../actions/splash-video.actions';

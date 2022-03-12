@@ -3,10 +3,29 @@
 
   <p>This is a brand-new web-app, rebuilt from the ground up!</p>
 
-  <h2>Splash Video [NGRX test]</h2>
+  <h2>Router State</h2>
+
+  <p>[<code>(routerState$ | async).state</code>]:</p>
+  <ul *ngIf="routerState$ | async as rState">
+    <li><strong>URL</strong>: {{ rState.state.url }}</li>
+    <li>
+      <strong>root.params</strong>:
+      {{ rState.state.root.params }}
+    </li>
+    <li>
+      <strong>root.queryParams</strong>:
+      {{ rState.state.root.queryParams }}
+    </li>
+    <li>
+      <strong>root.outlet</strong>:
+      {{ rState.state.root.outlet }}
+    </li>
+  </ul>
+
+  <h2>Splash Video State</h2>
   <p>
-    Splash-Video state > done:
-    <strong>{{ (svState$ | async).done }}</strong>
+    [<code>(splashVideoState$ | async).done</code>]:
+    <strong>{{ (splashVideoState$ | async).done }}</strong>
   </p>
   <button (click)="closeSplashVideo()" class="btn btn-primary">Close</button
   >&nbsp;
