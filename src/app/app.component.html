@@ -27,12 +27,32 @@
     [<code>(splashVideoState$ | async).done</code>]:
     <strong>{{ (splashVideoState$ | async).done }}</strong>
   </p>
-  <button (click)="closeSplashVideo()" class="btn btn-primary">Close</button
+  <button
+    (click)="closeSplashVideo()"
+    class="btn btn-primary"
+    data-testid="btnCloseSplashVideo"
+  >
+    Close</button
   >&nbsp;
-  <button (click)="endSplashVideo()" class="btn btn-primary">End</button>&nbsp;
-  <button (click)="skipSplashVideo()" class="btn btn-primary">Skip</button
+  <button
+    (click)="endSplashVideo()"
+    class="btn btn-primary"
+    data-testid="btnEndSplashVideo"
+  >
+    End</button
   >&nbsp;
-  <button (click)="resetSplashVideo()" class="btn btn-primary">
+  <button
+    (click)="skipSplashVideo()"
+    class="btn btn-primary"
+    data-testid="btnSkipSplashVideo"
+  >
+    Skip</button
+  >&nbsp;
+  <button
+    (click)="resetSplashVideo()"
+    class="btn btn-primary"
+    data-testid="btnResetSplashVideo"
+  >
     Reset unplayed
   </button>
 

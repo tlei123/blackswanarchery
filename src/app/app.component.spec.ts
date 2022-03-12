@@ -40,6 +40,8 @@ describe('AppComponent', () => {
         provideMockStore({ initialState }),
       ],
     }).compileComponents();
+
+    store = TestBed.inject(MockStore);
   });
 
   it('should create the app', () => {
@@ -52,5 +54,18 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Black Swan Archery');
+  });
+
+  it('should call closeSplashVideo method on close button click', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const closeMethodSpy = spyOn(app, 'closeSplashVideo');
+    let closeButton = fixture.debugElement.nativeElement.querySelector(
+      '[data-testid="btnCloseSplashVideo"]',
+    );
+
+    closeButton.click();
+    fixture.detectChanges();
+    expect(closeMethodSpy).toHaveBeenCalled();
   });
 });
