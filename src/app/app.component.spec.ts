@@ -56,16 +56,16 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Black Swan Archery');
   });
 
-  it('should call closeSplashVideo method on close button click', () => {
+  it('should call finishSplashVideo method on Finish button click', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    const closeMethodSpy = spyOn(app, 'closeSplashVideo');
-    let closeButton = fixture.debugElement.nativeElement.querySelector(
-      '[data-testid="btnCloseSplashVideo"]',
+    const finishMethodSpy = spyOn(app, 'finishSplashVideo');
+    let finishButton = fixture.debugElement.nativeElement.querySelector(
+      '[data-testid="btnFinishSplashVideo"]',
     );
 
-    closeButton.click();
+    finishButton.click();
     fixture.detectChanges();
-    expect(closeMethodSpy).toHaveBeenCalled();
+    expect(finishMethodSpy).toHaveBeenCalled();
   });
 });
