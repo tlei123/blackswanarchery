@@ -1,31 +1,41 @@
 <div class="container">
-  <h1>Black Swan Archery</h1>
+  <h1 data-testid="appHeader">Black Swan Archery</h1>
 
   <p>This is a brand-new web-app, rebuilt from the ground up!</p>
 
-  <h2>Router State</h2>
+  <h2 data-testid="routerStateHeader">Router State</h2>
 
   <p>[<code>(routerState$ | async).state</code>]:</p>
   <ul *ngIf="routerState$ | async as rState">
-    <li><strong>URL</strong>: {{ rState.state.url }}</li>
     <li>
-      <strong>root.params</strong>:
-      {{ rState.state.root.params }}
+      URL: <strong data-testid="routerStateUrl">{{ rState.state.url }}</strong>
     </li>
     <li>
-      <strong>root.queryParams</strong>:
-      {{ rState.state.root.queryParams }}
+      root.params:
+      <strong data-testid="routerStateRootParams">{{
+        rState.state.root.params
+      }}</strong>
     </li>
     <li>
-      <strong>root.outlet</strong>:
-      {{ rState.state.root.outlet }}
+      root.queryParams:
+      <strong data-testid="routerStateRootQueryParams">{{
+        rState.state.root.queryParams
+      }}</strong>
+    </li>
+    <li>
+      root.outlet:
+      <strong data-testid="routerStateRootOutlet">{{
+        rState.state.root.outlet
+      }}</strong>
     </li>
   </ul>
 
-  <h2>Splash Video State</h2>
+  <h2 data-testid="splashVideoStateHeader">Splash Video State</h2>
   <p>
     [<code>(splashVideoState$ | async).done</code>]:
-    <strong>{{ (splashVideoState$ | async).done }}</strong>
+    <strong data-testid="splashVideoStateDone">{{
+      (splashVideoState$ | async).done
+    }}</strong>
   </p>
   <button
     (click)="finishSplashVideo()"
