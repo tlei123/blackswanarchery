@@ -11,15 +11,7 @@ export const initialState: SplashVideoState = {
 export const splashVideoReducer = createRehydrateReducer(
   'bsa_splash_video_state',
   initialState,
-  on(svActions.close, (state) => ({
-    ...state,
-    done: true,
-  })),
-  on(svActions.end, (state) => ({
-    ...state,
-    done: true,
-  })),
-  on(svActions.skip, (state) => ({
+  on(svActions.finish, (state) => ({
     ...state,
     done: true,
   })),

@@ -73,16 +73,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  closeSplashVideo() {
-    this.store.dispatch(svActions.close());
-  }
-
-  endSplashVideo() {
-    this.store.dispatch(svActions.end());
-  }
-
-  skipSplashVideo() {
-    this.store.dispatch(svActions.skip());
+  finishSplashVideo() {
+    this.store.dispatch(svActions.finish());
   }
 
   resetSplashVideo() {
