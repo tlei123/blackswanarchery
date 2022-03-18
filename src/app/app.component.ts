@@ -1,10 +1,13 @@
+import { loadFigures } from './store/actions/figures.actions';
 import { AppState } from './models/app-state.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable, Subscription } from 'rxjs';
 
+import { FiguresState } from './models/figures-state.model';
 import * as svActions from './store/actions/splash-video.actions';
+import * as figsActions from './store/actions/figures.actions';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +19,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   routerState$: Observable<object>;
   splashVideoState$: Observable<object>;
+  figuresState$: Observable<object>;
   routerStateSub: Subscription;
   splashVideoStateSub: Subscription;
+
+  figures: FiguresState;
 
   routerStateObserver = {
     next: (x: object) =>
@@ -52,10 +58,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<AppState>) {
     this.splashVideoState$ = store.select('splashVideo');
+    this.figuresState$ = store.select('figures');
     this.routerState$ = store.select('router');
   }
 
   ngOnInit(): void {
+    this.store.dispatch(figsActions.loadFigures());
     // Subscribe to state-observables in case functional code needs to perform tasks upon state-changes.
     // Add methods and call them from observer objects above.
     this.routerStateSub = this.routerState$.subscribe(this.routerStateObserver);

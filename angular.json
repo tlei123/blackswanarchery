@@ -23,7 +23,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/.htaccess", "src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/.htaccess",
+              "src/favicon.ico",
+              "src/assets",
+              "src/data"
+            ],
             "styles": ["src/scss/styles.scss"],
             "scripts": []
           },
