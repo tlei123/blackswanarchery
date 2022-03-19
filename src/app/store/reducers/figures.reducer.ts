@@ -10,12 +10,12 @@ export const initialState: FiguresState = {
 
 export const figuresReducer = createReducer(
   initialState,
-  on(figsActions.loadFigures, (state: FiguresState) => state),
+  on(figsActions.loadFigures, (state: FiguresState) => ({ ...state })),
   on(figsActions.loadFiguresSuccess, (state: FiguresState, { figures }) => ({
     ...figures,
   })),
   on(figsActions.loadFiguresFailure, (state) => {
     console.error('[figuresReducer] Load Figures action failed!');
-    return state;
+    return { ...state };
   }),
 );

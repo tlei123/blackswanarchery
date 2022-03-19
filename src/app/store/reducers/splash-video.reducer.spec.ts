@@ -4,7 +4,7 @@ import { SplashVideoState } from './../../models/splash-video-state.model';
 
 describe('splashVideoReducer', () => {
   describe('unknown action', () => {
-    it('should return default state', () => {
+    it('should return previous state', () => {
       const { initialState } = fromReducer;
       const action = { type: 'Unknown' };
       const state = fromReducer.splashVideoReducer(initialState, action);
