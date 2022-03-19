@@ -6,13 +6,25 @@
 
 Repository for Black Swan Archery's official website: [http://blackswanarchery.com/][bsa-site]
 
-## Setup
+## Quick Start
 
-1. `npm install`
+1. Install [Node 15.14.0][node-15.14.0].
+    [use [NVS][nvs] (Windows) or [NVM][nvm] (MacOS) to manage multiple Node versions on you machine]
+1. Install [Git LFS][git-lfs].
+1. Clone this repository.
+1. In Command Prompt (Windows) or Terminal (MacOS), navigate into your repository root directory:
+    `cd path/to/repo-root`
+1. Install dependencies: `npm install`
 1. Save template environment files as working files:
-   `environment.template.ts` to `environment.ts`
-   `environment.prod.template.ts` to `environment.prod.ts`
-1. `npm start`
+    `cd src/environments`
+    On Windows:
+    `copy environment.template.ts environment.ts`
+    `copy environment.prod.template.ts environment.ts`
+    On MacOS:
+    `cp environment.template.ts environment.ts`
+    `cp environment.prod.template.ts environment.ts`
+1. Start the app:
+    `npm start`
 
 ---
 
@@ -46,4 +58,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+[node-15.14.0]: https://nodejs.org/download/release/v15.14.0/
+[nvs]: https://github.com/jasongin/nvs
+[nvm]: https://github.com/nvm-sh/nvm
+[git-lfs]: https://git-lfs.github.com/
 [bsa-site]: http://blackswanarchery.com/
