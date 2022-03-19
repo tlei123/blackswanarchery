@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppState } from './models/app-state.model';
 import { AppComponent } from './app.component';
+import { SmartFigureComponent } from './shared/smart-figure/smart-figure.component';
 import * as svActions from './store/actions/splash-video.actions';
 
 describe('AppComponent', () => {
@@ -27,13 +28,17 @@ describe('AppComponent', () => {
     splashVideo: {
       done: false,
     },
+    figures: {
+      home: [],
+      view2: [],
+    },
   };
   let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      declarations: [AppComponent, SmartFigureComponent],
       providers: [
         { provide: LocationStrategy, useClass: MockLocationStrategy },
         provideMockStore({ initialState }),

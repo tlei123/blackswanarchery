@@ -59,7 +59,10 @@
       Home:
       <ul>
         <li *ngFor="let fig of figs.home">
-          imageFilename: <strong>{{ fig.imageFilename }}</strong>
+          imageFilename:
+          <strong data-testclass="imageFilename">{{
+            fig.imageFilename
+          }}</strong>
         </li>
       </ul>
     </li>
@@ -67,7 +70,10 @@
       View2:
       <ul>
         <li *ngFor="let fig of figs.view2">
-          imageFilename: <strong>{{ fig.imageFilename }}</strong>
+          imageFilename:
+          <strong data-testclass="imageFilename">{{
+            fig.imageFilename
+          }}</strong>
         </li>
       </ul>
     </li>

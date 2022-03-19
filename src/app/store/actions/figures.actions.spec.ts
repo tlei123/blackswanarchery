@@ -1,7 +1,7 @@
 import * as fromFigures from './figures.actions';
 
-describe('loadFiguress', () => {
+describe('loadFigures', () => {
   it('should return an action', () => {
-    expect(fromFigures.loadFiguress().type).toBe('[Figures] Load Figuress');
+    expect(fromFigures.loadFigures().type).toBe('[Figures] Load Figures');
   });
 });

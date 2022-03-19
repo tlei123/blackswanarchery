@@ -5,11 +5,12 @@ describe('App component', () => {
 
   it('Visits the initial app page', () => {
     cy.findByTestId('appHeader').should('be.visible');
-    cy.findByTestId('routerStateHeader').should('be.visible');
-    cy.findByTestId('splashVideoStateHeader').should('be.visible');
   });
 
   context('Router state', () => {
+    it('Shows section-header', () => {
+      cy.findByTestId('routerStateHeader').should('be.visible');
+    });
     it('Shows url:/ for url', () => {
       cy.findByTestId('routerStateUrl').should('have.text', '/');
     });
@@ -19,6 +20,9 @@ describe('App component', () => {
   });
 
   context('Splash Video state', () => {
+    it('Shows section-header', () => {
+      cy.findByTestId('splashVideoStateHeader').should('be.visible');
+    });
     it('Shows done: false as initial state', () => {
       cy.findByTestId('splashVideoStateDone').should('have.text', 'false');
     });
@@ -29,6 +33,17 @@ describe('App component', () => {
     it('Shows done: false on Reset button click', () => {
       cy.findByTestId('btnResetSplashVideo').click();
       cy.findByTestId('splashVideoStateDone').should('have.text', 'false');
+    });
+  });
+
+  context('Figures state', () => {
+    it('Shows section-header', () => {
+      cy.findByTestId('figuresStateHeader').should('be.visible');
+    });
+    it('Shows imageFilenames', () => {
+      cy.get('[data-testclass="imageFilename"]')
+        .should('exist')
+        .and('have.length.at.least', 1);
     });
   });
 });

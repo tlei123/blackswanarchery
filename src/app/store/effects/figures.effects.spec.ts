@@ -1,8 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable } from 'rxjs';
 
+import { provideMockActions } from '@ngrx/effects/testing';
+
 import { FiguresEffects } from './figures.effects';
+import { FiguresService } from './../../services/figures.service';
 
 describe('FiguresEffects', () => {
   let actions$: Observable<any>;
@@ -10,10 +13,12 @@ describe('FiguresEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [
         FiguresEffects,
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => actions$),
+        FiguresService,
+      ],
     });
 
     effects = TestBed.inject(FiguresEffects);
