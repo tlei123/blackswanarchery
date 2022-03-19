@@ -8,7 +8,7 @@ import { FiguresService } from './../../services/figures.service';
 
 @Injectable()
 export class FiguresEffects {
-  loadMovies$ = createEffect(() =>
+  loadFigures$ = createEffect(() =>
     this.actions$.pipe(
       ofType('[Figures] Load Figures'),
       mergeMap(() =>
