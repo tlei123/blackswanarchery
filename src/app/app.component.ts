@@ -1,10 +1,10 @@
-import { loadFigures } from './store/actions/figures.actions';
 import { AppState } from './models/app-state.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable, Subscription } from 'rxjs';
 
+import { SplashVideoState } from './models/splash-video-state.model';
 import { FiguresState } from './models/figures-state.model';
 import * as svActions from './store/actions/splash-video.actions';
 import * as figsActions from './store/actions/figures.actions';
@@ -18,20 +18,20 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'Black Swan Archery';
 
   routerState$: Observable<object>;
-  splashVideoState$: Observable<object>;
-  figuresState$: Observable<object>;
+  splashVideoState$: Observable<SplashVideoState>;
+  figuresState$: Observable<FiguresState>;
   routerStateSub: Subscription;
   splashVideoStateSub: Subscription;
+  figuresStateSub: Subscription;
 
-  figures: FiguresState;
-
+  /* Observers here subscribe to state observables, in case app needs to react to state changes.
+  Call methods from within next/error/complete callback.
+  If only template-display changes are needed, then just reference the state-observables directly from the template using ... | async.
+  */
   routerStateObserver = {
-    next: (x: object) =>
-      // Add methods as needed to react to state changes, then call them from here.
-      // If only template-display changes are needed, then just reference the state-observables directly from the template using ... | async.
-      {
-        console.log('[App.routerStateObserver] Got a next value:', x);
-      },
+    next: (x: object) => {
+      console.log('[App.routerStateObserver] Got a next value:', x);
+    },
     error: (err: Error) => {
       console.error('[App.routerStateObserver] Got an error:', err);
     },
@@ -39,11 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log('[App.routerStateObserver] Got a complete notification:');
     },
   };
-
   splashVideoStateObserver = {
     next: (x: object) => {
-      // Add methods as needed to react to state changes, then call them from here.
-      // If only template-display changes are needed, then just reference the state-observables directly from the template using ... | async.
       console.log('[App.splashVideoStateObserver] Got a next value:', x);
     },
     error: (err: Error) => {
@@ -55,11 +52,22 @@ export class AppComponent implements OnInit, OnDestroy {
       );
     },
   };
+  figuresStateObserver = {
+    next: (x: object) => {
+      console.log('[App.figuresStateObserver] Got a next value:', x);
+    },
+    error: (err: Error) => {
+      console.error('[App.figuresStateObserver] Got an error:', err);
+    },
+    complete: () => {
+      console.log('[App.figuresStateObserver] Got a complete notification:');
+    },
+  };
 
   constructor(private store: Store<AppState>) {
+    this.routerState$ = store.select('router');
     this.splashVideoState$ = store.select('splashVideo');
     this.figuresState$ = store.select('figures');
-    this.routerState$ = store.select('router');
   }
 
   ngOnInit(): void {
@@ -70,15 +78,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.splashVideoStateSub = this.splashVideoState$.subscribe(
       this.splashVideoStateObserver,
     );
+    this.figuresStateSub = this.figuresState$.subscribe(
+      this.figuresStateObserver,
+    );
   }
 
   ngOnDestroy(): void {
-    if (this.routerStateSub) {
-      this.routerStateSub.unsubscribe();
-    }
-    if (this.splashVideoStateSub) {
-      this.splashVideoStateSub.unsubscribe();
-    }
+    this.routerStateSub.unsubscribe();
+    this.splashVideoStateSub.unsubscribe();
+    this.figuresStateSub.unsubscribe();
   }
 
   finishSplashVideo() {
