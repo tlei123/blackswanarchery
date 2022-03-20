@@ -84,9 +84,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.routerStateSub.unsubscribe();
-    this.splashVideoStateSub.unsubscribe();
-    this.figuresStateSub.unsubscribe();
+    if (this.routerStateSub) {
+      this.routerStateSub.unsubscribe();
+    }
+    if (this.splashVideoStateSub) {
+      this.splashVideoStateSub.unsubscribe();
+    }
+    if (this.figuresStateSub) {
+      this.figuresStateSub.unsubscribe();
+    }
   }
 
   finishSplashVideo() {
