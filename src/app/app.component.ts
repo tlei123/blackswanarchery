@@ -1,13 +1,17 @@
-import { AppState } from './models/app-state.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable, Subscription } from 'rxjs';
 
+import { AppState } from './models/app-state.model';
 import { SplashVideoState } from './models/splash-video-state.model';
 import { FiguresState } from './models/figures-state.model';
 import * as svActions from './store/actions/splash-video.actions';
 import * as figsActions from './store/actions/figures.actions';
+import {
+  selectFigures,
+  selectFiguresByView,
+} from './store/selectors/figures.selectors';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +24,8 @@ export class AppComponent implements OnInit, OnDestroy {
   routerState$: Observable<object>;
   splashVideoState$: Observable<SplashVideoState>;
   figuresState$: Observable<FiguresState>;
+  homeFiguresState$: Observable<object>;
+  view2FiguresState$: Observable<object>;
   routerStateSub: Subscription;
   splashVideoStateSub: Subscription;
   figuresStateSub: Subscription;
@@ -67,7 +73,9 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>) {
     this.routerState$ = store.select('router');
     this.splashVideoState$ = store.select('splashVideo');
-    this.figuresState$ = store.select('figures');
+    this.figuresState$ = store.select(selectFigures);
+    this.homeFiguresState$ = store.select(selectFiguresByView('home'));
+    this.view2FiguresState$ = store.select(selectFiguresByView('view2'));
   }
 
   ngOnInit(): void {

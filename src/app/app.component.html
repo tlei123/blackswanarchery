@@ -54,11 +54,11 @@
 
   <h2 data-testid="figuresStateHeader">Figures State</h2>
 
-  <ul *ngIf="figuresState$ | async as figs">
-    <li>
+  <ul>
+    <li *ngIf="homeFiguresState$ | async as homeFigs">
       Home:
       <ul>
-        <li *ngFor="let fig of figs.home">
+        <li *ngFor="let fig of homeFigs">
           imageFilename:
           <strong data-testclass="imageFilename">{{
             fig.imageFilename
@@ -66,10 +66,10 @@
         </li>
       </ul>
     </li>
-    <li>
+    <li *ngIf="view2FiguresState$ | async as view2Figs">
       View2:
       <ul>
-        <li *ngFor="let fig of figs.view2">
+        <li *ngFor="let fig of view2Figs">
           imageFilename:
           <strong data-testclass="imageFilename">{{
             fig.imageFilename
