@@ -1,0 +1,5 @@
+body {
+  @include media-breakpoint-up(md) {
+    background-image: url('/assets/img/home/bg-home-lg.jpg');
+  }
+}

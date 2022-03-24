@@ -83,5 +83,14 @@
 
   <app-smart-figure></app-smart-figure>
 
+  <h3>Images Cachebusting</h3>
+  <p>
+    Inspect img tag below. Dev tools should show just original filename in
+    local, but with content-hash appended in external environments. A
+    build-script fingerprints all asset filenames, and updates all references in
+    source files.
+  </p>
+  <img src="/assets/img/home/arvid.jpg" alt="Photo of Arvid Danielson" />
+
   <router-outlet></router-outlet>
 </div>
