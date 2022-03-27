@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# SECURE FILES
+# SECURE FILES [replaced with tracked template files]
+index.html
 environment.ts
 environment.prod.ts
 
