@@ -10,31 +10,46 @@ Repository for Black Swan Archery's official website: [http://blackswanarchery.c
 
 1. Install **[Node 15.14.0][node-15.14.0]**.
 
-    [Use **[NVS][nvs]** (Windows) or **[NVM][nvm]** (MacOS) to manage multiple Node versions on you machine]
+   [Use **[NVS][nvs]** (Windows) or **[NVM][nvm]** (MacOS) to manage multiple Node versions on you machine]
+
 1. Install [Git LFS][git-lfs].
 1. Clone this repository.
 1. In **Command Prompt** (Windows) or **Terminal** (MacOS), navigate into your repository root directory: `cd path/to/repo-root`
 1. Install dependencies: `npm install`
-1. Save template environment files as working files:
+1. Save template homepage file as working file:
 
-    `cd src/environments`
+   `cd src`
 
-    On Windows:
-    
-    `copy environment.template.ts environment.ts`
-    
-    `copy environment.prod.template.ts environment.ts`
+   On Windows:
 
-    On MacOS:
-    
-    `cp environment.template.ts environment.ts`
-    
-    `cp environment.prod.template.ts environment.ts`
+   `copy index.template.html index.html`
+
+   On MacOS:
+
+   `cp index.template.html index.html`
+
+1. Save template environment file as working file:
+   `cd environments`
+
+   On Windows:
+
+   `copy environment.template.ts environment.ts`
+
+   `copy environment.prod.template.ts environment.ts`
+
+   On MacOS:
+
+   `cp environment.template.ts environment.ts`
+
+   `cp environment.prod.template.ts environment.ts`
+
 1. Back out to repository root: `cd ../../`
 1. Start the app:
-    `npm start`
+   `npm start`
 
 ---
+
+[content below this point is Angular-CLI boilerplate]
 
 # Generated with Angular-CLI
 
