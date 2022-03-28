@@ -42,6 +42,7 @@ ExpiresByType application/json "access plus 0 seconds"
   </IfModule>
 </FilesMatch>
 
+# enable compression
 <ifModule mod_deflate.c>
 SetOutputFilter DEFLATE
 SetEnvIfNoCase Request_URI "\.(?:gif|jpe?g|png|mp4)$" no-gzip
@@ -61,4 +62,9 @@ AddOutputFilterByType DEFLATE application/x-font-woff2
 AddOutputFilterByType DEFLATE application/x-font-truetype
 AddOutputFilterByType DEFLATE image/svg+xml
 AddOutputFilterByType DEFLATE application/x-font-opentype
+</ifModule>
+
+# CORS
+<ifModule mod_headers.c>
+Header set Access-Control-Allow-Origin: *
 </ifModule>
