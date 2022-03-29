@@ -16,20 +16,8 @@ Repository for Black Swan Archery's official website: [http://blackswanarchery.c
 1. Clone this repository.
 1. In **Command Prompt** (Windows) or **Terminal** (MacOS), navigate into your repository root directory: `cd path/to/repo-root`
 1. Install dependencies: `npm install`
-1. Save template homepage file as working file:
-
-   `cd src`
-
-   On Windows:
-
-   `copy index.template.html index.html`
-
-   On MacOS:
-
-   `cp index.template.html index.html`
-
-1. Save template environment file as working file:
-   `cd environments`
+1. Save template environment files as working files:
+   `cd src/environments`
 
    On Windows:
 
@@ -43,6 +31,7 @@ Repository for Black Swan Archery's official website: [http://blackswanarchery.c
 
    `cp environment.prod.template.ts environment.ts`
 
+1. Replace environment-files' placeholder values (e.g., `<GTM_ID>`) with real values from external services [details TBD].
 1. Back out to repository root: `cd ../../`
 1. Start the app:
    `npm start`
