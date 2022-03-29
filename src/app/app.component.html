@@ -92,5 +92,16 @@
   </p>
   <img src="/assets/img/home/arvid.jpg" alt="Photo of Arvid Danielson" />
 
+  <h3>Google Tag Manager</h3>
+  <p>
+    <button
+      (click)="pushGtmTag('CookieConsent-dismiss')"
+      class="btn btn-primary"
+      data-testid="btnCustomEvent"
+    >
+      Push tag for CookieConsent-dismiss event
+    </button>
+  </p>
+
   <router-outlet></router-outlet>
 </div>

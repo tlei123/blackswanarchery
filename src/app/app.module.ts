@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { GoogleTagManagerModule } from 'angular-google-tag-manager';
 
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { FiguresEffects } from './store/effects/figures.effects';
     NgbModule,
     HttpClientModule,
     EffectsModule.forRoot([FiguresEffects]),
+    GoogleTagManagerModule.forRoot({ id: environment.gtmId }),
   ],
   providers: [FiguresService],
   bootstrap: [AppComponent],

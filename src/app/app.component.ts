@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-
 import { Observable, Subscription } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 import { AppState } from './models/app-state.model';
 import { SplashVideoState } from './models/splash-video-state.model';
@@ -70,7 +71,10 @@ export class AppComponent implements OnInit, OnDestroy {
     },
   };
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private gtmSvc: GoogleTagManagerService,
+  ) {
     this.routerState$ = store.select('router');
     this.splashVideoState$ = store.select('splashVideo');
     this.figuresState$ = store.select(selectFigures);
@@ -89,6 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.figuresStateSub = this.figuresState$.subscribe(
       this.figuresStateObserver,
     );
+    this.gtmSvc.addGtmToDom();
   }
 
   ngOnDestroy(): void {
@@ -109,5 +114,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   resetSplashVideo() {
     this.store.dispatch(svActions.reset());
+  }
+
+  pushGtmTag(eventTrigger: string) {
+    const gtmTag = {
+      event: eventTrigger,
+    };
+    this.gtmSvc.pushTag(gtmTag);
+
+    alert(`this is a mocked tag: ${eventTrigger}`);
   }
 }
