@@ -1,51 +1,40 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { TestBed } from '@angular/core/testing';
 import { LocationStrategy } from '@angular/common';
 import { MockLocationStrategy } from '@angular/common/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AppState } from './models/app-state.model';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import {
+  GoogleTagManagerModule,
+  GoogleTagManagerService,
+} from 'angular-google-tag-manager';
+
 import { AppComponent } from './app.component';
 import { SmartFigureComponent } from './shared/smart-figure/smart-figure.component';
+import { mockInitialAppState as initialState } from './testing/mocks/mock-app-state';
 import * as svActions from './store/actions/splash-video.actions';
+import { MockGoogleTagManagerService } from './testing/mocks/mock-gtm-svc';
 
 describe('AppComponent', () => {
-  const initialState: AppState = {
-    router: {
-      state: {
-        root: {
-          children: [],
-          data: {},
-          outlet: 'primary',
-          params: {},
-          queryParams: {},
-          url: [],
-        },
-        url: '/',
-      },
-      navigationId: 1,
-    },
-    splashVideo: {
-      done: false,
-    },
-    figures: {
-      home: [],
-      view2: [],
-    },
-  };
   let store: MockStore;
+  let gtmSvc: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, GoogleTagManagerModule],
       declarations: [AppComponent, SmartFigureComponent],
       providers: [
         { provide: LocationStrategy, useClass: MockLocationStrategy },
+        {
+          provide: GoogleTagManagerService,
+          useClass: MockGoogleTagManagerService,
+        },
         provideMockStore({ initialState }),
       ],
     }).compileComponents();
 
     store = TestBed.inject(MockStore);
+    gtmSvc = TestBed.inject(GoogleTagManagerService);
     store.setState(initialState);
   });
 
@@ -112,6 +101,31 @@ describe('AppComponent', () => {
       store.refreshState();
 
       expect(dispatchSpy).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe('GTM', () => {
+    it('should call pushGtmTag method on button click', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.componentInstance;
+      const pushGtmTagMethodSpy = spyOn(app, 'pushGtmTag');
+      let tagButton = fixture.debugElement.nativeElement.querySelector(
+        '[data-testid="btnCustomEvent"]',
+      );
+
+      tagButton.click();
+
+      expect(pushGtmTagMethodSpy).toHaveBeenCalled();
+    });
+    it('should call gtmSvc pushTag method from pushGtmTag', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.componentInstance;
+      const gtmPushTagMethodSpy = spyOn(gtmSvc, 'pushTag');
+      const triggerName = 'test-trigger';
+
+      app.pushGtmTag(triggerName);
+
+      expect(gtmPushTagMethodSpy).toHaveBeenCalledWith({ event: triggerName });
     });
   });
 });
