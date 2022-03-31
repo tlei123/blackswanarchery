@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  gtmId: 'GTM-MRJ3LHQ',
+  gtmId: '',
 };
 
 /*
