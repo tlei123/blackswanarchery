@@ -64,7 +64,7 @@ jobs:
           server: '${{ secrets.FTP_HOST_DEV }}'
           username: '${{ secrets.FTP_USERNAME_DEV }}'
           password: '${{ secrets.FTP_PASSWORD_DEV }}'
-          local-dir: './dist/bsa/'
+          local-dir: './dist/blackswanarchery/'
           server-dir: '${{ secrets.FTP_DIR_DEV }}'
       - name: Deploy prod
         if: ${{ github.ref == 'refs/heads/master' }}
@@ -73,5 +73,5 @@ jobs:
           server: '${{ secrets.FTP_HOST_PROD }}'
           username: '${{ secrets.FTP_USERNAME_PROD }}'
           password: '${{ secrets.FTP_PASSWORD_PROD }}'
-          local-dir: './dist/bsa/'
+          local-dir: './dist/blackswanarchery/'
           server-dir: '${{ secrets.FTP_DIR_PROD }}'
