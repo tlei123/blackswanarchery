@@ -55,7 +55,7 @@ jobs:
           spec: cypress/integration/**/*.spec.ts
       - name: Build dev
         if: ${{ github.ref != 'refs/heads/master' }}
-        run: npm run build
+        run: npm run --foreground-scripts build
       - name: Build prod
         if: ${{ github.ref == 'refs/heads/master' }}
         run: npm run buildprod
