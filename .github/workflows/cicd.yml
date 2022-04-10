@@ -68,6 +68,7 @@ jobs:
           password: '${{ secrets.FTP_PASSWORD_DEV }}'
           local-dir: './dist/blackswanarchery/'
           server-dir: '${{ secrets.FTP_DIR_DEV }}'
+          dangerous-clean-slate: true
       - name: Deploy prod
         if: ${{ github.ref == 'refs/heads/master' }}
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -77,3 +78,4 @@ jobs:
           password: '${{ secrets.FTP_PASSWORD_PROD }}'
           local-dir: './dist/blackswanarchery/'
           server-dir: '${{ secrets.FTP_DIR_PROD }}'
+          dangerous-clean-slate: true
