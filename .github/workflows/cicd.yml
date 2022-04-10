@@ -60,7 +60,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
         run: npm run buildprod:ci
       - name: Cachebust
-        if: ${{ github.ref == 'refs/heads/master' }}
         run: npm run cachebust
       - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
