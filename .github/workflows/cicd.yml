@@ -61,7 +61,7 @@ jobs:
         run: npm run buildprod
       - name: Deploy dev
         if: ${{ github.ref != 'refs/heads/master' }}
-        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: '${{ secrets.FTP_HOST_DEV }}'
           username: '${{ secrets.FTP_USERNAME_DEV }}'
@@ -70,7 +70,7 @@ jobs:
           server-dir: '${{ secrets.FTP_DIR_DEV }}'
       - name: Deploy prod
         if: ${{ github.ref == 'refs/heads/master' }}
-        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: '${{ secrets.FTP_HOST_PROD }}'
           username: '${{ secrets.FTP_USERNAME_PROD }}'
