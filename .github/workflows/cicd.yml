@@ -16,6 +16,9 @@ jobs:
         run: echo "GitHub Event Name = $GITHUB_EVENT_NAME"
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          lfs: 'true'
+          fetch-depth: '2'
       - run: echo "Checked out branch $GITHUB_REF"
       - name: Install Node
         uses: actions/setup-node@v2
