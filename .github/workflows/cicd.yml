@@ -59,6 +59,10 @@ jobs:
       - name: Build prod
         if: ${{ github.ref == 'refs/heads/master' }}
         run: npm run buildprod
+      - name: Sleep for 5s
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 5s
       - name: Deploy dev
         if: ${{ github.ref != 'refs/heads/master' }}
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
