@@ -39,6 +39,8 @@ jobs:
         run: |
           sed -i "s|gtmId: ''|gtmId: '$GTM_ID'|g" src/environments/environment.ts
           sed -i "s|gtmId: ''|gtmId: '$GTM_ID'|g" src/environments/environment.prod.ts
+      - name: Run unit tests
+        run: npm run test
       - name: Install Cypress
         run: npx cypress install
       - name: Run all E2E tests
