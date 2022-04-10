@@ -55,14 +55,17 @@ jobs:
           spec: cypress/integration/**/*.spec.ts
       - name: Build dev
         if: ${{ github.ref != 'refs/heads/master' }}
-        run: npm run --foreground-scripts build
+        run: npm run build:ci
       - name: Build prod
         if: ${{ github.ref == 'refs/heads/master' }}
-        run: npm run buildprod
-      - name: Sleep for 10s
+        run: npm run buildprod:ci
+      - name: Cachebust
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: npm run cachebust
+      - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
         with:
-          time: 10s
+          time: 5s
       - name: Deploy dev
         if: ${{ github.ref != 'refs/heads/master' }}
         uses: SamKirkland/FTP-Deploy-Action@4.3.0

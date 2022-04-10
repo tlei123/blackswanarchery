@@ -5,7 +5,12 @@ cachekill(
   'dist/**/*.{css,html,js,json}',
   20,
   true,
-).then(function (result) {
-  console.log('[cachekill] Fingerprinting result:', result);
-  return true;
-});
+)
+  .then(function (result) {
+    console.log('[cachekill] Fingerprinting result:', result);
+    process.exitCode = 0;
+  })
+  .catch(function (error) {
+    console.error(`[cachekill] ERROR: ${error.message}`);
+    process.exitCode = 1;
+  });
