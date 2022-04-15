@@ -1,6 +1,6 @@
 {
   "name": "blackswanarchery",
-  "version": "0.0.0",
+  "version": "0.0.8",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,6 +8,9 @@
     "buildprod": "ng build --configuration=production",
     "postbuild": "node ./npm-scripts/cachekill-assets.js",
     "postbuildprod": "node ./npm-scripts/cachekill-assets.js",
+    "bump:patch": "npm version patch --git-tag-version false && auto-changelog -p",
+    "bump:minor": "npm version minor --git-tag-version false && auto-changelog -p",
+    "bump:major": "npm version major --git-tag-version false && auto-changelog -p",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -53,6 +56,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
+    "auto-changelog": "^2.4.0",
     "cachekill": "^3.0.2",
     "cypress": "latest",
     "eslint": "^7.6.0",
