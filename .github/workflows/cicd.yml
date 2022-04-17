@@ -36,12 +36,25 @@ jobs:
         with:
           source: 'src/environments/environment.prod.template.ts'
           target: 'src/environments/environment.prod.ts'
-      - name: Populate COMMON secrets into working environment fileS
+      - name: Populate COMMON secrets into working environment files
         env:
+          FORMMAIL_ACTION: ${{ secrets.FORMMAIL_ACTION }}
           GTM_ID: ${{ secrets.GTM_ID }}
         run: |
+          sed -i "s|action: ''|action: '$FORMMAIL_ACTION'|g" src/environments/environment.ts
           sed -i "s|gtmId: ''|gtmId: '$GTM_ID'|g" src/environments/environment.ts
+          sed -i "s|action: ''|gtmId: '$FORMMAIL_ACTION'|g" src/environments/environment.prod.ts
           sed -i "s|gtmId: ''|gtmId: '$GTM_ID'|g" src/environments/environment.prod.ts
+      - name: Populate DEV secrets into working dev environment file
+        env:
+          FORMMAIL_RECIPIENTS_DEV: ${{ secrets.FORMMAIL_RECIPIENTS_DEV }}
+        run: |
+          sed -i "s|recipients: ''|recipients: '$FORMMAIL_RECIPIENTS_DEV'|g" src/environments/environment.ts
+      - name: Populate PROD secrets into working prod environment file
+        env:
+          FORMMAIL_RECIPIENTS_PROD: ${{ secrets.FORMMAIL_RECIPIENTS_PROD }}
+        run: |
+          sed -i "s|recipients: ''|recipients: '$FORMMAIL_RECIPIENTS_PROD'|g" src/environments/environment.prod.ts
       - name: Run unit tests
         run: npm run test -- --watch=false --browsers=ChromeHeadless
       - name: Install Cypress
