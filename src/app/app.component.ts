@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
+import { environment } from './../environments/environment';
 import { AppState } from './models/app-state.model';
 import { SplashVideoState } from './models/splash-video-state.model';
 import { FiguresState } from './models/figures-state.model';
@@ -21,6 +22,8 @@ import {
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Black Swan Archery';
+  formMailAction = environment.formMail.action;
+  formMailRecipients = environment.formMail.recipients;
 
   routerState$: Observable<object>;
   splashVideoState$: Observable<SplashVideoState>;
