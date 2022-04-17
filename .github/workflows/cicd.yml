@@ -43,7 +43,7 @@ jobs:
         run: |
           sed -i "s|action: ''|action: '$FORMMAIL_ACTION'|g" src/environments/environment.ts
           sed -i "s|gtmId: ''|gtmId: '$GTM_ID'|g" src/environments/environment.ts
-          sed -i "s|action: ''|gtmId: '$FORMMAIL_ACTION'|g" src/environments/environment.prod.ts
+          sed -i "s|action: ''|action: '$FORMMAIL_ACTION'|g" src/environments/environment.prod.ts
           sed -i "s|gtmId: ''|gtmId: '$GTM_ID'|g" src/environments/environment.prod.ts
       - name: Populate DEV secrets into working dev environment file
         env:
