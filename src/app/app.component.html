@@ -101,7 +101,7 @@
     <img src="/assets/img/home/arvid.jpg" alt="Photo of Arvid Danielson" />
   </p>
 
-  <h3>Google Tag Manager</h3>
+  <h3 data-testid="gtmHeader">Google Tag Manager</h3>
   <p>
     <button
       (click)="pushGtmTag('CookieConsent-dismiss')"
@@ -112,8 +112,8 @@
     </button>
   </p>
 
-  <h3>FormMail</h3>
-  <form [action]="formMailAction" method="post">
+  <h3 data-testid="formMailHeader">FormMail</h3>
+  <form id="formMailForm" [action]="formMailAction" method="post">
     <input type="hidden" name="recipient" [value]="formMailRecipients" />
     <div class="form-row">
       <div class="form-group col-md-6">
