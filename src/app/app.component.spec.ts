@@ -44,10 +44,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Black Swan Archery'`, () => {
+  it(`should have as name 'Black Swan Archery'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Black Swan Archery');
+    expect(app.name).toEqual('Black Swan Archery');
   });
 
   describe('Finish splash-video', () => {

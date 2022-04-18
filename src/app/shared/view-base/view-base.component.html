@@ -1,0 +1,8 @@
+<h2 class="view-title">View-Base Component</h2>
+<div *ngIf="viewFigures$ | async as figs">
+  <img
+    *ngFor="let fig of figs"
+    [src]="appImagesDir + viewImagesSubdir + fig.imageFilename"
+    alt="view image"
+  />
+</div>

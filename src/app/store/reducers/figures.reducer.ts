@@ -5,6 +5,7 @@ import * as figsActions from '../actions/figures.actions';
 
 export const initialState: FiguresState = {
   home: [],
+  'view-base': [],
   view2: [],
 };
 

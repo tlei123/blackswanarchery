@@ -16,9 +16,10 @@ import { SmartFigureComponent } from './shared/smart-figure/smart-figure.compone
 import { reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { FiguresEffects } from './store/effects/figures.effects';
+import { ViewBaseComponent } from './shared/view-base/view-base.component';
 
 @NgModule({
-  declarations: [AppComponent, SmartFigureComponent],
+  declarations: [AppComponent, SmartFigureComponent, ViewBaseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

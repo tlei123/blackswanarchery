@@ -32,6 +32,7 @@ describe('Figures Selectors', () => {
           zoomable: true,
         },
       ],
+      'view-base': [],
       view2: [
         {
           imageFilename: 'view2-01-2006111036.png',

@@ -5,7 +5,9 @@ import { Store } from '@ngrx/store';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 import { environment } from './../environments/environment';
+import { appConfig } from './app.config';
 import { AppState } from './models/app-state.model';
+import { debounce, getCurrentBreakpoint } from './utils/index';
 import { SplashVideoState } from './models/splash-video-state.model';
 import { FiguresState } from './models/figures-state.model';
 import * as svActions from './store/actions/splash-video.actions';
@@ -21,7 +23,12 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Black Swan Archery';
+  breakpoints = appConfig.breakpoints;
+  currentBreakpoint: string;
+  gifsDir = appConfig.dirs.gifs;
+  imagesDir = appConfig.dirs.images;
+  videosDir = appConfig.dirs.videos;
+  name = appConfig.name;
   formMailAction = environment.formMail.action;
   formMailRecipients = environment.formMail.recipients;
 
@@ -86,6 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.currentBreakpoint = getCurrentBreakpoint();
     this.store.dispatch(figsActions.loadFigures());
     // Subscribe to state-observables in case functional code needs to perform tasks upon state-changes.
     // Add methods and call them from observer objects above.
@@ -97,6 +105,9 @@ export class AppComponent implements OnInit, OnDestroy {
       this.figuresStateObserver,
     );
     this.gtmSvc.addGtmToDom();
+    window.onresize = debounce(() => {
+      this.currentBreakpoint = getCurrentBreakpoint();
+    }, 250);
   }
 
   ngOnDestroy(): void {
@@ -109,6 +120,13 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.figuresStateSub) {
       this.figuresStateSub.unsubscribe();
     }
+  }
+
+  onOutletActivated(component) {
+    component.appGifsDir = this.gifsDir;
+    component.appImagesDir = this.imagesDir;
+    component.appName = this.name;
+    component.appVideosDir = this.videosDir;
   }
 
   finishSplashVideo() {

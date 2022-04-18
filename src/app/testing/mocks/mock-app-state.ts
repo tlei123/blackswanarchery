@@ -20,6 +20,7 @@ export const mockInitialAppState: AppState = {
   },
   figures: {
     home: [],
+    'view-base': [],
     view2: [],
   },
 };
