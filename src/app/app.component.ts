@@ -1,3 +1,4 @@
+import { changeBreakpoint } from './store/actions/browser.actions';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
@@ -8,6 +9,7 @@ import { environment } from './../environments/environment';
 import { appConfig } from './app.config';
 import { AppState } from './models/app-state.model';
 import { debounce, getCurrentBreakpoint } from './utils/index';
+import { BrowserState } from './models/browser-state.model';
 import { SplashVideoState } from './models/splash-video-state.model';
 import { FiguresState } from './models/figures-state.model';
 import * as svActions from './store/actions/splash-video.actions';
@@ -32,11 +34,13 @@ export class AppComponent implements OnInit, OnDestroy {
   formMailAction = environment.formMail.action;
   formMailRecipients = environment.formMail.recipients;
 
+  browserState$: Observable<object>;
   routerState$: Observable<object>;
   splashVideoState$: Observable<SplashVideoState>;
   figuresState$: Observable<FiguresState>;
   homeFiguresState$: Observable<object>;
   view2FiguresState$: Observable<object>;
+  browserStateSub: Subscription;
   routerStateSub: Subscription;
   splashVideoStateSub: Subscription;
   figuresStateSub: Subscription;
@@ -45,6 +49,18 @@ export class AppComponent implements OnInit, OnDestroy {
   Call methods from within next/error/complete callback.
   If only template-display changes are needed, then just reference the state-observables directly from the template using ... | async.
   */
+  browserStateObserver = {
+    next: (x: BrowserState) => {
+      console.log('[App.browserStateObserver] Got a next value:', x);
+      this.currentBreakpoint = x.currentBreakpoint;
+    },
+    error: (err: Error) => {
+      console.error('[App.browserStateObserver] Got an error:', err);
+    },
+    complete: () => {
+      console.log('[App.browserStateObserver] Got a complete notification:');
+    },
+  };
   routerStateObserver = {
     next: (x: any) => {
       console.log('[App.routerStateObserver] Got a next value:', x);
@@ -85,6 +101,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
     private gtmSvc: GoogleTagManagerService,
   ) {
+    this.browserState$ = store.select('browser');
     this.routerState$ = store.select('router');
     this.splashVideoState$ = store.select('splashVideo');
     this.figuresState$ = store.select(selectFigures);
@@ -95,8 +112,14 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentBreakpoint = getCurrentBreakpoint();
     this.store.dispatch(figsActions.loadFigures());
+    this.store.dispatch(
+      changeBreakpoint({ breakpoint: getCurrentBreakpoint() }),
+    );
     // Subscribe to state-observables in case functional code needs to perform tasks upon state-changes.
     // Add methods and call them from observer objects above.
+    this.browserStateSub = this.browserState$.subscribe(
+      this.browserStateObserver,
+    );
     this.routerStateSub = this.routerState$.subscribe(this.routerStateObserver);
     this.splashVideoStateSub = this.splashVideoState$.subscribe(
       this.splashVideoStateObserver,
@@ -106,7 +129,10 @@ export class AppComponent implements OnInit, OnDestroy {
     );
     this.gtmSvc.addGtmToDom();
     window.onresize = debounce(() => {
-      this.currentBreakpoint = getCurrentBreakpoint();
+      const newBrkpt = getCurrentBreakpoint();
+      if (newBrkpt !== this.currentBreakpoint) {
+        this.store.dispatch(changeBreakpoint({ breakpoint: newBrkpt }));
+      }
     }, 250);
   }
 

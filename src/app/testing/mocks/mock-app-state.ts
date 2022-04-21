@@ -1,6 +1,9 @@
 import { AppState } from './../../models/app-state.model';
 
 export const mockInitialAppState: AppState = {
+  browser: {
+    currentBreakpoint: 'xs',
+  },
   router: {
     state: {
       root: {

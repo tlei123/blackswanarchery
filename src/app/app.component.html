@@ -12,6 +12,13 @@
 
   <hr />
 
+  <h2 data-testid="browserStateHeader">Browser State</h2>
+
+  <p *ngIf="browserState$ | async as bState">
+    [<code>(browserState$ | async).currentBreakpoint</code>]:
+    {{ bState.currentBreakpoint }}
+  </p>
+
   <h2 data-testid="routerStateHeader">Router State</h2>
 
   <p>[<code>(routerState$ | async).state</code>]:</p>

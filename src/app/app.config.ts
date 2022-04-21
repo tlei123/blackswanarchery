@@ -1,6 +1,7 @@
 import { environment } from './../environments/environment';
 
 export const appConfig = {
+  // copy breakpoints from bootstrap's _variables.scss
   breakpoints: {
     xs: 0,
     sm: 576,
