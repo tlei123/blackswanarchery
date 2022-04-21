@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { FiguresState } from 'src/app/models/figures-state.model';
 import * as figsActions from './figures.actions';
 
-describe('figuresActions', () => {
+describe('Figures Actions', () => {
   const figuresData = {
     home: [],
     view2: [],

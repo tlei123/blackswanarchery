@@ -2,7 +2,7 @@ import * as fromReducer from './splash-video.reducer';
 import * as fromActions from '../actions/splash-video.actions';
 import { SplashVideoState } from './../../models/splash-video-state.model';
 
-describe('splashVideoReducer', () => {
+describe('Splash Video Reducer', () => {
   describe('unknown action', () => {
     it('should return previous state', () => {
       const { initialState } = fromReducer;

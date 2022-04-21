@@ -4,7 +4,7 @@ import * as svActions from './splash-video.actions';
 import { SplashVideoState } from './../../models/splash-video-state.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
-describe('splashVideoActions', () => {
+describe('Splash Video Actions', () => {
   describe('finish', () => {
     it('should dispatch Finish action', () => {
       const expectedAction = svActions.finish();
