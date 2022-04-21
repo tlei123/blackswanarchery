@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   If only template-display changes are needed, then just reference the state-observables directly from the template using ... | async.
   */
   routerStateObserver = {
-    next: (x: object) => {
+    next: (x: any) => {
       console.log('[App.routerStateObserver] Got a next value:', x);
     },
     error: (err: Error) => {
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
     },
   };
   splashVideoStateObserver = {
-    next: (x: object) => {
+    next: (x: SplashVideoState) => {
       console.log('[App.splashVideoStateObserver] Got a next value:', x);
     },
     error: (err: Error) => {
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
     },
   };
   figuresStateObserver = {
-    next: (x: object) => {
+    next: (x: FiguresState) => {
       console.log('[App.figuresStateObserver] Got a next value:', x);
     },
     error: (err: Error) => {
