@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { select, Store } from '@ngrx/store';
 
 import { AppState } from './../../models/app-state.model';
+import { BrowserState } from 'src/app/models/browser-state.model';
 import { selectFiguresByView } from 'src/app/store/selectors/figures.selectors';
 
 @Component({
@@ -17,6 +18,8 @@ export class ViewBaseComponent implements OnInit {
   @Input() appName: string;
   @Input() appVideosDir: string;
 
+  currentBreakpoint: string;
+  browserStateSub: Subscription;
   viewFigures$: Observable<object>;
   viewImagesSubdir = 'view-base/';
 
@@ -24,6 +27,11 @@ export class ViewBaseComponent implements OnInit {
 
   ngOnInit(): void {
     // copy to instance-component [life-cycle methods are not inherited]
+    this.browserStateSub = this.store
+      .select('browser')
+      .subscribe((bState: BrowserState) => {
+        this.currentBreakpoint = bState.currentBreakpoint;
+      });
     this.viewFigures$ = this.store.select(selectFiguresByView('view-base'));
     document.title = `View-Base | ${this.appName}`;
   }

@@ -1,4 +1,7 @@
 <h2 class="view-title">View-Base Component</h2>
+<p>
+  currentBreakpoint: <span>{{ currentBreakpoint }}</span>
+</p>
 <div *ngIf="viewFigures$ | async as figs">
   <img
     *ngFor="let fig of figs"
