@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Store, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { ViewBaseComponent } from './view-base.component';
 import { mockInitialAppState as initialState } from './../../testing/mocks/mock-app-state';
+import * as figsSelectors from './../../store/selectors/figures.selectors';
 
 describe('ViewBaseComponent', () => {
   let component: ViewBaseComponent;
@@ -17,6 +18,7 @@ describe('ViewBaseComponent', () => {
       declarations: [ViewBaseComponent],
       providers: [provideMockStore({ initialState })],
     }).compileComponents();
+
     fixture = TestBed.createComponent(ViewBaseComponent);
     component = fixture.componentInstance;
     store = TestBed.inject(MockStore);
@@ -26,13 +28,22 @@ describe('ViewBaseComponent', () => {
     component.appImagesDir = '/assets/images/';
     component.appName = 'Black Swan Archery';
     component.appVideosDir = '/assets/videos/';
-    component.viewFigures$ = null;
     component.viewImagesSubdir = 'view-base/';
-    spyOn(store, 'dispatch').and.callThrough();
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call selectFiguresByView selector', async () => {
+    const viewBase = fixture.componentInstance;
+    const selectSpy = spyOn(store, 'select');
+    const expectedSelector = figsSelectors.selectFiguresByView('view-base');
+
+    viewBase.ngOnInit();
+
+    expect(selectSpy).toHaveBeenCalled();
   });
 });
