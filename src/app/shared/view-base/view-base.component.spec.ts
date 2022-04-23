@@ -5,7 +5,6 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { ViewBaseComponent } from './view-base.component';
 import { mockInitialAppState as initialState } from './../../testing/mocks/mock-app-state';
-import * as figsSelectors from './../../store/selectors/figures.selectors';
 
 describe('ViewBaseComponent', () => {
   let component: ViewBaseComponent;
@@ -37,13 +36,11 @@ describe('ViewBaseComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call selectFiguresByView selector', async () => {
-    const viewBase = fixture.componentInstance;
+  it('should select state-slices', async () => {
     const selectSpy = spyOn(store, 'select');
-    const expectedSelector = figsSelectors.selectFiguresByView('view-base');
 
-    viewBase.ngOnInit();
+    component.ngOnInit();
 
-    expect(selectSpy).toHaveBeenCalled();
+    expect(selectSpy).toHaveBeenCalledTimes(2);
   });
 });

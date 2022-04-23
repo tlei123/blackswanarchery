@@ -1,6 +1,6 @@
 <h2 class="view-title">View-Base Component</h2>
-<p>
-  currentBreakpoint: <span>{{ currentBreakpoint }}</span>
+<p *ngIf="currentBreakpoint$ | async as currBrkpt">
+  currentBreakpoint: <span>{{ currBrkpt }}</span>
 </p>
 <div *ngIf="viewFigures$ | async as figs">
   <img
