@@ -5,6 +5,7 @@ import * as figsActions from './figures.actions';
 describe('Figures Actions', () => {
   const figuresData = {
     home: [],
+    'view-base': [],
     view2: [],
   };
 
