@@ -17,9 +17,15 @@ import { reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { FiguresEffects } from './store/effects/figures.effects';
 import { ViewBaseComponent } from './shared/view-base/view-base.component';
+import { ZoomComponent } from './zoom/zoom.component';
 
 @NgModule({
-  declarations: [AppComponent, SmartFigureComponent, ViewBaseComponent],
+  declarations: [
+    AppComponent,
+    SmartFigureComponent,
+    ViewBaseComponent,
+    ZoomComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
