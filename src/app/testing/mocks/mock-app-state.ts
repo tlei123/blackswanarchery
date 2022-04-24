@@ -72,4 +72,10 @@ export const mockInitialAppState: AppState = {
       },
     ],
   },
+  zoom: {
+    currentImageFilename: '',
+    currentViewImagesSubdir: '',
+    currentViewZoomableFigures: [],
+    isOpen: false,
+  },
 };

@@ -1,12 +1,11 @@
-import { initialState } from './../reducers/splash-video.reducer';
 import { AppState } from './../../models/app-state.model';
 import { initialState as bInitialState } from '../reducers/browser.reducer';
 import { initialState as svInitialState } from '../reducers/splash-video.reducer';
 import { initialState as figsInitialState } from '../reducers/figures.reducer';
-import { initialState as zInitialState } from '../reducers/zoom.reducer';
-import { selectCurrentBreakpoint } from './browser.selectors';
+import { ZoomState } from './../../models/zoom-state.model';
+import { selectZoomState } from './zoom.selectors';
 
-describe('Browser Selectors', () => {
+describe('Zoom Selectors', () => {
   const initialAppState: AppState = {
     browser: bInitialState,
     router: {
@@ -27,13 +26,17 @@ describe('Browser Selectors', () => {
     },
     splashVideo: svInitialState,
     figures: figsInitialState,
-    zoom: zInitialState,
+    zoom: {
+      currentImageFilename: '',
+      currentViewImagesSubdir: '',
+      currentViewZoomableFigures: [],
+      isOpen: false,
+    },
   };
 
-  it('should select browser state', () => {
-    const selectCurrBrkpt = selectCurrentBreakpoint();
-    const result: string = selectCurrBrkpt.projector(initialAppState.browser);
+  it('should select zoom state', () => {
+    const result: ZoomState = selectZoomState.projector(initialAppState.zoom);
 
-    expect(result).toEqual('xs');
+    expect(result).toEqual(initialAppState.zoom);
   });
 });

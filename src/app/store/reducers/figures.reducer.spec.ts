@@ -1,7 +1,6 @@
 import { figuresReducer, initialState } from './figures.reducer';
-import { FiguresState } from '../../models/figures-state.model';
-import * as figsActions from '../actions/figures.actions';
-import * as figsJson from '../../../data/figures.json';
+import * as figsActions from './../actions/figures.actions';
+import * as figsJson from './../../../data/figures.json';
 
 describe('Figures Reducer', () => {
   describe('an unknown action', () => {

@@ -1,6 +1,7 @@
 import { AppState } from './../../models/app-state.model';
 import { initialState as bInitialState } from '../reducers/browser.reducer';
 import { initialState as svInitialState } from '../reducers/splash-video.reducer';
+import { initialState as zInitialState } from '../reducers/zoom.reducer';
 import { Figure } from './../../models/figure.model';
 import { FiguresState } from './../../models/figures-state.model';
 import { selectFigures, selectFiguresByView } from './figures.selectors';
@@ -58,6 +59,7 @@ describe('Figures Selectors', () => {
         },
       ],
     },
+    zoom: zInitialState,
   };
 
   it('should select figures state', () => {
