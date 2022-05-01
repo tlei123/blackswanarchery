@@ -8,6 +8,7 @@ export const initialState: ZoomState = {
   currentViewImagesSubdir: '',
   currentViewZoomableFigures: [],
   isOpen: false,
+  zoomBreakpoints: ['md', 'lg', 'xl'],
 };
 
 export const zoomReducer = createReducer(

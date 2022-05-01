@@ -5,4 +5,5 @@ export interface ZoomState {
   currentViewImagesSubdir: string;
   currentViewZoomableFigures: Figure[];
   isOpen: boolean;
+  zoomBreakpoints: string[];
 }

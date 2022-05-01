@@ -97,7 +97,15 @@
 
   <h3 data-testid="smartFigureComponentHeader">SmartFigure component</h3>
 
-  <app-smart-figure></app-smart-figure>
+  <app-smart-figure
+    *ngIf="(homeFiguresState$ | async)[0] as figure"
+    [ngClass]="'smart-figure ' + getImageClasshook(figure.imageFilename)"
+    [viewImagesSubdir]="'home/'"
+    [figure]="figure"
+    [imageWidth]="'180px'"
+    [hideCaption]="false"
+    (zoom)="onZoomableImageClick($event)"
+  ></app-smart-figure>
 
   <h3>Images Cachebusting</h3>
   <p>

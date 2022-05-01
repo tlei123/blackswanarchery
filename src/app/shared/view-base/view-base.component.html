@@ -2,10 +2,10 @@
 <p *ngIf="currentBreakpoint$ | async as currBrkpt">
   currentBreakpoint: <span>{{ currBrkpt }}</span>
 </p>
-<div *ngIf="viewFigures$ | async as figs">
-  <img
-    *ngFor="let fig of figs"
-    [src]="appImagesDir + viewImagesSubdir + fig.imageFilename"
-    alt="view image"
-  />
-</div>
+<app-smart-figure
+  *ngFor="let fig of viewFigures$ | async; let i = index"
+  [viewImagesSubdir]="viewImagesSubdir"
+  [figure]="fig"
+  [imageWidth]="100"
+  [hideCaption]="false"
+></app-smart-figure>

@@ -18,6 +18,7 @@ import {
   selectFigures,
   selectFiguresByView,
 } from './store/selectors/figures.selectors';
+import { Figure } from './models/figure.model';
 
 @Component({
   selector: 'app-root',
@@ -170,5 +171,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.gtmSvc.pushTag(gtmTag);
 
     alert(`this is a mocked tag: ${eventTrigger}`);
+  }
+
+  getImageClasshook(imageFilename: string): string {
+    return imageFilename.match(/-/g).length === 2
+      ? imageFilename.substring(0, imageFilename.lastIndexOf('-'))
+      : imageFilename.substring(0, imageFilename.indexOf('.'));
+  }
+
+  onZoomableImageClick(figure: Figure) {
+    console.log('[App.onZoomableImageClick] figure:', figure);
   }
 }

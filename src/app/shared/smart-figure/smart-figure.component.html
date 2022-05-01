@@ -1,1 +1,15 @@
-<p>smart-figure works!</p>
+<figure *ngIf="figure && (currentBreakpoint$ | async) as currBrkpt">
+  <img
+    *ngIf="zoomState$ | async as zState"
+    [src]="appImagesDir + viewImagesSubdir + figure.imageFilename"
+    [ngClass]="{
+      zoomable: isZoomEnabled(figure, zState.zoomBreakpoints, currBrkpt)
+    }"
+    [style]="getImageStyle()"
+    alt="figure"
+    (click)="onImageClick(figure, zState.zoomBreakpoints, currBrkpt)"
+  />
+  <figcaption *ngIf="!hideCaption" [style]="getCaptionStyle()">
+    {{ figure.caption }}
+  </figcaption>
+</figure>
