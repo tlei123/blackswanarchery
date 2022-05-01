@@ -22,7 +22,7 @@ describe('Zoom Reducer', () => {
       };
       const action = zActions.openZoom({ zoomData });
       const state = zoomReducer(initialState, action);
-      const newState = { ...zoomData, isOpen: true };
+      const newState = { ...initialState, ...zoomData, isOpen: true };
 
       expect(state).toEqual(newState);
       expect(state).not.toBe(newState);

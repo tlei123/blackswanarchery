@@ -77,5 +77,6 @@ export const mockInitialAppState: AppState = {
     currentViewImagesSubdir: '',
     currentViewZoomableFigures: [],
     isOpen: false,
+    zoomBreakpoints: ['md', 'lg', 'xl'],
   },
 };
