@@ -99,7 +99,8 @@
 
   <app-smart-figure
     *ngIf="(homeFiguresState$ | async)[0] as figure"
-    [ngClass]="'smart-figure ' + getImageClasshook(figure.imageFilename)"
+    class="smart-figure"
+    [ngClass]="getImageClasshook(figure.imageFilename)"
     [viewImagesSubdir]="'home/'"
     [figure]="figure"
     [imageWidth]="'180px'"

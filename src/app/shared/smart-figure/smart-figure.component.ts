@@ -16,9 +16,9 @@ import { selectCurrentBreakpoint } from 'src/app/store/selectors/browser.selecto
 export class SmartFigureComponent implements OnInit {
   @Input() viewImagesSubdir: string;
   @Input() figure: Figure;
-  @Input() imageWidth?: string;
-  @Input() imageHeight?: string;
-  @Input() hideCaption: boolean = false;
+  @Input() index?: number;
+  @Input() imageWidth: string | string[];
+  @Input() hideCaption: boolean | boolean[];
 
   @Output() zoom = new EventEmitter<Figure>();
 
@@ -33,13 +33,31 @@ export class SmartFigureComponent implements OnInit {
     this.zoomState$ = this.store.select('zoom');
   }
 
-  getImageStyle(): string {
+  isZoomEnabled(
+    figure: Figure,
+    zoomBreakpoints: string[],
+    currentBreakpoint: string,
+  ): boolean {
+    return figure.zoomable && zoomBreakpoints.includes(currentBreakpoint);
+  }
+
+  getFigureStyle(): string {
     if (this.imageWidth) {
-      return `height:auto;width:${this.imageWidth};`;
+      const width = Array.isArray(this.imageWidth)
+        ? this.imageWidth[this.index]
+        : this.imageWidth;
+      return `height:auto;width:${width};`;
     }
 
-    if (this.imageHeight) {
-      return `height:${this.imageHeight};width:auto;`;
+    return 'height:auto;width:auto;';
+  }
+
+  getImageStyle(): string {
+    if (this.imageWidth) {
+      const width = Array.isArray(this.imageWidth)
+        ? this.imageWidth[this.index]
+        : this.imageWidth;
+      return `height:auto;width:${width};`;
     }
 
     return 'height:auto;width:auto;';
@@ -47,18 +65,13 @@ export class SmartFigureComponent implements OnInit {
 
   getCaptionStyle(): string {
     if (this.imageWidth) {
-      return `width:${this.imageWidth};`;
+      const width = Array.isArray(this.imageWidth)
+        ? this.imageWidth[this.index]
+        : this.imageWidth;
+      return `height:auto;width:${width};`;
     }
 
     return 'width:auto;';
-  }
-
-  isZoomEnabled(
-    figure: Figure,
-    zoomBreakpoints: string[],
-    currentBreakpoint: string,
-  ): boolean {
-    return figure.zoomable && zoomBreakpoints.includes(currentBreakpoint);
   }
 
   onImageClick(
