@@ -7,6 +7,7 @@ import { AppState } from './../../models/app-state.model';
 import { selectCurrentBreakpoint } from './../../store/selectors/browser.selectors';
 import { selectFiguresByView } from './../../store/selectors/figures.selectors';
 import { Figure } from './../../models/figure.model';
+import { getImageClasshook } from './../../utils';
 
 @Component({
   selector: 'app-view-base',
@@ -32,10 +33,8 @@ export class ViewBaseComponent implements OnInit {
     document.title = `View-Base | ${this.appName}`;
   }
 
-  getImageClasshook(imageFilename: string): string {
-    return imageFilename.match(/-/g).length === 2
-      ? imageFilename.substring(0, imageFilename.lastIndexOf('-'))
-      : imageFilename.substring(0, imageFilename.indexOf('.'));
+  getImgClasshook(filename: string): string {
+    return getImageClasshook(filename);
   }
 
   onZoomableImageClick(figure: Figure) {

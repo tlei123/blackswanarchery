@@ -1,15 +1,18 @@
-<h2 class="view-title">View-Base Component</h2>
-<p *ngIf="currentBreakpoint$ | async as currBrkpt">
-  currentBreakpoint: <span>{{ currBrkpt }}</span>
-</p>
-<app-smart-figure
-  *ngFor="let fig of viewFigures$ | async; let i = index"
-  class="smart-figure"
-  [ngClass]="getImageClasshook(fig.imageFilename)"
-  [viewImagesSubdir]="viewImagesSubdir"
-  [figure]="fig"
-  [index]="i"
-  [imageWidth]="['200px', '275px', '350px']"
-  [hideCaption]="false"
-  (zoom)="onZoomableImageClick($event)"
-></app-smart-figure>
+<div class="view-wrapper">
+  <h2 class="view-title">View-Base Component</h2>
+  <p *ngIf="currentBreakpoint$ | async as currBrkpt">
+    currentBreakpoint: <span>{{ currBrkpt }}</span>
+  </p>
+  <h3 class="header-smart-figure">SmartFigure component-instances</h3>
+  <app-smart-figure
+    *ngFor="let fig of viewFigures$ | async; let i = index"
+    class="smart-figure"
+    [ngClass]="getImgClasshook(fig.imageFilename)"
+    [viewImagesSubdir]="viewImagesSubdir"
+    [figure]="fig"
+    [index]="i"
+    [imageWidth]="['200px', '250px', '400px']"
+    [hideCaption]="false"
+    (zoom)="onZoomableImageClick($event)"
+  ></app-smart-figure>
+</div>

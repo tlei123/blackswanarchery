@@ -1,0 +1,29 @@
+@import '~bootstrap/scss/_functions';
+@import './../../../scss/partials/bootstrap-overrides';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_mixins.scss';
+
+.view-wrapper {
+  position: relative;
+}
+
+.header-smart-figure {
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 510px;
+  }
+}
+
+.smart-figure {
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    top: 140px;
+
+    &.view-base-02 {
+      left: 250px;
+    }
+
+    &.view-base-03 {
+      left: 550px;
+    }
+  }
+}

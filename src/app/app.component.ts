@@ -1,4 +1,3 @@
-import { changeBreakpoint } from './store/actions/browser.actions';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
@@ -8,10 +7,15 @@ import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { environment } from './../environments/environment';
 import { appConfig } from './app.config';
 import { AppState } from './models/app-state.model';
-import { debounce, getCurrentBreakpoint } from './utils/index';
+import {
+  debounce,
+  getCurrentBreakpoint,
+  getImageClasshook,
+} from './utils/index';
 import { BrowserState } from './models/browser-state.model';
 import { SplashVideoState } from './models/splash-video-state.model';
 import { FiguresState } from './models/figures-state.model';
+import { changeBreakpoint } from './store/actions/browser.actions';
 import * as svActions from './store/actions/splash-video.actions';
 import * as figsActions from './store/actions/figures.actions';
 import {
@@ -173,10 +177,8 @@ export class AppComponent implements OnInit, OnDestroy {
     alert(`this is a mocked tag: ${eventTrigger}`);
   }
 
-  getImageClasshook(imageFilename: string): string {
-    return imageFilename.match(/-/g).length === 2
-      ? imageFilename.substring(0, imageFilename.lastIndexOf('-'))
-      : imageFilename.substring(0, imageFilename.indexOf('.'));
+  getImgClasshook(filename: string): string {
+    return getImageClasshook(filename);
   }
 
   onZoomableImageClick(figure: Figure) {
