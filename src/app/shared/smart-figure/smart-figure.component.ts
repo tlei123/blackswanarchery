@@ -16,8 +16,11 @@ import { selectCurrentBreakpoint } from 'src/app/store/selectors/browser.selecto
 export class SmartFigureComponent implements OnInit {
   @Input() viewImagesSubdir: string;
   @Input() figure: Figure;
-  @Input() index?: number;
-  @Input() imageWidth: string | string[];
+  @Input() index?: number; // required IF SmartFigure's being iterated
+  // imageDimension examples:
+  // 'w150' => 'height: auto; width: 150px'
+  // 'h200' => 'height: 200px; width: auto'
+  @Input() imageDimension: string | string[];
   @Input() hideCaption: boolean | boolean[];
 
   @Output() zoom = new EventEmitter<Figure>();
@@ -25,6 +28,8 @@ export class SmartFigureComponent implements OnInit {
   appImagesDir = appConfig.dirs.images;
   currentBreakpoint$: Observable<string>;
   zoomState$: Observable<object>;
+  figureStyle = '';
+  imageStyle = '';
 
   constructor(private store: Store<AppState>) {}
 
@@ -41,37 +46,40 @@ export class SmartFigureComponent implements OnInit {
     return figure.zoomable && zoomBreakpoints.includes(currentBreakpoint);
   }
 
-  getFigureStyle(): string {
-    if (this.imageWidth) {
-      const width = Array.isArray(this.imageWidth)
-        ? this.imageWidth[this.index]
-        : this.imageWidth;
-      return `height:auto;width:${width};`;
-    }
+  setStyles($event): void {
+    const img = $event.target;
+    const width = parseFloat(img.width);
+    const height = parseFloat(img.height);
+    const aspectRatio = width / height;
 
-    return 'height:auto;width:auto;';
+    this.setImageStyle(aspectRatio);
+    this.setFigureStyle(aspectRatio);
   }
 
-  getImageStyle(): string {
-    if (this.imageWidth) {
-      const width = Array.isArray(this.imageWidth)
-        ? this.imageWidth[this.index]
-        : this.imageWidth;
-      return `height:auto;width:${width};`;
-    }
+  setImageStyle(aspectRatio: number): void {
+    const imgDim = Array.isArray(this.imageDimension)
+      ? this.imageDimension[this.index]
+      : this.imageDimension;
+    const dim = imgDim.slice(0, 1);
+    const length = parseFloat(imgDim.slice(1));
 
-    return 'height:auto;width:auto;';
+    this.imageStyle =
+      dim === 'w'
+        ? `height:auto;width:${length}px;`
+        : `height:${length}px;width:auto;`;
   }
 
-  getCaptionStyle(): string {
-    if (this.imageWidth) {
-      const width = Array.isArray(this.imageWidth)
-        ? this.imageWidth[this.index]
-        : this.imageWidth;
-      return `height:auto;width:${width};`;
-    }
+  setFigureStyle(imageAspectRatio: number) {
+    const imgDimStr = Array.isArray(this.imageDimension)
+      ? this.imageDimension[this.index]
+      : this.imageDimension;
+    const dim = imgDimStr.slice(0, 1);
+    const length = parseFloat(imgDimStr.slice(1));
 
-    return 'width:auto;';
+    this.figureStyle =
+      dim === 'w'
+        ? `width:${length}px;`
+        : `width:${length * imageAspectRatio}px;`;
   }
 
   onImageClick(

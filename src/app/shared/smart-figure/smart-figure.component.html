@@ -1,6 +1,6 @@
 <figure
   *ngIf="figure && (currentBreakpoint$ | async) as currBrkpt"
-  [style]="getFigureStyle()"
+  [style]="figureStyle"
 >
   <img
     *ngIf="zoomState$ | async as zState"
@@ -8,16 +8,17 @@
     [ngClass]="{
       zoomable: isZoomEnabled(figure, zState.zoomBreakpoints, currBrkpt)
     }"
-    [style]="getImageStyle()"
+    [style]="imageStyle"
     [title]="
       isZoomEnabled(figure, zState.zoomBreakpoints, currBrkpt)
         ? 'Click to zoom'
         : ''
     "
+    (load)="setStyles($event)"
     alt="image"
     (click)="onImageClick(figure, zState.zoomBreakpoints, currBrkpt)"
   />
-  <figcaption *ngIf="!hideCaption" [style]="getCaptionStyle()">
+  <figcaption *ngIf="!hideCaption">
     {{ figure.caption }}
   </figcaption>
 </figure>

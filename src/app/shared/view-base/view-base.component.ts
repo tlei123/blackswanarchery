@@ -9,9 +9,13 @@ import { selectFiguresByView } from './../../store/selectors/figures.selectors';
 import { Figure } from './../../models/figure.model';
 import { getImageClasshook } from './../../utils';
 
+// extend this base-component to create view-components ("pages" rendered in AppComponent template's <router-outlet/>)
+
 @Component({
   selector: 'app-view-base',
+  // copy markup into instance-component template
   templateUrl: './view-base.component.html',
+  // copy rules into instance-component stylesheet
   styleUrls: ['./view-base.component.scss'],
 })
 export class ViewBaseComponent implements OnInit {
@@ -33,8 +37,12 @@ export class ViewBaseComponent implements OnInit {
     document.title = `View-Base | ${this.appName}`;
   }
 
-  getImgClasshook(filename: string): string {
-    return getImageClasshook(filename);
+  // methods below are inherited by instance-component
+  // no need to copy
+  // can be overridden
+
+  getClasshook(imgFilename: string): string {
+    return getImageClasshook(imgFilename);
   }
 
   onZoomableImageClick(figure: Figure) {

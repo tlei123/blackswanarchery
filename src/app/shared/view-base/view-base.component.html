@@ -7,11 +7,11 @@
   <app-smart-figure
     *ngFor="let fig of viewFigures$ | async; let i = index"
     class="smart-figure"
-    [ngClass]="getImgClasshook(fig.imageFilename)"
+    [ngClass]="getClasshook(fig.imageFilename)"
     [viewImagesSubdir]="viewImagesSubdir"
     [figure]="fig"
     [index]="i"
-    [imageWidth]="['200px', '250px', '400px']"
+    [imageDimension]="'w200'"
     [hideCaption]="false"
     (zoom)="onZoomableImageClick($event)"
   ></app-smart-figure>

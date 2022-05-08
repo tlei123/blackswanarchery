@@ -100,10 +100,10 @@
   <app-smart-figure
     *ngIf="(homeFiguresState$ | async)[0] as figure"
     class="smart-figure"
-    [ngClass]="getImgClasshook(figure.imageFilename)"
+    [ngClass]="getClasshook(figure.imageFilename)"
     [viewImagesSubdir]="'home/'"
     [figure]="figure"
-    [imageWidth]="'180px'"
+    [imageDimension]="'h240'"
     [hideCaption]="false"
     (zoom)="onZoomableImageClick($event)"
   ></app-smart-figure>

@@ -177,8 +177,8 @@ export class AppComponent implements OnInit, OnDestroy {
     alert(`this is a mocked tag: ${eventTrigger}`);
   }
 
-  getImgClasshook(filename: string): string {
-    return getImageClasshook(filename);
+  getClasshook(imageFilename: string): string {
+    return getImageClasshook(imageFilename);
   }
 
   onZoomableImageClick(figure: Figure) {

@@ -1,3 +1,9 @@
+@import '~bootstrap/scss/_functions';
+@import './../../../scss/partials/bootstrap-overrides';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_mixins.scss';
+
+// style :host element (<app-smart-figure class="smart-figure"... />) in parent-component stylesheet.
 img {
   &.zoomable {
     cursor: pointer;
@@ -7,4 +13,5 @@ figcaption {
   font-size: small;
   line-height: 1.25;
   margin-top: 0.5em;
+  width: inherit;
 }
