@@ -1,11 +1,10 @@
-import { initialState } from './../reducers/browser.reducer';
 import { AppState } from './../../models/app-state.model';
 import { initialState as bInitialState } from '../reducers/browser.reducer';
 import { initialState as svInitialState } from '../reducers/splash-video.reducer';
 import { initialState as figsInitialState } from '../reducers/figures.reducer';
 import { initialState as zInitialState } from '../reducers/zoom.reducer';
 import { ZoomState } from './../../models/zoom-state.model';
-import { selectZoomState } from './zoom.selectors';
+import { selectZoomState, selectZoomBreakpoints } from './zoom.selectors';
 
 describe('Zoom Selectors', () => {
   const initialAppState: AppState = {
@@ -35,5 +34,12 @@ describe('Zoom Selectors', () => {
     const result: ZoomState = selectZoomState.projector(initialAppState.zoom);
 
     expect(result).toEqual(initialAppState.zoom);
+  });
+
+  it('should select zoomBreakpoints state-slice', () => {
+    const selectZBrkpts = selectZoomBreakpoints();
+    const result: string[] = selectZBrkpts.projector(initialAppState.zoom);
+
+    expect(result).toEqual(initialAppState.zoom.zoomBreakpoints);
   });
 });
