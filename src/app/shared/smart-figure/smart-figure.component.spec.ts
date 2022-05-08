@@ -25,7 +25,7 @@ describe('SmartFigureComponent', () => {
     component.figure;
     component.viewImagesSubdir;
     component.figure;
-    component.imageWidth;
+    component.imageDimension;
     component.hideCaption;
     fixture.detectChanges();
   });
