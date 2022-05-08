@@ -13,9 +13,9 @@ import { getImageClasshook } from './../../utils';
 
 @Component({
   selector: 'app-view-base',
-  // copy markup into instance-component template
+  // copy markup into instance-component template [or save-as & overwrite (replace) that template]
   templateUrl: './view-base.component.html',
-  // copy rules into instance-component stylesheet
+  // copy template-rules into instance-component stylesheet [or save-as like above]
   styleUrls: ['./view-base.component.scss'],
 })
 export class ViewBaseComponent implements OnInit {
@@ -28,18 +28,19 @@ export class ViewBaseComponent implements OnInit {
   viewFigures$: Observable<object>;
   viewImagesSubdir = 'view-base/';
 
-  constructor(private store: Store<AppState>) {}
+  constructor(public store: Store<AppState>) {}
 
   ngOnInit(): void {
-    // copy to instance-component [life-cycle methods are not inherited]
+    /* COPY to instance-component [life-cycle methods are not inherited] */
     this.currentBreakpoint$ = this.store.select(selectCurrentBreakpoint());
     this.viewFigures$ = this.store.select(selectFiguresByView('view-base'));
     document.title = `View-Base | ${this.appName}`;
+    /* END COPY */
   }
 
   // methods below are inherited by instance-component
   // no need to copy
-  // can be overridden
+  // can be overridden though
 
   getClasshook(imgFilename: string): string {
     return getImageClasshook(imgFilename);
