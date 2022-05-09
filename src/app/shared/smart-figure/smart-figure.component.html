@@ -3,20 +3,19 @@
   [style]="figureStyle"
 >
   <img
-    *ngIf="zoomState$ | async as zState"
+    #image
+    *ngIf="zoomBreakpoints$ | async as zoomBrkpts"
     [src]="appImagesDir + viewImagesSubdir + figure.imageFilename"
     [ngClass]="{
-      zoomable: isZoomEnabled(figure, zState.zoomBreakpoints, currBrkpt)
+      zoomable: isZoomEnabled(figure, zoomBrkpts, currBrkpt)
     }"
     [style]="imageStyle"
     [title]="
-      isZoomEnabled(figure, zState.zoomBreakpoints, currBrkpt)
-        ? 'Click to zoom'
-        : ''
+      isZoomEnabled(figure, zoomBrkpts, currBrkpt) ? 'Click to zoom' : ''
     "
-    (load)="setStyles($event)"
+    (load)="setStyles($event, zoomBrkpts, currBrkpt)"
     alt="image"
-    (click)="onImageClick(figure, zState.zoomBreakpoints, currBrkpt)"
+    (click)="onImageClick(figure, zoomBrkpts, currBrkpt)"
   />
   <figcaption *ngIf="!hideCaption">
     {{ figure.caption }}

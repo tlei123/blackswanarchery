@@ -8,22 +8,22 @@
 }
 
 .header-smart-figure {
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(md) {
     margin-bottom: 510px;
   }
 }
 
 .smart-figure {
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(md) {
     position: absolute;
     top: 140px;
 
     &.view-base-02 {
-      left: 250px;
+      left: 170px;
     }
 
     &.view-base-03 {
-      left: 550px;
+      left: 390px;
     }
   }
 }

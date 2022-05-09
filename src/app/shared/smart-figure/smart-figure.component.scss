@@ -5,6 +5,9 @@
 
 // style :host element (<app-smart-figure class="smart-figure"... />) in parent-component stylesheet.
 img {
+  height: auto;
+  width: 100%;
+  // height & width will be dynamically reset in md & larger breakpoints.
   &.zoomable {
     cursor: pointer;
   }
