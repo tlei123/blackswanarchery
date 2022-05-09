@@ -46,6 +46,7 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
   currentBreakpointObserver = {
     next: (x: string) => {
       setTimeout(() => {
+        // re-dispatch image-load event to re-trigger setStyles()
         this.imageElement.nativeElement.dispatchEvent(new Event('load'));
       }, 100);
     },
@@ -60,9 +61,6 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentBreakpoint$ = this.store.select(selectCurrentBreakpoint());
     this.zoomBreakpoints$ = this.store.select(selectZoomBreakpoints());
-    this.currentBreakpointSub = this.currentBreakpoint$.subscribe(
-      this.currentBreakpointObserver,
-    );
   }
 
   ngOnDestroy(): void {
@@ -92,6 +90,13 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
 
     this.setImageStyle(isMobile, aspectRatio);
     this.setFigureStyle(isMobile, aspectRatio);
+
+    // subscribe to currentBreakpoint$ to dynamically reset styles
+    if (!this.currentBreakpointSub) {
+      this.currentBreakpointSub = this.currentBreakpoint$.subscribe(
+        this.currentBreakpointObserver,
+      );
+    }
   }
 
   setImageStyle(isMobile: boolean, aspectRatio: number): void {
