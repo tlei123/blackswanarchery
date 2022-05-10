@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
@@ -8,6 +8,10 @@ import { selectCurrentBreakpoint } from './../../store/selectors/browser.selecto
 import { selectFiguresByView } from './../../store/selectors/figures.selectors';
 import { Figure } from './../../models/figure.model';
 import { getImageClasshook } from './../../utils';
+import {
+  openZoom,
+  setZoomableViewFigures,
+} from './../../store/actions/zoom.actions';
 
 // extend this base-component to create view-components ("pages" rendered in AppComponent template's <router-outlet/>)
 
@@ -18,7 +22,7 @@ import { getImageClasshook } from './../../utils';
   // copy template-rules into instance-component stylesheet [or save-as like above]
   styleUrls: ['./view-base.component.scss'],
 })
-export class ViewBaseComponent implements OnInit {
+export class ViewBaseComponent implements OnInit, OnDestroy {
   @Input() appGifsDir: string;
   @Input() appImagesDir: string;
   @Input() appName: string;
@@ -27,14 +31,36 @@ export class ViewBaseComponent implements OnInit {
   currentBreakpoint$: Observable<string>;
   viewFigures$: Observable<object>;
   viewImagesSubdir = 'view-base/';
+  viewFiguresSub: Subscription;
+  viewFiguresObserver = {
+    next: (viewFigures: Figure[]) => {
+      const zoomableViewFigures = viewFigures.filter(
+        (figure) => figure.zoomable === true,
+      );
+      this.store.dispatch(setZoomableViewFigures({ zoomableViewFigures }));
+    },
+    error: (err: Error) => {
+      console.error('[ViewBase.viewFiguresObserver] Got an error:', err);
+    },
+    complete: () => {},
+  };
 
   constructor(public store: Store<AppState>) {}
 
   ngOnInit(): void {
     /* COPY to instance-component [life-cycle methods are not inherited] */
+    document.title = `View-Base | ${this.appName}`;
     this.currentBreakpoint$ = this.store.select(selectCurrentBreakpoint());
     this.viewFigures$ = this.store.select(selectFiguresByView('view-base'));
-    document.title = `View-Base | ${this.appName}`;
+    this.viewFiguresSub = this.viewFigures$.subscribe(this.viewFiguresObserver);
+    /* END COPY */
+  }
+
+  ngOnDestroy(): void {
+    /* COPY to instance-component [life-cycle methods are not inherited] */
+    if (this.viewFiguresSub) {
+      this.viewFiguresSub.unsubscribe();
+    }
     /* END COPY */
   }
 
@@ -46,7 +72,8 @@ export class ViewBaseComponent implements OnInit {
     return getImageClasshook(imgFilename);
   }
 
-  onZoomableImageClick(figure: Figure) {
-    console.log('[App.onZoomableImageClick] figure:', figure);
+  onZoomableImageClick(zoomData: any) {
+    console.log('[ViewBase.onZoomableImageClick] zoomData:', zoomData);
+    this.store.dispatch(openZoom({ zoomData }));
   }
 }

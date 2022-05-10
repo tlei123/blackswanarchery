@@ -13,6 +13,13 @@ export const initialState: ZoomState = {
 
 export const zoomReducer = createReducer(
   initialState,
+  on(
+    zoomActions.setZoomableViewFigures,
+    (state: ZoomState, { zoomableViewFigures }) => ({
+      ...state,
+      currentViewZoomableFigures: zoomableViewFigures,
+    }),
+  ),
   on(zoomActions.openZoom, (state: ZoomState, { zoomData }) => ({
     ...state,
     ...zoomData,

@@ -18,6 +18,7 @@ import { FiguresState } from './models/figures-state.model';
 import { changeBreakpoint } from './store/actions/browser.actions';
 import * as svActions from './store/actions/splash-video.actions';
 import * as figsActions from './store/actions/figures.actions';
+import * as zActions from './store/actions/zoom.actions';
 import {
   selectFigures,
   selectFiguresByView,
@@ -93,6 +94,14 @@ export class AppComponent implements OnInit, OnDestroy {
   figuresStateObserver = {
     next: (x: FiguresState) => {
       console.log('[App.figuresStateObserver] Got a next value:', x);
+      // delete action below once SmartFigure instance is removed from template
+      if (x) {
+        this.store.dispatch(
+          zActions.setZoomableViewFigures({
+            zoomableViewFigures: x.home.filter((f) => f.zoomable === true),
+          }),
+        );
+      }
     },
     error: (err: Error) => {
       console.error('[App.figuresStateObserver] Got an error:', err);
@@ -180,8 +189,8 @@ export class AppComponent implements OnInit, OnDestroy {
   getClasshook(imageFilename: string): string {
     return getImageClasshook(imageFilename);
   }
-
-  onZoomableImageClick(figure: Figure) {
-    console.log('[App.onZoomableImageClick] figure:', figure);
+  onZoomableImageClick(zoomData: any) {
+    console.log('[ViewBase.onZoomableImageClick] zoomData:', zoomData);
+    this.store.dispatch(zActions.openZoom({ zoomData }));
   }
 }

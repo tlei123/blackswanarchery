@@ -34,7 +34,7 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
 
   @ViewChild('image', { static: false }) imageElement: ElementRef;
 
-  @Output() zoom = new EventEmitter<Figure>();
+  @Output() zoom = new EventEmitter<object>();
 
   appImagesDir = appConfig.dirs.images;
   currentBreakpoint$: Observable<string>;
@@ -139,7 +139,10 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
     currentBreakpoint: string,
   ): void {
     if (this.isZoomEnabled(figure, zoomBreakpoints, currentBreakpoint)) {
-      this.zoom.emit(figure);
+      this.zoom.emit({
+        currentImageFilename: figure.imageFilename,
+        currentViewImagesSubdir: this.viewImagesSubdir,
+      });
     } else {
       console.info(
         `[SmartFigure.onImageClick] Image ${figure.imageFilename} is NOT zoomable.  Current breakpoint: ${currentBreakpoint}`,
