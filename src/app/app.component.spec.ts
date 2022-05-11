@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LocationStrategy } from '@angular/common';
 import { MockLocationStrategy } from '@angular/common/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -11,6 +12,7 @@ import {
 
 import { AppComponent } from './app.component';
 import { SmartFigureComponent } from './shared/smart-figure/smart-figure.component';
+import { ZoomComponent } from './zoom/zoom.component';
 import { mockInitialAppState as initialState } from './testing/mocks/mock-app-state';
 import * as svActions from './store/actions/splash-video.actions';
 import { MockGoogleTagManagerService } from './testing/mocks/mock-gtm-svc';
@@ -22,7 +24,8 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, GoogleTagManagerModule],
-      declarations: [AppComponent, SmartFigureComponent],
+      declarations: [AppComponent, SmartFigureComponent, ZoomComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: LocationStrategy, useClass: MockLocationStrategy },
         {
