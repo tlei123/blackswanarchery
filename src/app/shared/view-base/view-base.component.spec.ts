@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { ViewBaseComponent } from './view-base.component';
+import { SmartFigureComponent } from './../smart-figure/smart-figure.component';
 import { mockInitialAppState as initialState } from './../../testing/mocks/mock-app-state';
 
 describe('ViewBaseComponent', () => {
@@ -14,7 +15,7 @@ describe('ViewBaseComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [StoreModule.forRoot({})],
-      declarations: [ViewBaseComponent],
+      declarations: [ViewBaseComponent, SmartFigureComponent],
       providers: [provideMockStore({ initialState })],
     }).compileComponents();
 
@@ -36,11 +37,5 @@ describe('ViewBaseComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should select state-slices', async () => {
-    const selectSpy = spyOn(store, 'select');
-
-    component.ngOnInit();
-
-    expect(selectSpy).toHaveBeenCalledTimes(2);
-  });
+  // TODO: Add more tests.
 });
