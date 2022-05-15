@@ -3,9 +3,12 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
+import { appConfig } from './../app.config';
 import { AppState } from './../models/app-state.model';
 import { ZoomState } from './../models/zoom-state.model';
+import { Figure } from './../models/figure.model';
 import { selectZoomState } from './../store/selectors/zoom.selectors';
+import { closeZoom, changeZoom } from './../store/actions/zoom.actions';
 
 @Component({
   selector: 'app-zoom',
@@ -13,12 +16,26 @@ import { selectZoomState } from './../store/selectors/zoom.selectors';
   styleUrls: ['./zoom.component.scss'],
 })
 export class ZoomComponent implements OnInit, OnDestroy {
+  appImagesDir = appConfig.dirs.images;
+  zoomImagesSubdir = 'zoom/';
   zoomState$: Observable<object>;
   zoomStateSub: Subscription;
+  currentFigures: Figure[];
+  currentFigure: Figure;
+  previousFigure: Figure;
+  nextFigure: Figure;
 
   zoomStateObserver = {
     next: (zState: ZoomState) => {
       console.info('[Zoom.zoomStateObserver] zState:', zState);
+      if (zState.isOpen) {
+        this.currentFigures = zState.currentViewZoomableFigures;
+        this.currentFigure = this.getFigureByFilename(
+          zState.currentImageFilename,
+        );
+        this.previousFigure = this.getPreviousFigure(this.currentFigure);
+        this.nextFigure = this.getNextFigure(this.currentFigure);
+      }
     },
     error: (err: Error) => {
       console.error('[Zoom.currentBreakpointObserver] Got an error:', err);
@@ -36,5 +53,34 @@ export class ZoomComponent implements OnInit, OnDestroy {
     if (this.zoomStateSub) {
       this.zoomStateSub.unsubscribe();
     }
+  }
+
+  getFigureByFilename(filename: string) {
+    return this.currentFigures.find((f) => f.imageFilename === filename);
+  }
+
+  getPreviousFigure(currentFigure: Figure): Figure {
+    return this.currentFigures[this.currentFigures.indexOf(currentFigure) - 1];
+  }
+
+  getNextFigure(currentFigure: Figure): Figure {
+    return this.currentFigures[this.currentFigures.indexOf(currentFigure) + 1];
+  }
+
+  onPreviousClick(previousFigure: Figure) {
+    this.store.dispatch(
+      changeZoom({ imageFilename: previousFigure.imageFilename }),
+    );
+  }
+
+  onNextClick(nextFigure: Figure) {
+    this.store.dispatch(
+      changeZoom({ imageFilename: nextFigure.imageFilename }),
+    );
+  }
+
+  onCloseClick() {
+    console.info('[Zoom.onCloseClick] Close button clicked!');
+    this.store.dispatch(closeZoom());
   }
 }

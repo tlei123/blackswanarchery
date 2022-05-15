@@ -1,1 +1,76 @@
-<p>zoom works!</p>
+<div *ngIf="zoomState$ | async as zState" class="zoom-wrapper">
+  <div *ngIf="zState.isOpen && currentFigure" class="zoom-viewer">
+    <figure class="zoom-figure">
+      <img
+        [src]="
+          appImagesDir +
+          zoomImagesSubdir +
+          zState.currentViewImagesSubdir +
+          currentFigure.imageFilename
+        "
+        alt="zoomed-in image"
+      />
+      <figcaption>{{ currentFigure.caption }}</figcaption>
+    </figure>
+    <button
+      *ngIf="previousFigure"
+      (click)="onPreviousClick(previousFigure)"
+      title="Go to previous image"
+      class="zoom-button previous"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-chevron-left"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+        />
+      </svg>
+      <span class="sr-only">Previous</span>
+    </button>
+    <button
+      *ngIf="nextFigure"
+      (click)="onNextClick(nextFigure)"
+      title="Go to next image"
+      class="zoom-button next"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+      <span class="sr-only">Next</span>
+    </button>
+    <button
+      (click)="onCloseClick()"
+      title="Close zoom-viewer"
+      class="zoom-button close"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        class="bi bi-x-lg"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+        />
+      </svg>
+      <span class="sr-only">Close</span>
+    </button>
+  </div>
+  <div *ngIf="zState.isOpen" class="zoom-overlay"></div>
+</div>

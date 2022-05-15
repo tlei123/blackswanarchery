@@ -1,0 +1,92 @@
+@import '~bootstrap/scss/_functions';
+@import '../../scss/partials/bootstrap-overrides';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_mixins.scss';
+@import '../../scss/partials/variables';
+
+.zoom-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.zoom-viewer {
+  left: 0;
+  max-height: 960px;
+  padding: 20px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: $zindex-modal;
+}
+
+.zoom-button {
+  background: transparent;
+  border: 0;
+  color: $yellow0;
+  opacity: 1;
+  padding: 20px;
+  position: absolute;
+
+  &:not(:disabled):not(.disabled):hover {
+    color: $yellow;
+    opacity: 1;
+  }
+
+  &.close {
+    right: 0;
+    top: 0;
+  }
+
+  &.previous,
+  &.next {
+    top: 40%;
+  }
+
+  &.previous {
+    left: 0;
+  }
+
+  &.next {
+    right: 0;
+  }
+
+  svg {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+figure {
+  width: 100%;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 83%;
+}
+
+figcaption {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  max-height: 17%;
+  max-width: 1100px;
+  overflow-y: auto;
+  text-align: center;
+  width: 85%;
+}
+
+.zoom-overlay {
+  background-color: rgba($black, 0.8);
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $zindex-modal-backdrop;
+}

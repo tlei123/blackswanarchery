@@ -25,4 +25,12 @@ export const zoomReducer = createReducer(
     ...zoomData,
     isOpen: true,
   })),
+  on(zoomActions.changeZoom, (state: ZoomState, { imageFilename }) => ({
+    ...state,
+    currentImageFilename: imageFilename,
+  })),
+  on(zoomActions.closeZoom, (state: ZoomState) => ({
+    ...state,
+    isOpen: false,
+  })),
 );

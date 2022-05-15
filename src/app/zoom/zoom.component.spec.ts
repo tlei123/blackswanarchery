@@ -1,17 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZoomComponent } from './zoom.component';
 import { Store, StoreModule } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+
+import { ZoomComponent } from './zoom.component';
+import { mockInitialAppState as initialState } from './../testing/mocks/mock-app-state';
 
 describe('ZoomComponent', () => {
   let component: ZoomComponent;
   let fixture: ComponentFixture<ZoomComponent>;
-  let store: Store;
+  let store: MockStore;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [ StoreModule.forRoot({}) ],
-      declarations: [ ZoomComponent ]
+      imports: [StoreModule.forRoot({})],
+      declarations: [ZoomComponent],
+      providers: [provideMockStore({ initialState })],
     });
 
     await TestBed.compileComponents();
@@ -20,7 +24,7 @@ describe('ZoomComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ZoomComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
 
     spyOn(store, 'dispatch').and.callThrough();
     fixture.detectChanges();
