@@ -94,14 +94,6 @@ export class AppComponent implements OnInit, OnDestroy {
   figuresStateObserver = {
     next: (x: FiguresState) => {
       console.log('[App.figuresStateObserver] Got a next value:', x);
-      // delete action below once SmartFigure instance is removed from template
-      if (x) {
-        this.store.dispatch(
-          zActions.setZoomableViewFigures({
-            zoomableViewFigures: x.home.filter((f) => f.zoomable === true),
-          }),
-        );
-      }
     },
     error: (err: Error) => {
       console.error('[App.figuresStateObserver] Got an error:', err);
@@ -184,13 +176,5 @@ export class AppComponent implements OnInit, OnDestroy {
     this.gtmSvc.pushTag(gtmTag);
 
     alert(`this is a mocked tag: ${eventTrigger}`);
-  }
-
-  getClasshook(imageFilename: string): string {
-    return getImageClasshook(imageFilename);
-  }
-  onZoomableImageClick(zoomData: any) {
-    console.log('[ViewBase.onZoomableImageClick] zoomData:', zoomData);
-    this.store.dispatch(zActions.openZoom({ zoomData }));
   }
 }

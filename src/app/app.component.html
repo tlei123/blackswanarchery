@@ -95,19 +95,6 @@
     </li>
   </ul>
 
-  <h3 data-testid="smartFigureComponentHeader">SmartFigure component</h3>
-
-  <app-smart-figure
-    *ngIf="(homeFiguresState$ | async)[0] as figure"
-    class="smart-figure"
-    [ngClass]="getClasshook(figure.imageFilename)"
-    [viewImagesSubdir]="'home/'"
-    [figure]="figure"
-    [imageDimension]="'h240'"
-    [hideCaption]="false"
-    (zoom)="onZoomableImageClick($event)"
-  ></app-smart-figure>
-
   <h3>Images Cachebusting</h3>
   <p>
     Inspect img tag below. Dev tools should show just original filename in
@@ -177,5 +164,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Send message</button>
   </form>
-  <app-zoom></app-zoom>
 </div>
+<app-zoom></app-zoom>
