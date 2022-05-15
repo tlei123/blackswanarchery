@@ -16,6 +16,23 @@ describe('Zoom Actions', () => {
     expect(zActions.closeZoom().type).toBe('[Zoom] Close');
   });
 
+  describe('setZoomableViewFigures', () => {
+    it('should dispatch setZoomableViewFigures action', () => {
+      const expectedAction = zActions.setZoomableViewFigures({
+        zoomableViewFigures: [],
+      });
+      const store = jasmine.createSpyObj<Store<ZoomState>>('store', [
+        'dispatch',
+      ]);
+
+      store.dispatch(
+        zActions.setZoomableViewFigures({ zoomableViewFigures: [] }),
+      );
+
+      expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
   describe('openZoom', () => {
     it('should dispatch openZoom action', () => {
       const expectedAction = zActions.openZoom({ zoomData });
@@ -24,6 +41,19 @@ describe('Zoom Actions', () => {
       ]);
 
       store.dispatch(zActions.openZoom({ zoomData }));
+
+      expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe('changeZoom', () => {
+    it('should dispatch changeZoom action', () => {
+      const expectedAction = zActions.changeZoom({ imageFilename: 'test' });
+      const store = jasmine.createSpyObj<Store<ZoomState>>('store', [
+        'dispatch',
+      ]);
+
+      store.dispatch(zActions.changeZoom({ imageFilename: 'test' }));
 
       expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
     });

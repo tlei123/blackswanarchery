@@ -15,7 +15,7 @@ export const openZoom = createAction(
 );
 
 export const changeZoom = createAction(
-  '[Zoom] Next',
+  '[Zoom] Change',
   props<{
     imageFilename: string;
   }>(),
