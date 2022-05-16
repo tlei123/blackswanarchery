@@ -15,5 +15,12 @@
     [hideCaption]="false"
     (zoom)="onZoomableImageClick($event)"
   ></app-smart-figure>
-  <app-smart-gif></app-smart-gif>
+  <app-smart-gif
+    [gifSrc]="appGifsDir + 'riser-rotate.gif'"
+    [thumbnailSrc]="appGifsDir + 'riser-rotate-thumb.png'"
+    [desktopImageHeight]="'450px'"
+    [ngClass]="'bow-rotate'"
+    [hoverMessagePaused]="'Click Play button to start rotation'"
+    [hoverMessagePlaying]="'Click Stop button to stop rotation'"
+  ></app-smart-gif>
 </div>

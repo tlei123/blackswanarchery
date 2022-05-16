@@ -1,26 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SmartGifComponent } from './smart-gif.component';
 import { Store, StoreModule } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+
+import { SmartGifComponent } from './smart-gif.component';
+import { mockInitialAppState as initialState } from './../../testing/mocks/mock-app-state';
 
 describe('SmartGifComponent', () => {
   let component: SmartGifComponent;
   let fixture: ComponentFixture<SmartGifComponent>;
-  let store: Store;
+  let store: MockStore;
 
-  beforeEach(async() => {
-    TestBed.configureTestingModule({
-      imports: [ StoreModule.forRoot({}) ],
-      declarations: [ SmartGifComponent ]
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot({})],
+      declarations: [SmartGifComponent],
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
 
-    await TestBed.compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(SmartGifComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
+    store.setState(initialState);
 
     spyOn(store, 'dispatch').and.callThrough();
     fixture.detectChanges();

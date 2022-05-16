@@ -1,1 +1,20 @@
-<p>smart-gif works!</p>
+<img
+  [src]="thumbnailSrc"
+  [title]="hoverMessagePaused"
+  [style]="imageStyle"
+  alt="thumbnail image"
+  class="thumbnail"
+/>
+<details open>
+  <summary role="button" aria-label="static image"></summary>
+  <div class="details-content">
+    <img
+      [src]="gifSrc"
+      [title]="hoverMessagePlaying"
+      [style]="imageStyle"
+      loading="lazy"
+      alt="animated GIF image"
+      class="gif"
+    />
+  </div>
+</details>
