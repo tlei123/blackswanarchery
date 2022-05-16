@@ -18,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { FiguresEffects } from './store/effects/figures.effects';
 import { ViewBaseComponent } from './shared/view-base/view-base.component';
 import { ZoomComponent } from './zoom/zoom.component';
+import { SmartGifComponent } from './shared/smart-gif/smart-gif.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ZoomComponent } from './zoom/zoom.component';
     SmartFigureComponent,
     ViewBaseComponent,
     ZoomComponent,
+    SmartGifComponent,
   ],
   imports: [
     BrowserModule,
