@@ -9,8 +9,9 @@ export const appConfig = {
     lg: 992,
     xl: 1200,
   },
+  desktopBreakpoints: ['md', 'lg', 'xl'],
   dirs: {
-    gifs: '/assets/gifs/',
+    gifs: '/assets/images/gifs/',
     images: '/assets/images/',
     videos: '/assets/videos/',
   },
