@@ -17,7 +17,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~11.2.14",
     "@angular/common": "~11.2.14",
