@@ -5,6 +5,10 @@
 
 .view-wrapper {
   position: relative;
+
+  @include media-breakpoint-up(md) {
+    min-height: 1020px;
+  }
 }
 
 .header-smart-figure {
@@ -24,6 +28,21 @@
 
     &.view-base-03 {
       left: 390px;
+    }
+  }
+}
+
+.smart-gif {
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    top: 570px;
+
+    &.view-base-01 {
+      left: 0;
+    }
+
+    &.view-base-02 {
+      left: calc(250px + 1.5em);
     }
   }
 }

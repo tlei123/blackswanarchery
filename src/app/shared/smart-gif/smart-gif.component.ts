@@ -1,12 +1,22 @@
-import { selectBrowserState } from './../../store/selectors/browser.selectors';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
+import { appConfig } from './../../app.config';
 import { AppState } from 'src/app/models/app-state.model';
 import { BrowserState } from './../../models/browser-state.model';
+import { selectBrowserState } from './../../store/selectors/browser.selectors';
 import { isMobile } from 'src/app/utils';
+import { Gif } from 'src/app/models/gif.model';
+import { getImageAspectRatio } from './../../utils/get-image-aspect-ratio';
 
 @Component({
   selector: 'app-smart-gif',
@@ -14,27 +24,32 @@ import { isMobile } from 'src/app/utils';
   styleUrls: ['./smart-gif.component.scss'],
 })
 export class SmartGifComponent implements OnInit, OnDestroy {
-  @Input() gifSrc: string;
-  @Input() thumbnailSrc: string;
+  @Input() viewGifsSubdir: string;
+  @Input() gif: Gif;
+  @Input() index?: number; // required IF SmartGif's being iterated
   @Input() desktopImageHeight?: string;
   @Input() hoverMessagePaused? =
     'Click Play button at bottom-left corner to start';
   @Input() hoverMessagePlaying? =
     'Click Stop button at bottom-left corner to stop';
 
+  @ViewChild('image', { static: false }) imageElement: ElementRef;
+
+  appGifsDir = appConfig.dirs.gifs;
   currentBreakpoint = '';
   browserState$: Observable<object>;
   browserStateSub: Subscription;
-  imageStyle: string | any = 'height:auto;width:auto;';
+  wrapperStyle: string | any = 'height:auto;width:100%;';
 
   constructor(private store: Store<AppState>) {}
 
   currentBreakpointObserver = {
     next: (browserState: BrowserState) => {
       this.currentBreakpoint = browserState.currentBreakpoint;
-      this.imageStyle = this.getResponsiveImgStyle(
-        browserState.currentBreakpoint,
-      );
+      setTimeout(() => {
+        // re-dispatch image-load event to re-trigger setStyles()
+        this.imageElement.nativeElement.dispatchEvent(new Event('load'));
+      }, 100);
     },
     error: (err: Error) => {
       console.error('[SmartGif.currentBreakpointObserver] Got an error:', err);
@@ -55,13 +70,42 @@ export class SmartGifComponent implements OnInit, OnDestroy {
     }
   }
 
+  setStyles($event, currBrkpt: string): void {
+    this.wrapperStyle = this.getResponsiveWrapperStyle(
+      currBrkpt,
+      $event.target,
+    );
+    // this.imageStyle = this.getResponsiveImgStyle(currBrkpt);
+  }
+
+  getResponsiveWrapperStyle(currBrkpt: string, img: HTMLImageElement): string {
+    let style = 'height:auto;width:100%;';
+
+    if (!isMobile(currBrkpt) && this.desktopImageHeight) {
+      const imgHeight = Array.isArray(this.desktopImageHeight)
+        ? this.desktopImageHeight[this.index]
+        : this.desktopImageHeight;
+
+      style = `height:auto;width:${
+        getImageAspectRatio(img) * parseInt(imgHeight)
+      }px;`;
+    }
+
+    console.info(`[SmartGif.getResponsiveWrapperStyle] style: ${style}`);
+
+    return style;
+  }
+
   getResponsiveImgStyle(currBrkpt: string): string {
     let style = '';
 
     if (isMobile(currBrkpt)) {
       style = 'height:auto;width:100%;';
     } else if (this.desktopImageHeight) {
-      style = `height:${this.desktopImageHeight};width:auto;`;
+      const imgHeight = Array.isArray(this.desktopImageHeight)
+        ? this.desktopImageHeight[this.index]
+        : this.desktopImageHeight;
+      style = `height:${imgHeight};width:auto;`;
     } else {
       style = 'height:auto;width:auto;';
     }

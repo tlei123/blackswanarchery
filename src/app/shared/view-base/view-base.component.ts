@@ -1,3 +1,4 @@
+import { selectGifsByView } from './../../store/selectors/gifs.selectors';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
@@ -7,6 +8,7 @@ import { AppState } from './../../models/app-state.model';
 import { selectCurrentBreakpoint } from './../../store/selectors/browser.selectors';
 import { selectFiguresByView } from './../../store/selectors/figures.selectors';
 import { Figure } from './../../models/figure.model';
+import { Gif } from './../../models/gif.model';
 import { getImageClasshook } from './../../utils';
 import {
   openZoom,
@@ -30,8 +32,11 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
 
   currentBreakpoint$: Observable<string>;
   viewFigures$: Observable<object>;
+  viewGifs$: Observable<object>;
   viewImagesSubdir = 'view-base/';
+  viewGifsSubdir = 'view-base/';
   viewFiguresSub: Subscription;
+  viewGifsSub: Subscription;
   viewFiguresObserver = {
     next: (viewFigures: Figure[]) => {
       const zoomableViewFigures = viewFigures.filter(
@@ -44,6 +49,15 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
     },
     complete: () => {},
   };
+  viewGifsObserver = {
+    next: (viewGifs: Gif[]) => {
+      console.log('[ViweBase.gifsStateObserver] Got a next value:', viewGifs);
+    },
+    error: (err: Error) => {
+      console.error('[ViewBase.viewGifsObserver] Got an error:', err);
+    },
+    complete: () => {},
+  };
 
   constructor(public store: Store<AppState>) {}
 
@@ -52,7 +66,9 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
     document.title = `View-Base | ${this.appName}`;
     this.currentBreakpoint$ = this.store.select(selectCurrentBreakpoint());
     this.viewFigures$ = this.store.select(selectFiguresByView('view-base'));
+    this.viewGifs$ = this.store.select(selectGifsByView('view-base'));
     this.viewFiguresSub = this.viewFigures$.subscribe(this.viewFiguresObserver);
+    this.viewGifsSub = this.viewGifs$.subscribe(this.viewGifsObserver);
     /* END COPY */
   }
 
@@ -60,6 +76,9 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
     /* COPY to instance-component [life-cycle methods are not inherited] */
     if (this.viewFiguresSub) {
       this.viewFiguresSub.unsubscribe();
+    }
+    if (this.viewGifsSub) {
+      this.viewGifsSub.unsubscribe();
     }
     /* END COPY */
   }

@@ -72,6 +72,19 @@ export const mockInitialAppState: AppState = {
       },
     ],
   },
+  gifs: {
+    home: [],
+    'view-base': [
+      {
+        gifFilename: 'riser-rotate.gif',
+        thumbnailFilename: 'riser-rotate-thumb.png',
+      },
+      {
+        gifFilename: 'bow-draw.gif',
+        thumbnailFilename: 'bow-draw-thumb.png',
+      },
+    ],
+  },
   zoom: {
     currentImageFilename: '',
     currentViewImagesSubdir: '',

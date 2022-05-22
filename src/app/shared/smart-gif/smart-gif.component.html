@@ -1,20 +1,24 @@
-<img
-  [src]="thumbnailSrc"
-  [title]="hoverMessagePaused"
-  [style]="imageStyle"
-  alt="thumbnail image"
-  class="thumbnail"
-/>
-<details open>
-  <summary role="button" aria-label="static image"></summary>
-  <div class="details-content">
-    <img
-      [src]="gifSrc"
-      [title]="hoverMessagePlaying"
-      [style]="imageStyle"
-      loading="lazy"
-      alt="animated GIF image"
-      class="gif"
-    />
-  </div>
-</details>
+<div class="smart-gif-wrapper" [style]="wrapperStyle">
+  <img
+    #image
+    *ngIf="gif && currentBreakpoint"
+    [src]="appGifsDir + viewGifsSubdir + gif.thumbnailFilename"
+    [title]="gif.hoverMessagePaused"
+    [style]="imageStyle"
+    (load)="setStyles($event, currentBreakpoint)"
+    alt="thumbnail image"
+    class="thumbnail"
+  />
+  <details *ngIf="gif && currentBreakpoint" open>
+    <summary role="button" aria-label="static image"></summary>
+    <div class="details-content">
+      <img
+        [src]="appGifsDir + viewGifsSubdir + gif.gifFilename"
+        [title]="gif.hoverMessagePlaying"
+        loading="lazy"
+        alt="animated GIF image"
+        class="gif"
+      />
+    </div>
+  </details>
+</div>

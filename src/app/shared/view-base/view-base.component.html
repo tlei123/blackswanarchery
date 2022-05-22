@@ -16,11 +16,12 @@
     (zoom)="onZoomableImageClick($event)"
   ></app-smart-figure>
   <app-smart-gif
-    [gifSrc]="appGifsDir + 'riser-rotate.gif'"
-    [thumbnailSrc]="appGifsDir + 'riser-rotate-thumb.png'"
+    *ngFor="let gif of viewGifs$ | async; let i = index"
+    [viewGifsSubdir]="'view-base/'"
+    [gif]="gif"
+    [index]="i"
     [desktopImageHeight]="'450px'"
-    [ngClass]="'bow-rotate'"
-    [hoverMessagePaused]="'Click Play button to start rotation'"
-    [hoverMessagePlaying]="'Click Stop button to stop rotation'"
+    [ngClass]="getClasshook(gif.gifFilename)"
+    class="smart-gif"
   ></app-smart-gif>
 </div>
