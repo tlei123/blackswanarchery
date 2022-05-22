@@ -8,6 +8,7 @@ import { AppState } from './../models/app-state.model';
 import { ZoomState } from './../models/zoom-state.model';
 import { Figure } from './../models/figure.model';
 import { selectZoomState } from './../store/selectors/zoom.selectors';
+import { getImageClasshook } from './../utils/get-image-classhook';
 import { closeZoom, changeZoom } from './../store/actions/zoom.actions';
 
 @Component({
@@ -30,8 +31,8 @@ export class ZoomComponent implements OnInit, OnDestroy {
       console.info('[Zoom.zoomStateObserver] zState:', zState);
       if (zState.isOpen) {
         this.currentFigures = zState.currentViewZoomableFigures;
-        this.currentFigure = this.getFigureByFilename(
-          zState.currentImageFilename,
+        this.currentFigure = this.getFigureByZoomFilename(
+          zState.currentZoomImageFilename,
         );
         this.previousFigure = this.getPreviousFigure(this.currentFigure);
         this.nextFigure = this.getNextFigure(this.currentFigure);
@@ -55,8 +56,10 @@ export class ZoomComponent implements OnInit, OnDestroy {
     }
   }
 
-  getFigureByFilename(filename: string) {
-    return this.currentFigures.find((f) => f.imageFilename === filename);
+  getFigureByZoomFilename(zoomFilename: string) {
+    return this.currentFigures.find(
+      (f) => f.zoomImageFilename === zoomFilename,
+    );
   }
 
   getPreviousFigure(currentFigure: Figure): Figure {
@@ -69,13 +72,13 @@ export class ZoomComponent implements OnInit, OnDestroy {
 
   onPreviousClick(previousFigure: Figure) {
     this.store.dispatch(
-      changeZoom({ imageFilename: previousFigure.imageFilename }),
+      changeZoom({ zoomImageFilename: previousFigure.zoomImageFilename }),
     );
   }
 
   onNextClick(nextFigure: Figure) {
     this.store.dispatch(
-      changeZoom({ imageFilename: nextFigure.imageFilename }),
+      changeZoom({ zoomImageFilename: nextFigure.zoomImageFilename }),
     );
   }
 

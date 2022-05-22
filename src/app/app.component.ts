@@ -14,17 +14,11 @@ import {
 } from './utils/index';
 import { BrowserState } from './models/browser-state.model';
 import { SplashVideoState } from './models/splash-video-state.model';
-import { FiguresState } from './models/figures-state.model';
-import { GifsState } from './models/gifs-state.model';
 import { changeBreakpoint } from './store/actions/browser.actions';
 import * as svActions from './store/actions/splash-video.actions';
-import * as figsActions from './store/actions/figures.actions';
-import * as gifsActions from './store/actions/gifs.actions';
-import {
-  selectFigures,
-  selectFiguresByView,
-} from './store/selectors/figures.selectors';
-import { selectGifs } from './store/selectors/gifs.selectors';
+import * as assetsActions from './store/actions/assets.actions';
+import { AssetsState } from './models/assets-state.model';
+import { Figure } from './models/figure.model';
 
 @Component({
   selector: 'app-root',
@@ -44,15 +38,13 @@ export class AppComponent implements OnInit, OnDestroy {
   browserState$: Observable<object>;
   routerState$: Observable<object>;
   splashVideoState$: Observable<SplashVideoState>;
-  figuresState$: Observable<FiguresState>;
-  gifsState$: Observable<GifsState>;
-  homeFiguresState$: Observable<object>;
-  view2FiguresState$: Observable<object>;
+  assetsState$: Observable<object>;
   browserStateSub: Subscription;
   routerStateSub: Subscription;
   splashVideoStateSub: Subscription;
-  figuresStateSub: Subscription;
-  gifsStateSub: Subscription;
+  assetsStateSub: Subscription;
+  homeFigures: Figure[];
+  viewbaseFigures: Figure[];
 
   /* Observers here subscribe to state observables, in case app needs to react to state changes.
   Call methods from within next/error/complete callback.
@@ -94,26 +86,19 @@ export class AppComponent implements OnInit, OnDestroy {
       );
     },
   };
-  figuresStateObserver = {
-    next: (x: FiguresState) => {
-      console.log('[App.figuresStateObserver] Got a next value:', x);
+  assetsStateObserver = {
+    next: (x: AssetsState) => {
+      console.log('[App.assetsStateObserver] Got a next value:', x);
+      if (x.figures) {
+        this.homeFigures = x.figures.home;
+        this.viewbaseFigures = x.figures['view-base'];
+      }
     },
     error: (err: Error) => {
-      console.error('[App.figuresStateObserver] Got an error:', err);
+      console.error('[App.assetsStateObserver] Got an error:', err);
     },
     complete: () => {
-      console.log('[App.figuresStateObserver] Got a complete notification:');
-    },
-  };
-  gifsStateObserver = {
-    next: (x: GifsState) => {
-      console.log('[App.gifsStateObserver] Got a next value:', x);
-    },
-    error: (err: Error) => {
-      console.error('[App.gifsStateObserver] Got an error:', err);
-    },
-    complete: () => {
-      console.log('[App.gifsStateObserver] Got a complete notification:');
+      console.log('[App.assetsStateObserver] Got a complete notification:');
     },
   };
 
@@ -124,16 +109,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.browserState$ = store.select('browser');
     this.routerState$ = store.select('router');
     this.splashVideoState$ = store.select('splashVideo');
-    this.figuresState$ = store.select(selectFigures);
-    this.gifsState$ = store.select(selectGifs);
-    this.homeFiguresState$ = store.select(selectFiguresByView('home'));
-    this.view2FiguresState$ = store.select(selectFiguresByView('view2'));
+    this.assetsState$ = store.select('assets');
   }
 
   ngOnInit(): void {
     this.currentBreakpoint = getCurrentBreakpoint();
-    this.store.dispatch(figsActions.loadFigures());
-    this.store.dispatch(gifsActions.loadGifs());
+    this.store.dispatch(assetsActions.loadAssets());
     this.store.dispatch(
       changeBreakpoint({ breakpoint: getCurrentBreakpoint() }),
     );
@@ -146,10 +127,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.splashVideoStateSub = this.splashVideoState$.subscribe(
       this.splashVideoStateObserver,
     );
-    this.figuresStateSub = this.figuresState$.subscribe(
-      this.figuresStateObserver,
-    );
-    this.gifsStateSub = this.gifsState$.subscribe(this.gifsStateObserver);
+    this.assetsStateSub = this.assetsState$.subscribe(this.assetsStateObserver);
     this.gtmSvc.addGtmToDom();
     window.onresize = debounce(() => {
       const newBrkpt = getCurrentBreakpoint();
@@ -166,11 +144,8 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.splashVideoStateSub) {
       this.splashVideoStateSub.unsubscribe();
     }
-    if (this.figuresStateSub) {
-      this.figuresStateSub.unsubscribe();
-    }
-    if (this.gifsStateSub) {
-      this.gifsStateSub.unsubscribe();
+    if (this.assetsStateSub) {
+      this.assetsStateSub.unsubscribe();
     }
   }
 

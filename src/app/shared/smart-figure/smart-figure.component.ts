@@ -140,7 +140,7 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
   ): void {
     if (this.isZoomEnabled(figure, zoomBreakpoints, currentBreakpoint)) {
       this.zoom.emit({
-        currentImageFilename: figure.imageFilename,
+        currentZoomImageFilename: figure.zoomImageFilename,
         currentViewImagesSubdir: this.viewImagesSubdir,
       });
     } else {

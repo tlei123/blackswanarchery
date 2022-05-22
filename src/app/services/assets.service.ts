@@ -4,15 +4,15 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
-export class FiguresService {
-  private figuresUrl = '/data/figures.json';
+export class AssetsService {
+  private assetsUrl = '/data/assets.json';
 
   constructor(private http: HttpClient) {}
 
-  getFigures(): Observable<any> {
+  getAssets(): Observable<any> {
     return this.http
-      .get<any>(this.figuresUrl)
-      .pipe(catchError(this.handleError<any>('getFigures', {})));
+      .get<any>(this.assetsUrl)
+      .pipe(catchError(this.handleError<any>('getAssets', {})));
   }
   private handleError<T>(operation = 'operation', result?: T): any {
     return (error: any): Observable<T> => {

@@ -7,7 +7,7 @@
   <app-smart-figure
     *ngFor="let fig of viewFigures$ | async; let i = index"
     class="smart-figure"
-    [ngClass]="getClasshook(fig.imageFilename)"
+    [ngClass]="'view-base-0' + (i + 1)"
     [viewImagesSubdir]="viewImagesSubdir"
     [figure]="fig"
     [index]="i"
@@ -21,7 +21,7 @@
     [gif]="gif"
     [index]="i"
     [desktopImageHeight]="'450px'"
-    [ngClass]="getClasshook(gif.gifFilename)"
+    [ngClass]="getImgClasshook(gif.gifFilename)"
     class="smart-gif"
   ></app-smart-gif>
 </div>

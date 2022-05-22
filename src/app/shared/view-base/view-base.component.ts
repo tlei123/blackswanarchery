@@ -1,4 +1,3 @@
-import { selectGifsByView } from './../../store/selectors/gifs.selectors';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
@@ -6,7 +5,10 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from './../../models/app-state.model';
 import { selectCurrentBreakpoint } from './../../store/selectors/browser.selectors';
-import { selectFiguresByView } from './../../store/selectors/figures.selectors';
+import {
+  selectFiguresByView,
+  selectGifsByView,
+} from './../../store/selectors/assets.selectors';
 import { Figure } from './../../models/figure.model';
 import { Gif } from './../../models/gif.model';
 import { getImageClasshook } from './../../utils';
@@ -36,7 +38,6 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
   viewImagesSubdir = 'view-base/';
   viewGifsSubdir = 'view-base/';
   viewFiguresSub: Subscription;
-  viewGifsSub: Subscription;
   viewFiguresObserver = {
     next: (viewFigures: Figure[]) => {
       const zoomableViewFigures = viewFigures.filter(
@@ -46,15 +47,6 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
     },
     error: (err: Error) => {
       console.error('[ViewBase.viewFiguresObserver] Got an error:', err);
-    },
-    complete: () => {},
-  };
-  viewGifsObserver = {
-    next: (viewGifs: Gif[]) => {
-      console.log('[ViweBase.gifsStateObserver] Got a next value:', viewGifs);
-    },
-    error: (err: Error) => {
-      console.error('[ViewBase.viewGifsObserver] Got an error:', err);
     },
     complete: () => {},
   };
@@ -68,7 +60,6 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
     this.viewFigures$ = this.store.select(selectFiguresByView('view-base'));
     this.viewGifs$ = this.store.select(selectGifsByView('view-base'));
     this.viewFiguresSub = this.viewFigures$.subscribe(this.viewFiguresObserver);
-    this.viewGifsSub = this.viewGifs$.subscribe(this.viewGifsObserver);
     /* END COPY */
   }
 
@@ -77,9 +68,6 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
     if (this.viewFiguresSub) {
       this.viewFiguresSub.unsubscribe();
     }
-    if (this.viewGifsSub) {
-      this.viewGifsSub.unsubscribe();
-    }
     /* END COPY */
   }
 
@@ -87,7 +75,7 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
   // no need to copy
   // can be overridden though
 
-  getClasshook(imgFilename: string): string {
+  getImgClasshook(imgFilename: string): string {
     return getImageClasshook(imgFilename);
   }
 

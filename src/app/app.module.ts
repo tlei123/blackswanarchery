@@ -10,14 +10,12 @@ import { GoogleTagManagerModule } from 'angular-google-tag-manager';
 
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
-import { FiguresService } from './services/figures.service';
-import { GifsService } from './services/gifs.service';
+import { AssetsService } from './services/assets.service';
 import { AppComponent } from './app.component';
 import { SmartFigureComponent } from './shared/smart-figure/smart-figure.component';
 import { reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { FiguresEffects } from './store/effects/figures.effects';
-import { GifsEffects } from './store/effects/gifs.effects';
+import { AssetsEffects } from './store/effects/assets.effects';
 import { ViewBaseComponent } from './shared/view-base/view-base.component';
 import { ZoomComponent } from './zoom/zoom.component';
 import { SmartGifComponent } from './shared/smart-gif/smart-gif.component';
@@ -26,9 +24,9 @@ import { SmartGifComponent } from './shared/smart-gif/smart-gif.component';
   declarations: [
     AppComponent,
     SmartFigureComponent,
+    SmartGifComponent,
     ViewBaseComponent,
     ZoomComponent,
-    SmartGifComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,10 +39,10 @@ import { SmartGifComponent } from './shared/smart-gif/smart-gif.component';
     }),
     NgbModule,
     HttpClientModule,
-    EffectsModule.forRoot([FiguresEffects, GifsEffects]),
+    EffectsModule.forRoot([AssetsEffects]),
     GoogleTagManagerModule.forRoot({ id: environment.gtmId }),
   ],
-  providers: [FiguresService, GifsService],
+  providers: [AssetsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

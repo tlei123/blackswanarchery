@@ -27,40 +27,41 @@ describe('Figures Selectors', () => {
       navigationId: 1,
     },
     splashVideo: svInitialState,
-    figures: {
-      home: [
-        {
-          imageFilename: 'home-01-2004291523.png',
-          caption:
-            'Arvid Danielson, Black Swan Archery Founder, President, & Bowyer',
-          zoomable: true,
-        },
-      ],
-      'view-base': [],
-      view2: [
-        {
-          imageFilename: 'view2-01-2006111036.png',
-          imageFilename2x: 'view2-01-497x882-2006111036.png',
-          caption: 'String angle the same for bows with Modular System',
-          zoomable: true,
-        },
-        {
-          imageFilename: 'view2-02-2009242023.png',
-          imageFilename2x: 'view2-02-2x-2009242023.png',
-          caption:
-            'Two new handle designs featuring wood scale grips with pewter Black Swan logo. One to be used with a whisker biscuit arrow rest, the other with a flipper rest and plunger',
-          zoomable: true,
-        },
-        {
-          imageFilename: 'view2-03-2009242111.png',
-          imageFilename2x: 'view2-03-2x-2009242111.png',
-          caption:
-            '4 riser (handle) designs, including 2 new models for target and hunting that feature scale grips in a choice of hard woods, one designed for the whisker biscuit arrow rest, all with medium angle grips, and 4 unique high performance limb designs',
-          zoomable: true,
-        },
-      ],
+    assets: {
+      figures: {
+        home: [
+          {
+            imageFilename: 'home-01.png',
+            caption:
+              'Arvid Danielson, Black Swan Archery Founder, President, & Bowyer',
+            zoomable: true,
+          },
+        ],
+        'view-base': [
+          {
+            imageFilename: 'view-base-01.png',
+            zoomImageFilename: 'view-base-01-zoom.png',
+            caption: 'String angle the same for bows with Modular System',
+            zoomable: true,
+          },
+          {
+            imageFilename: 'view-base-02.png',
+            zoomImageFilename: 'view-base-02-zoom.png',
+            caption:
+              'Two new handle designs featuring wood scale grips with pewter Black Swan logo. One to be used with a whisker biscuit arrow rest, the other with a flipper rest and plunger',
+            zoomable: true,
+          },
+          {
+            imageFilename: 'view-base-03.png',
+            zoomImageFilename: 'view-base-03-zoom.png',
+            caption:
+              '4 riser (handle) designs, including 2 new models for target and hunting that feature scale grips in a choice of hard woods, one designed for the whisker biscuit arrow rest, all with medium angle grips, and 4 unique high performance limb designs',
+            zoomable: true,
+          },
+        ],
+      },
+      gifs: gifsInitialState,
     },
-    gifs: gifsInitialState,
     zoom: zInitialState,
   };
 

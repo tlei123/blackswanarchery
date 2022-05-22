@@ -1,7 +1,7 @@
 import { Figure } from './figure.model';
 
 export interface ZoomState {
-  currentImageFilename: string;
+  currentZoomImageFilename: string;
   currentViewImagesSubdir: string;
   currentViewZoomableFigures: Figure[];
   isOpen: boolean;

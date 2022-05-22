@@ -4,7 +4,7 @@ import { ZoomState } from 'src/app/models/zoom-state.model';
 import * as zoomActions from '../actions/zoom.actions';
 
 export const initialState: ZoomState = {
-  currentImageFilename: '',
+  currentZoomImageFilename: '',
   currentViewImagesSubdir: '',
   currentViewZoomableFigures: [],
   isOpen: false,
@@ -25,9 +25,9 @@ export const zoomReducer = createReducer(
     ...zoomData,
     isOpen: true,
   })),
-  on(zoomActions.changeZoom, (state: ZoomState, { imageFilename }) => ({
+  on(zoomActions.changeZoom, (state: ZoomState, { zoomImageFilename }) => ({
     ...state,
-    currentImageFilename: imageFilename,
+    currentZoomImageFilename: zoomImageFilename,
   })),
   on(zoomActions.closeZoom, (state: ZoomState) => ({
     ...state,
