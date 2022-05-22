@@ -4,6 +4,7 @@ import { initialState as svInitialState } from '../reducers/splash-video.reducer
 import { initialState as zInitialState } from '../reducers/zoom.reducer';
 import { Figure } from './../../models/figure.model';
 import { FiguresState } from './../../models/figures-state.model';
+import { initialState as gifsInitialState } from '../reducers/gifs.reducer';
 import { selectFigures, selectFiguresByView } from './figures.selectors';
 
 describe('Figures Selectors', () => {
@@ -59,6 +60,7 @@ describe('Figures Selectors', () => {
         },
       ],
     },
+    gifs: gifsInitialState,
     zoom: zInitialState,
   };
 

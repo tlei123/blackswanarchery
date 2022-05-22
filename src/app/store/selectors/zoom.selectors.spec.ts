@@ -2,6 +2,7 @@ import { AppState } from './../../models/app-state.model';
 import { initialState as bInitialState } from '../reducers/browser.reducer';
 import { initialState as svInitialState } from '../reducers/splash-video.reducer';
 import { initialState as figsInitialState } from '../reducers/figures.reducer';
+import { initialState as gifsInitialState } from '../reducers/gifs.reducer';
 import { initialState as zInitialState } from '../reducers/zoom.reducer';
 import { ZoomState } from './../../models/zoom-state.model';
 import { selectZoomState, selectZoomBreakpoints } from './zoom.selectors';
@@ -27,6 +28,7 @@ describe('Zoom Selectors', () => {
     },
     splashVideo: svInitialState,
     figures: figsInitialState,
+    gifs: gifsInitialState,
     zoom: zInitialState,
   };
 
