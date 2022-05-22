@@ -13,7 +13,6 @@
     "bump:major": "npm version major --git-tag-version false && auto-changelog -p",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
