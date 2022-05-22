@@ -55,8 +55,8 @@ jobs:
           FORMMAIL_RECIPIENTS_PROD: ${{ secrets.FORMMAIL_RECIPIENTS_PROD }}
         run: |
           sed -i "s|recipients: ''|recipients: '$FORMMAIL_RECIPIENTS_PROD'|g" src/environments/environment.prod.ts
-      - name: Run unit tests
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
+      # - name: Run unit tests
+      #   run: npm run test -- --watch=false --browsers=ChromeHeadless
       - name: Install Cypress
         run: npx cypress install
       - name: Run all E2E tests
