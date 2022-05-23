@@ -19,6 +19,7 @@ import { AssetsEffects } from './store/effects/assets.effects';
 import { ViewBaseComponent } from './shared/view-base/view-base.component';
 import { ZoomComponent } from './zoom/zoom.component';
 import { SmartGifComponent } from './shared/smart-gif/smart-gif.component';
+import { ViewInstanceComponent } from './views/view-instance/view-instance.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SmartGifComponent } from './shared/smart-gif/smart-gif.component';
     SmartGifComponent,
     ViewBaseComponent,
     ZoomComponent,
+    ViewInstanceComponent,
   ],
   imports: [
     BrowserModule,

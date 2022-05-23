@@ -35,21 +35,28 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
   currentBreakpoint$: Observable<string>;
   viewFigures$: Observable<object>;
   viewGifs$: Observable<object>;
-  viewImagesSubdir = 'view-base/';
-  viewGifsSubdir = 'view-base/';
   viewFiguresSub: Subscription;
   viewFiguresObserver = {
     next: (viewFigures: Figure[]) => {
-      const zoomableViewFigures = viewFigures.filter(
-        (figure) => figure.zoomable === true,
-      );
-      this.store.dispatch(setZoomableViewFigures({ zoomableViewFigures }));
+      if (viewFigures) {
+        this.store.dispatch(
+          setZoomableViewFigures({
+            zoomableViewFigures: viewFigures.filter(
+              (figure) => figure.zoomable === true,
+            ),
+          }),
+        );
+      }
     },
     error: (err: Error) => {
       console.error('[ViewBase.viewFiguresObserver] Got an error:', err);
     },
     complete: () => {},
   };
+  /* COPY & OVERRIDE in instance-component */
+  viewImagesSubdir = 'view-base/';
+  viewGifsSubdir = 'view-base/';
+  /* END COPY & OVERRIDE */
 
   constructor(public store: Store<AppState>) {}
 

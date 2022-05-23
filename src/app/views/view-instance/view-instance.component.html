@@ -1,5 +1,5 @@
 <div class="view-wrapper">
-  <h2 class="view-title">View-Base Component</h2>
+  <h2 class="view-title">View-Instance</h2>
   <p *ngIf="currentBreakpoint$ | async as currBrkpt">
     currentBreakpoint: <span>{{ currBrkpt }}</span>
   </p>
@@ -7,7 +7,7 @@
   <app-smart-figure
     *ngFor="let fig of viewFigures$ | async; let i = index"
     class="smart-figure"
-    [ngClass]="'view-base-0' + (i + 1)"
+    [ngClass]="'view-instance-0' + (i + 1)"
     [viewImagesSubdir]="viewImagesSubdir"
     [figure]="fig"
     [index]="i"
