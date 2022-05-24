@@ -3,5 +3,4 @@ export interface Figure {
   imageFilename2x?: string;
   zoomImageFilename?: string;
   caption: string;
-  zoomable: boolean;
 }

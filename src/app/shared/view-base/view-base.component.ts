@@ -38,7 +38,7 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
         this.store.dispatch(
           setZoomableViewFigures({
             zoomableViewFigures: viewFigures.filter(
-              (figure) => figure.zoomable === true,
+              (fig) => fig.zoomImageFilename !== undefined,
             ),
           }),
         );

@@ -13,9 +13,9 @@ import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { appConfig } from '@app/app.config';
-import { AppState } from '@app/models/app-state.model';
-import { Figure } from '@app/models/figure.model';
-import { selectCurrentBreakpoint } from '@app/store/selectors/browser.selectors';
+import { AppState } from '@models/app-state.model';
+import { Figure } from '@models/figure.model';
+import { selectCurrentBreakpoint } from '@store/selectors/browser.selectors';
 import { selectZoomBreakpoints } from '@store/selectors/zoom.selectors';
 
 @Component({
@@ -75,7 +75,10 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
     zoomBreakpoints: string[],
     currentBreakpoint: string,
   ): boolean {
-    return figure.zoomable && zoomBreakpoints.includes(currentBreakpoint);
+    return (
+      figure.zoomImageFilename !== undefined &&
+      zoomBreakpoints.includes(currentBreakpoint)
+    );
   }
 
   setStyles(
