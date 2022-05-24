@@ -1,0 +1,16 @@
+<div class="view-wrapper">
+  <h2 class="view-title">Home</h2>
+  <p *ngIf="currentBreakpoint$ | async as currBrkpt">
+    currentBreakpoint: <span>{{ currBrkpt }}</span>
+  </p>
+  <app-smart-figure
+    *ngIf="(viewFigures$ | async)[0] as fig"
+    class="smart-figure"
+    [ngClass]="getImgClasshook(fig.imageFilename)"
+    [viewImagesSubdir]="viewImagesSubdir"
+    [figure]="fig"
+    [imageDimension]="'h300'"
+    [hideCaption]="false"
+    (zoom)="onZoomableImageClick($event)"
+  ></app-smart-figure>
+</div>
