@@ -4,21 +4,21 @@ import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
-import { environment } from './../environments/environment';
-import { appConfig } from './app.config';
-import { AppState } from './models/app-state.model';
+import { environment } from '@environments/environment';
+import { appConfig } from '@app/app.config';
+import { AppState } from '@models/app-state.model';
 import {
   debounce,
   getCurrentBreakpoint,
   getImageClasshook,
-} from './utils/index';
-import { BrowserState } from './models/browser-state.model';
-import { SplashVideoState } from './models/splash-video-state.model';
-import { changeBreakpoint } from './store/actions/browser.actions';
-import * as svActions from './store/actions/splash-video.actions';
-import * as assetsActions from './store/actions/assets.actions';
-import { AssetsState } from './models/assets-state.model';
-import { Figure } from './models/figure.model';
+} from '@utils/index';
+import { BrowserState } from '@models/browser-state.model';
+import { SplashVideoState } from '@models/splash-video-state.model';
+import { changeBreakpoint } from '@store/actions/browser.actions';
+import * as svActions from '@store/actions/splash-video.actions';
+import * as assetsActions from '@store/actions/assets.actions';
+import { AssetsState } from '@models/assets-state.model';
+import { Figure } from '@models/figure.model';
 
 @Component({
   selector: 'app-root',

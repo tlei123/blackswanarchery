@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { ZoomState } from 'src/app/models/zoom-state.model';
-import * as zoomActions from '../actions/zoom.actions';
+import { ZoomState } from '@models/zoom-state.model';
+import * as zoomActions from '@store/actions/zoom.actions';
 
 export const initialState: ZoomState = {
   currentZoomImageFilename: '',

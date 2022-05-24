@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { BrowserState } from 'src/app/models/browser-state.model';
-import * as browserActions from '../actions/browser.actions';
+import { BrowserState } from '@models/browser-state.model';
+import * as browserActions from '@store/actions/browser.actions';
 
 export const initialState: BrowserState = {
   currentBreakpoint: 'xs',

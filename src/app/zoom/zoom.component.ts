@@ -3,13 +3,12 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { appConfig } from './../app.config';
-import { AppState } from './../models/app-state.model';
-import { ZoomState } from './../models/zoom-state.model';
-import { Figure } from './../models/figure.model';
-import { selectZoomState } from './../store/selectors/zoom.selectors';
-import { getImageClasshook } from './../utils/get-image-classhook';
-import { closeZoom, changeZoom } from './../store/actions/zoom.actions';
+import { appConfig } from '@app/app.config';
+import { AppState } from '@models/app-state.model';
+import { ZoomState } from '@models/zoom-state.model';
+import { Figure } from '@models/figure.model';
+import { selectZoomState } from '@store/selectors/zoom.selectors';
+import { closeZoom, changeZoom } from '@store/actions/zoom.actions';
 
 @Component({
   selector: 'app-zoom',

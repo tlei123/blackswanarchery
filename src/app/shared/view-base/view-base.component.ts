@@ -3,19 +3,15 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { AppState } from './../../models/app-state.model';
-import { selectCurrentBreakpoint } from './../../store/selectors/browser.selectors';
+import { AppState } from '@models/app-state.model';
+import { selectCurrentBreakpoint } from '@store/selectors/browser.selectors';
 import {
   selectFiguresByView,
   selectGifsByView,
-} from './../../store/selectors/assets.selectors';
-import { Figure } from './../../models/figure.model';
-import { Gif } from './../../models/gif.model';
-import { getImageClasshook } from './../../utils';
-import {
-  openZoom,
-  setZoomableViewFigures,
-} from './../../store/actions/zoom.actions';
+} from '@store/selectors/assets.selectors';
+import { Figure } from '@models/figure.model';
+import { getImageClasshook } from '@utils/index';
+import { openZoom, setZoomableViewFigures } from '@store/actions/zoom.actions';
 
 // extend this base-component to create view-components ("pages" rendered in AppComponent template's <router-outlet/>)
 

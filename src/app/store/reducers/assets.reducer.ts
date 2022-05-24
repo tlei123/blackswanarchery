@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { AssetsState } from 'src/app/models/assets-state.model';
-import * as assetsActions from '../actions/assets.actions';
+import { AssetsState } from '@models/assets-state.model';
+import * as assetsActions from '@store/actions/assets.actions';
 
 export const initialState: AssetsState = {
   figures: {

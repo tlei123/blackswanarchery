@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Figure } from 'src/app/models/figure.model';
+import { Figure } from '@models/figure.model';
 
 export const setZoomableViewFigures = createAction(
   '[Zoom] Set zoomable view-figures',

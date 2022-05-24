@@ -1,9 +1,9 @@
 import { ActionReducerMap } from '@ngrx/store';
+import { routerReducer } from '@ngrx/router-store';
 
-import { AppState } from 'src/app/models/app-state.model';
+import { AppState } from '@models/app-state.model';
 import { browserReducer } from './browser.reducer';
 import { splashVideoReducer } from './splash-video.reducer';
-import { routerReducer } from '@ngrx/router-store';
 import { assetsReducer } from './assets.reducer';
 import { zoomReducer } from './zoom.reducer';
 

@@ -8,15 +8,15 @@ import {
 } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
+
 import { Store } from '@ngrx/store';
 
-import { appConfig } from './../../app.config';
-import { AppState } from 'src/app/models/app-state.model';
-import { BrowserState } from './../../models/browser-state.model';
-import { selectBrowserState } from './../../store/selectors/browser.selectors';
-import { isMobile } from 'src/app/utils';
-import { Gif } from 'src/app/models/gif.model';
-import { getImageAspectRatio } from './../../utils/get-image-aspect-ratio';
+import { appConfig } from '@app/app.config';
+import { AppState } from '@models/app-state.model';
+import { BrowserState } from '@models/browser-state.model';
+import { selectBrowserState } from '@store/selectors/browser.selectors';
+import { isMobile, getImageAspectRatio } from '@utils/index';
+import { Gif } from '@models/gif.model';
 
 @Component({
   selector: 'app-smart-gif',

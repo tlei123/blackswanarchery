@@ -13,7 +13,18 @@
     "target": "es2015",
     "module": "es2020",
     "lib": ["es2018", "dom"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@environments/*": ["src/environments/*"],
+      "@models/*": ["src/app/models/*"],
+      "@services/*": ["src/app/services/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@store/*": ["src/app/store/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@views/*": ["src/app/views/*"],
+      "@scss/*": ["src/scss/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false

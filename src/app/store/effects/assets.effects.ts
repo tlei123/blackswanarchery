@@ -4,7 +4,7 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { AssetsService } from './../../services/assets.service';
+import { AssetsService } from '@services/assets.service';
 
 @Injectable()
 export class AssetsEffects {

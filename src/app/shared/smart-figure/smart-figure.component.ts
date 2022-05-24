@@ -10,12 +10,13 @@ import {
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
-import { appConfig } from './../../app.config';
-import { AppState } from 'src/app/models/app-state.model';
-import { Figure } from 'src/app/models/figure.model';
 import { Store } from '@ngrx/store';
-import { selectCurrentBreakpoint } from 'src/app/store/selectors/browser.selectors';
-import { selectZoomBreakpoints } from '../../store/selectors/zoom.selectors';
+
+import { appConfig } from '@app/app.config';
+import { AppState } from '@app/models/app-state.model';
+import { Figure } from '@app/models/figure.model';
+import { selectCurrentBreakpoint } from '@app/store/selectors/browser.selectors';
+import { selectZoomBreakpoints } from '@store/selectors/zoom.selectors';
 
 @Component({
   selector: 'app-smart-figure',

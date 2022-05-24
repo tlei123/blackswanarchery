@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { ViewBaseComponent } from './../../shared/view-base/view-base.component';
-import { AppState } from 'src/app/models/app-state.model';
-import { selectCurrentBreakpoint } from 'src/app/store/selectors/browser.selectors';
+import { ViewBaseComponent } from '@shared/view-base/view-base.component';
+import { AppState } from '@models/app-state.model';
+import { selectCurrentBreakpoint } from '@store/selectors/browser.selectors';
 import {
   selectFiguresByView,
   selectGifsByView,
-} from 'src/app/store/selectors/assets.selectors';
+} from '@store/selectors/assets.selectors';
 
 @Component({
   selector: 'app-view-instance',

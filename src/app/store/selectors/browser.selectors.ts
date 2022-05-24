@@ -1,6 +1,6 @@
-import { createFeatureSelector, createSelector, select } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { BrowserState } from './../../models/browser-state.model';
+import { BrowserState } from '@models/browser-state.model';
 
 export const selectBrowserState =
   createFeatureSelector<BrowserState>('browser');

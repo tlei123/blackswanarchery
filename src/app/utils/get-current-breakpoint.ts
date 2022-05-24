@@ -1,4 +1,4 @@
-import { appConfig } from './../app.config';
+import { appConfig } from '@app/app.config';
 
 export const getCurrentBreakpoint = () => {
   const brkpts = appConfig.breakpoints;

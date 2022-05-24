@@ -1,8 +1,8 @@
 import { on } from '@ngrx/store';
 
-import { SplashVideoState } from './../../models/splash-video-state.model';
-import * as svActions from '../actions/splash-video.actions';
-import { createRehydrateReducer } from '../../utils';
+import { SplashVideoState } from '@models/splash-video-state.model';
+import * as svActions from '@store/actions/splash-video.actions';
+import { createRehydrateReducer } from '@utils/index';
 
 export const initialState: SplashVideoState = {
   done: false,
