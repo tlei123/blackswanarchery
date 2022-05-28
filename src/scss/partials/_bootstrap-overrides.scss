@@ -2,3 +2,17 @@ $font-family-sans-serif: 'Open Sans', sans-serif;
 $headings-color: white;
 $headings-font-family: 'Open Sans', sans-serif;
 $headings-font-weight: bold;
+
+$link-color: #fc6;
+$link-hover-color: lighten(#fc6, 15%);
+
+// Bootstrap overrides for nav
+$nav-link-padding-y: 0.5rem;
+$nav-link-padding-x: 1rem;
+$nav-link-font-size: null;
+$nav-link-font-weight: null;
+$nav-link-color: $link-color;
+$nav-link-hover-color: $link-hover-color;
+$nav-link-transition: color 0.25s ease-in-out,
+  background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+$nav-link-disabled-color: #da4;

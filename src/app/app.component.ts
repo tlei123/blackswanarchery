@@ -40,6 +40,10 @@ export class AppComponent implements OnInit, OnDestroy {
   splashVideoState$: Observable<SplashVideoState>;
   assetsState$: Observable<object>;
   browserStateSub: Subscription;
+  currentUrl: string;
+  currentNavigationId: number;
+  currentRouteParams: object;
+  currentQueryParams: object;
   routerStateSub: Subscription;
   splashVideoStateSub: Subscription;
   assetsStateSub: Subscription;
@@ -64,7 +68,12 @@ export class AppComponent implements OnInit, OnDestroy {
   };
   routerStateObserver = {
     next: (x: any) => {
-      console.log('[App.routerStateObserver] Got a next value:', x);
+      if (x) {
+        this.currentUrl = x.state.url;
+        this.currentNavigationId = x.navigationId;
+        this.currentRouteParams = x.state.root.params;
+        this.currentQueryParams = x.state.root.queryParams;
+      }
     },
     error: (err: Error) => {
       console.error('[App.routerStateObserver] Got an error:', err);

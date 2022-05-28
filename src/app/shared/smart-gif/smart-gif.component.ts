@@ -91,8 +91,6 @@ export class SmartGifComponent implements OnInit, OnDestroy {
       }px;`;
     }
 
-    console.info(`[SmartGif.getResponsiveWrapperStyle] style: ${style}`);
-
     return style;
   }
 

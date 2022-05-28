@@ -2,9 +2,10 @@
 @import 'partials/bootstrap-overrides';
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/_mixins.scss';
+@import 'partials/variables';
 
 .container {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .smart-figure {

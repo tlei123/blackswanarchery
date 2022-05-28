@@ -1,0 +1,63 @@
+<nav *ngIf="currentBreakpoint" class="navbar navbar-expand-md">
+  <a
+    [routerLink]="'home'"
+    class="navbar-brand d-inline-flex flex-row justify-content-start align-items-center"
+  >
+    <img
+      [src]="appImagesDir + 'logoBsaWhite1.png'"
+      [alt]="appName + ' logo image'"
+      class="logo mr-2"
+    />
+    <h1 data-testid="appHeader" class="header-h1">{{ appName }}</h1>
+  </a>
+  <button
+    (click)="onNavTogglerClick($event)"
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      fill="currentColor"
+      class="bi bi-list"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+      />
+    </svg>
+  </button>
+  <div
+    [ngbCollapse]="navbarCollapsed"
+    id="navbarSupportedContent"
+    class="collapse navbar-collapse"
+  >
+    <ul
+      ngbNav
+      [activeId]="navActiveId"
+      #nav="ngbNav"
+      class="navbar-nav mr-auto"
+    >
+      <li
+        *ngFor="let i of navConfig.navItems"
+        [ngbNavItem]="i.navItem"
+        [ngClass]="'nav-item ' + i.classhook"
+      >
+        <a
+          ngbNavLink
+          (click)="onNavLinkClick($event)"
+          [routerLink]="i.routerLink"
+          class="nav-link"
+          >{{ i.label }}</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -2,19 +2,4 @@ body {
   @include media-breakpoint-up(md) {
     background-image: url('#{$appImagesDir}home/bg-home-lg.jpg');
   }
-
-  header {
-    padding-bottom: 1.5em;
-    .logo,
-    h1 {
-      display: inline-block;
-      margin: 0;
-      vertical-align: bottom;
-    }
-    .logo {
-      height: 38px;
-      margin-right: 1em;
-      width: 38px;
-    }
-  }
 }

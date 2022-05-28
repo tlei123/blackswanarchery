@@ -1,4 +1,12 @@
-<div class="view-wrapper">
+<div
+  [ngClass]="{
+    hydrated:
+      (currentBreakpoint$ | async) &&
+      (viewFigures$ | async) &&
+      (viewGifs$ | async)
+  }"
+  class="view-wrapper home"
+>
   <h2 class="view-title">Home</h2>
   <p *ngIf="currentBreakpoint$ | async as currBrkpt">
     currentBreakpoint: <span>{{ currBrkpt }}</span>

@@ -3,46 +3,63 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/_mixins.scss';
 
+// shared styling for all view-instances
 .view-wrapper {
   position: relative;
 
-  @include media-breakpoint-up(md) {
-    min-height: 1020px;
+  &.hydrated {
+    @keyframes reveal {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    animation-name: reveal;
+    animation-duration: 0.8s;
   }
 }
 
-.header-smart-figure {
-  @include media-breakpoint-up(md) {
-    margin-bottom: 510px;
-  }
-}
-
-.smart-figure {
-  @include media-breakpoint-up(md) {
-    position: absolute;
-    top: 140px;
-
-    &.view-base-02 {
-      left: 170px;
-    }
-
-    &.view-base-03 {
-      left: 390px;
+// view-base's own template styling
+.view-wrapper.view-base {
+  .header-smart-figure {
+    @include media-breakpoint-up(md) {
+      margin-bottom: 510px;
     }
   }
-}
 
-.smart-gif {
-  @include media-breakpoint-up(md) {
-    position: absolute;
-    top: 570px;
+  .smart-figure {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 140px;
 
-    &.bow-draw {
-      left: 0;
+      &.view-base-01 {
+        left: 0;
+      }
+
+      &.view-base-02 {
+        left: 170px;
+      }
+
+      &.view-base-03 {
+        left: 390px;
+      }
     }
+  }
 
-    &.riser-rotate {
-      left: calc(250px + 1.5em);
+  .smart-gif {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 570px;
+
+      &.bow-draw {
+        left: 0;
+      }
+
+      &.riser-rotate {
+        left: calc(250px + 1.5em);
+      }
     }
   }
 }

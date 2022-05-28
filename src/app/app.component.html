@@ -1,11 +1,6 @@
-<div class="container">
-  <header>
-    <img
-      [src]="imagesDir + 'logoBsaWhite1.png'"
-      alt="Black Swan Archery logo image"
-      class="logo"
-    />
-    <h1 data-testid="appHeader">Black Swan Archery</h1>
+<div *ngIf="browserState$ | async as bState" class="container">
+  <header class="row">
+    <app-header></app-header>
   </header>
 
   <router-outlet (activate)="onOutletActivated($event)"></router-outlet>
@@ -14,7 +9,7 @@
 
   <h2 data-testid="browserStateHeader">Browser State</h2>
 
-  <p *ngIf="browserState$ | async as bState">
+  <p>
     [<code>(browserState$ | async).currentBreakpoint</code>]:
     {{ bState.currentBreakpoint }}
   </p>

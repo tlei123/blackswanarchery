@@ -1,48 +1,47 @@
 @import '~bootstrap/scss/_functions';
 @import 'partials/bootstrap-overrides';
 @import '~bootstrap/scss/_variables';
-@import '~bootstrap/scss/_mixins.scss';
+@import '~bootstrap/scss/_mixins';
+@import '../../shared/view-base/view-base.component.scss';
 
-.view-wrapper {
-  position: relative;
-
+.view-wrapper.view-instance {
   @include media-breakpoint-up(md) {
     min-height: 1020px;
   }
-}
 
-.header-smart-figure {
-  @include media-breakpoint-up(md) {
-    margin-bottom: 510px;
-  }
-}
-
-.smart-figure {
-  @include media-breakpoint-up(md) {
-    position: absolute;
-    top: 140px;
-
-    &.view-instance-02 {
-      left: 170px;
-    }
-
-    &.view-instance-03 {
-      left: 390px;
+  .header-smart-figure {
+    @include media-breakpoint-up(md) {
+      margin-bottom: 510px;
     }
   }
-}
 
-.smart-gif {
-  @include media-breakpoint-up(md) {
-    position: absolute;
-    top: 570px;
+  .smart-figure {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 140px;
 
-    &.draw {
-      left: 0;
+      &.view-instance-02 {
+        left: 170px;
+      }
+
+      &.view-instance-03 {
+        left: 390px;
+      }
     }
+  }
 
-    &.rotate {
-      left: calc(250px + 1.5em);
+  .smart-gif {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 570px;
+
+      &.draw {
+        left: 0;
+      }
+
+      &.rotate {
+        left: calc(250px + 1.5em);
+      }
     }
   }
 }

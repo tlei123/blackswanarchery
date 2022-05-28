@@ -1,0 +1,68 @@
+@import '~bootstrap/scss/_functions';
+@import 'partials/bootstrap-overrides';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_mixins.scss';
+@import 'partials/variables';
+
+:host {
+  width: 100%;
+}
+
+.navbar-brand {
+  font-size: $h6-font-size;
+  .logo {
+    height: 24px;
+    // margin-right: 1em;
+    width: 24px;
+  }
+  .header-h1 {
+    display: inline-block;
+    font-size: inherit;
+    line-height: 1;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+}
+
+.navbar-toggler {
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+.nav-item {
+  @include media-breakpoint-up(md) {
+    text-align: center;
+
+    // accommodate active-state bold font-weight
+    // to prevent nav-item widths from changing between states
+    &.home {
+      min-width: 65px;
+    }
+    &.view-instance {
+      min-width: 130px;
+    }
+  }
+}
+
+.nav-link {
+  &.active {
+    color: lighten(#fc6, 15%);
+    font-weight: bold;
+  }
+  &:not(.dropdown, [dropdown]) {
+    &.active {
+      cursor: default;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    border-right: 1px solid rgba($yellow, 35%);
+
+    &:first-child {
+      border-left: 1px solid rgba($yellow, 35%);
+    }
+  }
+}

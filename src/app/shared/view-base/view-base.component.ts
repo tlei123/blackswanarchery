@@ -10,7 +10,7 @@ import {
   selectGifsByView,
 } from '@store/selectors/assets.selectors';
 import { Figure } from '@models/figure.model';
-import { getImageClasshook } from '@utils/index';
+import * as utils from '@utils/index';
 import { openZoom, setZoomableViewFigures } from '@store/actions/zoom.actions';
 
 // extend this base-component to create view-components ("pages" rendered in AppComponent template's <router-outlet/>)
@@ -19,7 +19,7 @@ import { openZoom, setZoomableViewFigures } from '@store/actions/zoom.actions';
   selector: 'app-view-base',
   // copy markup into instance-component template [or save-as & overwrite (replace) that template]
   templateUrl: './view-base.component.html',
-  // copy template-rules into instance-component stylesheet [or save-as like above]
+  // import into instance-component stylesheet
   styleUrls: ['./view-base.component.scss'],
 })
 export class ViewBaseComponent implements OnInit, OnDestroy {
@@ -79,7 +79,7 @@ export class ViewBaseComponent implements OnInit, OnDestroy {
   // can be overridden though
 
   getImgClasshook(imgFilename: string): string {
-    return getImageClasshook(imgFilename);
+    return utils.getImageClasshook(imgFilename);
   }
 
   onZoomableImageClick(zoomData: any) {

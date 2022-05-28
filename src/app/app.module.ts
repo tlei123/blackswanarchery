@@ -21,6 +21,7 @@ import { ZoomComponent } from '@app/zoom/zoom.component';
 import { SmartGifComponent } from '@shared/smart-gif/smart-gif.component';
 import { ViewInstanceComponent } from '@views/view-instance/view-instance.component';
 import { HomeComponent } from './views/home/home.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HomeComponent } from './views/home/home.component';
     ZoomComponent,
     ViewInstanceComponent,
     HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
