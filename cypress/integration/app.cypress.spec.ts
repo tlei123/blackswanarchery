@@ -15,7 +15,7 @@ describe('App component', () => {
       cy.findByTestId('routerStateHeader').should('be.visible');
     });
     it('Shows url:/ for url', () => {
-      cy.findByTestId('routerStateUrl').should('have.text', '/');
+      cy.findByTestId('routerStateUrl').should('have.text', '/home');
     });
     it('Shows root.outlet:primary for root.outlet', () => {
       cy.findByTestId('routerStateRootOutlet').should('have.text', 'primary');
