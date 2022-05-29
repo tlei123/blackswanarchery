@@ -4,8 +4,13 @@
 @import '~bootstrap/scss/_mixins.scss';
 
 // shared styling for all view-instances
+:host {
+  width: 100%;
+}
 .view-wrapper {
+  background-color: rgba(black, 65%);
   position: relative;
+  width: 100%;
 
   &.hydrated {
     @keyframes reveal {
@@ -18,6 +23,17 @@
     }
     animation-name: reveal;
     animation-duration: 0.8s;
+  }
+  .view-synopsis {
+    padding-bottom: 1.5em;
+    position: relative;
+
+    p {
+      @include media-breakpoint-up(xl) {
+        padding-left: 5em;
+        padding-right: 5em;
+      }
+    }
   }
 }
 

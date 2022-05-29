@@ -1,5 +1,27 @@
 body {
-  @include media-breakpoint-up(md) {
-    background-image: url('#{$appImagesDir}home/bg-home-lg.jpg');
+  background-color: #000;
+  .background {
+    background-image: url('#{$appImagesDir}home/bg-home-mbl.jpg');
+    background-position-x: center;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    @include media-breakpoint-up(md) {
+      background-image: url('#{$appImagesDir}home/bg-home-md.jpg');
+      background-position-y: top;
+      background-size: cover;
+    }
+
+    @include media-breakpoint-up(lg) {
+      background-image: url('#{$appImagesDir}home/bg-home-lg.jpg');
+    }
   }
+
+  // most layout styling is in app.component.scss
 }

@@ -5,31 +5,33 @@
       (viewFigures$ | async) &&
       (viewGifs$ | async)
   }"
-  class="view-wrapper view-instance"
+  class="view-wrapper view-instance col-12"
 >
-  <h2 class="view-title">View-Instance</h2>
-  <p *ngIf="currentBreakpoint$ | async as currBrkpt">
-    currentBreakpoint: <span>{{ currBrkpt }}</span>
-  </p>
-  <h3 class="header-smart-figure">SmartFigure component-instances</h3>
-  <app-smart-figure
-    *ngFor="let fig of viewFigures$ | async; let i = index"
-    class="smart-figure"
-    [ngClass]="'view-instance-0' + (i + 1)"
-    [viewImagesSubdir]="viewImagesSubdir"
-    [figure]="fig"
-    [index]="i"
-    [imageDimension]="['w150', 'w200', 'w300']"
-    [hideCaption]="false"
-    (zoom)="onZoomableImageClick($event)"
-  ></app-smart-figure>
-  <app-smart-gif
-    *ngFor="let gif of viewGifs$ | async; let i = index"
-    [viewGifsSubdir]="viewGifsSubdir"
-    [gif]="gif"
-    [index]="i"
-    [desktopImageHeight]="'450px'"
-    [ngClass]="getImgClasshook(gif.gifFilename)"
-    class="smart-gif"
-  ></app-smart-gif>
+  <div class="view-synopsis">
+    <h2 class="view-title">View-Instance</h2>
+    <p *ngIf="currentBreakpoint$ | async as currBrkpt">
+      currentBreakpoint: <span>{{ currBrkpt }}</span>
+    </p>
+    <h3 class="header-smart-figure">SmartFigure component-instances</h3>
+    <app-smart-figure
+      *ngFor="let fig of viewFigures$ | async; let i = index"
+      class="smart-figure"
+      [ngClass]="'view-instance-0' + (i + 1)"
+      [viewImagesSubdir]="viewImagesSubdir"
+      [figure]="fig"
+      [index]="i"
+      [imageDimension]="['w150', 'w200', 'w300']"
+      [hideCaption]="false"
+      (zoom)="onZoomableImageClick($event)"
+    ></app-smart-figure>
+    <app-smart-gif
+      *ngFor="let gif of viewGifs$ | async; let i = index"
+      [viewGifsSubdir]="viewGifsSubdir"
+      [gif]="gif"
+      [index]="i"
+      [desktopImageHeight]="'450px'"
+      [ngClass]="getImgClasshook(gif.gifFilename)"
+      class="smart-gif"
+    ></app-smart-gif>
+  </div>
 </div>

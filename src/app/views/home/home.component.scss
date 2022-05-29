@@ -6,8 +6,78 @@
 @import '../../shared/view-base/view-base.component';
 
 .view-wrapper.home {
-  .smart-figure {
-    position: relative;
-    top: initial;
+  $logoSize: 96px;
+
+  text-align: center;
+
+  .view-logo {
+    height: $logoSize;
+    margin-bottom: 1.5em;
+    width: $logoSize;
+  }
+
+  .view-synopsis {
+    text-align: inherit;
+  }
+
+  .view-title {
+    font-size: 32px;
+  }
+
+  .view-subtitle-wrapper {
+    text-align: inherit;
+  }
+  p.view-subtitle {
+    font-family: Papyrus, 'Open-Sans';
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1.4;
+
+    @include media-breakpoint-up(md) {
+      padding-left: 8em;
+      padding-right: 8em;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-left: 12em;
+      padding-right: 12em;
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding-left: 16em;
+      padding-right: 16em;
+    }
+
+    &:first-child {
+      margin-bottom: 0;
+      text-align: left;
+    }
+
+    &:nth-child(2) {
+      text-align: right;
+    }
+  }
+
+  .emphasis-span {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &::after {
+    content: ' ';
+    display: block;
+    background-image: linear-gradient(rgba(black, 65%), rgba(black, 0));
+    margin: 0em -1em -3em;
+    min-height: 3em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    &:after {
+      display: none;
+    }
   }
 }

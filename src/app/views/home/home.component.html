@@ -5,20 +5,31 @@
       (viewFigures$ | async) &&
       (viewGifs$ | async)
   }"
-  class="view-wrapper home"
+  class="view-wrapper home col-12"
 >
-  <h2 class="view-title">Home</h2>
-  <p *ngIf="currentBreakpoint$ | async as currBrkpt">
-    currentBreakpoint: <span>{{ currBrkpt }}</span>
-  </p>
-  <app-smart-figure
-    *ngIf="(viewFigures$ | async)[0] as fig"
-    class="smart-figure"
-    [ngClass]="getImgClasshook(fig.imageFilename)"
-    [viewImagesSubdir]="viewImagesSubdir"
-    [figure]="fig"
-    [imageDimension]="'h300'"
-    [hideCaption]="false"
-    (zoom)="onZoomableImageClick($event)"
-  ></app-smart-figure>
+  <img
+    [src]="appImagesDir + 'logoBsaWhite.png'"
+    alt="logo image"
+    class="view-logo home"
+  />
+  <div class="view-synopsis">
+    <h2 class="view-title">Black Swan Archery</h2>
+    <div class="view-subtitle-wrapper">
+      <p class="view-subtitle">“Engineered for performance...</p>
+      <p class="view-subtitle">Designed for the hunt”</p>
+    </div>
+    <p>
+      Black Swan Archery offers four distinctly different bows. All were
+      designed using proprietary CAD software and the most technically advanced
+      materials available. The result is the highest dynamic efficiency of any
+      bow to date. The bows are smooth to draw and shoot, forgiving, accurate,
+      and very fast.
+    </p>
+    <p class="speed-paragraph">With IBO speeds over 300 FPS!</p>
+    <p class="epilogue">
+      Black Swan Archery...<br /><span class="emphasis-span"
+        >“Perfecting the Traditional Bow”</span
+      >
+    </p>
+  </div>
 </div>

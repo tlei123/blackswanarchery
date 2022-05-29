@@ -47,6 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
   routerStateSub: Subscription;
   splashVideoStateSub: Subscription;
   assetsStateSub: Subscription;
+  navActiveId: string;
   homeFigures: Figure[];
   viewbaseFigures: Figure[];
 
@@ -73,6 +74,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.currentNavigationId = x.navigationId;
         this.currentRouteParams = x.state.root.params;
         this.currentQueryParams = x.state.root.queryParams;
+        this.navActiveId = x.state.root.firstChild.routeConfig.path;
+        window.document.body.classList.add(this.navActiveId);
       }
     },
     error: (err: Error) => {

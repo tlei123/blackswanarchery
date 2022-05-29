@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit {
   onNavLinkClick($event): void {
     if (isMobile(this.currentBreakpoint)) {
       // Collapse navbar after mobile-tap
-      this.navbarCollapsed = false;
+      this.navbarCollapsed = true;
     }
   }
 }

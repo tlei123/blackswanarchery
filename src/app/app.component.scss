@@ -4,8 +4,24 @@
 @import '~bootstrap/scss/_mixins.scss';
 @import 'partials/variables';
 
+// this stylesheet also controls most page-layout
 .container {
-  background-color: rgba(0, 0, 0, 0.75);
+  position: relative;
+  .container-background {
+    bottom: 0;
+    left: 0;
+    background-image: url('#{$appImagesDir}black-tile.png');
+    opacity: 80%;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &.home {
+    .container-background {
+      opacity: 0;
+    }
+  }
 }
 
 .smart-figure {
