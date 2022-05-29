@@ -1,4 +1,14 @@
+@font-face {
+  font-family: 'Papyrus';
+  src: url('#{$appFontsDir}papyrus.woff') format('woff'),
+    url('#{$appFontsDir}papyrus.woff2') format('woff2');
+}
+
 body {
   color: white;
   text-shadow: 5px 5px 17px #000000;
+}
+
+.view-title {
+  font-family: Papyrus;
 }
