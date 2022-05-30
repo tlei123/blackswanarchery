@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
@@ -26,6 +32,8 @@ import { Figure } from '@models/figure.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild('header') header: ElementRef;
+
   breakpoints = appConfig.breakpoints;
   currentBreakpoint: string;
   gifsDir = appConfig.dirs.gifs;
@@ -50,6 +58,8 @@ export class AppComponent implements OnInit, OnDestroy {
   navActiveId: string;
   homeFigures: Figure[];
   viewbaseFigures: Figure[];
+  windowScrolled = false;
+  lastScrollTop = 0;
 
   /* Observers here subscribe to state observables, in case app needs to react to state changes.
   Call methods from within next/error/complete callback.
@@ -147,6 +157,19 @@ export class AppComponent implements OnInit, OnDestroy {
         this.store.dispatch(changeBreakpoint({ breakpoint: newBrkpt }));
       }
     }, 250);
+    window.onscroll = debounce(() => {
+      console.info(
+        '[App.onInit] window.onscroll event! header (viewChild):',
+        this.header,
+      );
+      this.windowScrolled = true;
+    }, 125);
+    setInterval(() => {
+      if (this.windowScrolled) {
+        this.handleWindowScrolled();
+        this.windowScrolled = false;
+      }
+    }, 125);
   }
 
   ngOnDestroy(): void {
@@ -166,6 +189,34 @@ export class AppComponent implements OnInit, OnDestroy {
     component.appImagesDir = this.imagesDir;
     component.appName = this.name;
     component.appVideosDir = this.videosDir;
+  }
+
+  handleWindowScrolled(): void {
+    const delta = 5;
+    const headerHeight = 58;
+    const scrollTop = window.scrollY;
+
+    if (
+      this.currentBreakpoint !== 'xs' ||
+      Math.abs(this.lastScrollTop - scrollTop) < delta
+    ) {
+      this.lastScrollTop = scrollTop;
+      return;
+    }
+
+    if (scrollTop > this.lastScrollTop) {
+      // if scrolled down
+      console.info('[App.handleWindowScrolled] Scrolled down!');
+      this.header.nativeElement.classList.add('header-up');
+    } else if (scrollTop < this.lastScrollTop || scrollTop < headerHeight) {
+      // if scrolled up
+      console.info('[App.handleWindowScrolled] Scrolled up!');
+      if (scrollTop + window.innerHeight < window.document.body.clientHeight) {
+        this.header.nativeElement.classList.remove('header-up');
+      }
+    }
+
+    this.lastScrollTop = scrollTop;
   }
 
   finishSplashVideo() {

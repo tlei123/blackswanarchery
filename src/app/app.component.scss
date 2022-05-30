@@ -6,7 +6,15 @@
 
 // this stylesheet also controls most page-layout
 .container {
+  $headerHeight: 58px;
   position: relative;
+
+  &.home {
+    .container-background {
+      opacity: 0;
+    }
+  }
+
   .container-background {
     bottom: 0;
     left: 0;
@@ -17,9 +25,34 @@
     top: 0;
   }
 
-  &.home {
-    .container-background {
-      opacity: 0;
+  header {
+    background-color: black;
+    position: fixed;
+    min-width: 100%;
+    top: 0;
+    transition: top 0.5s;
+    z-index: 10;
+
+    @include media-breakpoint-up(sm) {
+      position: static;
+      z-index: initial;
+    }
+
+    &.header-up {
+      // hide when not scrolled in 'xs'
+      top: -$headerHeight;
+
+      @include media-breakpoint-up(sm) {
+        top: initial;
+      }
+    }
+  }
+
+  main {
+    padding-top: $headerHeight;
+
+    @include media-breakpoint-up(sm) {
+      padding-top: 0;
     }
   }
 }

@@ -5,7 +5,11 @@
 @import 'partials/variables';
 
 :host {
-  width: 100%;
+  min-width: 100%;
+}
+
+.navbar {
+  min-width: 100%;
 }
 
 .navbar-brand {
