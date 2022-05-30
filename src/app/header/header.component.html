@@ -1,4 +1,8 @@
-<nav *ngIf="currentBreakpoint" class="navbar navbar-expand-md">
+<nav
+  *ngIf="currentBreakpoint"
+  [ngClass]="navActiveId"
+  class="navbar navbar-expand-md"
+>
   <a
     [routerLink]="'home'"
     class="navbar-brand d-inline-flex flex-row justify-content-start align-items-center"

@@ -10,6 +10,16 @@
 
 .navbar {
   min-width: 100%;
+
+  &.home {
+    .navbar-brand {
+      opacity: 0;
+
+      @include media-breakpoint-up(md) {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .navbar-brand {
