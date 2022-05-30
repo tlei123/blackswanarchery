@@ -4,13 +4,7 @@
 @import '~bootstrap/scss/_mixins.scss';
 @import 'partials/variables';
 
-:host {
-  min-width: 100%;
-}
-
 .navbar {
-  min-width: 100%;
-
   &.home {
     .navbar-brand {
       opacity: 0;

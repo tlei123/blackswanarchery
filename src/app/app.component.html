@@ -1,15 +1,17 @@
 <div
   *ngIf="browserState$ | async as bState"
-  [ngClass]="'container ' + navActiveId"
+  [ngClass]="'app-wrapper ' + navActiveId"
 >
-  <div class="container-background"></div>
-  <header #header class="row">
+  <header #header>
     <app-header></app-header>
   </header>
-  <main class="row">
-    <router-outlet (activate)="onOutletActivated($event)"></router-outlet>
-  </main>
-
-  <footer class="row">[footer component (tbd)]</footer>
+  <div [ngClass]="'container ' + navActiveId">
+    <div class="container-background row"></div>
+    <main class="row">
+      <router-outlet (activate)="onOutletActivated($event)"></router-outlet>
+    </main>
+  </div>
 </div>
+
+<footer>[footer component (tbd)]</footer>
 <app-zoom></app-zoom>

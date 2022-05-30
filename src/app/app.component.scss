@@ -4,9 +4,48 @@
 @import '~bootstrap/scss/_mixins.scss';
 @import 'partials/variables';
 
-// this stylesheet also controls most page-layout
+// this stylesheet controls most page-layout
+$headerHeight: 58px;
+
+header {
+  // fixed-position in 'xs'
+  background-color: black;
+  position: fixed;
+  min-width: 100%;
+  top: 0;
+  transition: top 0.5s;
+  z-index: 10;
+
+  @include media-breakpoint-up(sm) {
+    position: static;
+    z-index: initial;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin: 0 auto;
+    max-width: 720px;
+    min-width: initial;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 960px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: 1140px;
+  }
+
+  &.header-up {
+    // hide when not scrolled-down in 'xs'
+    top: -$headerHeight;
+
+    @include media-breakpoint-up(sm) {
+      top: initial;
+    }
+  }
+}
+
 .container {
-  $headerHeight: 58px;
   position: relative;
 
   &.home {
@@ -23,30 +62,6 @@
     position: absolute;
     right: 0;
     top: 0;
-  }
-
-  header {
-    // fixed-position in 'xs'
-    background-color: black;
-    position: fixed;
-    min-width: 100%;
-    top: 0;
-    transition: top 0.5s;
-    z-index: 10;
-
-    @include media-breakpoint-up(sm) {
-      position: static;
-      z-index: initial;
-    }
-
-    &.header-up {
-      // hide when not scrolled-down in 'xs'
-      top: -$headerHeight;
-
-      @include media-breakpoint-up(sm) {
-        top: initial;
-      }
-    }
   }
 
   main {

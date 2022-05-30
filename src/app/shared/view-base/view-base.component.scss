@@ -5,12 +5,17 @@
 
 // shared styling for all view-instances
 :host {
+  // copy of Bootstrap .col-12
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
   width: 100%;
 }
 .view-wrapper {
   background-color: rgba(black, 65%);
   position: relative;
-  width: 100%;
 
   &.hydrated {
     @keyframes reveal {

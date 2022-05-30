@@ -169,7 +169,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.handleWindowScrolled();
         this.windowScrolled = false;
       }
-    }, 125);
+    }, 250);
   }
 
   ngOnDestroy(): void {
@@ -192,14 +192,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   handleWindowScrolled(): void {
-    const delta = 5;
     const headerHeight = 58;
     const scrollTop = window.scrollY;
 
-    if (
-      this.currentBreakpoint !== 'xs' ||
-      Math.abs(this.lastScrollTop - scrollTop) < delta
-    ) {
+    if (this.currentBreakpoint !== 'xs') {
       this.lastScrollTop = scrollTop;
       return;
     }
@@ -208,7 +204,7 @@ export class AppComponent implements OnInit, OnDestroy {
       // if scrolled down
       console.info('[App.handleWindowScrolled] Scrolled down!');
       this.header.nativeElement.classList.add('header-up');
-    } else if (scrollTop < this.lastScrollTop || scrollTop < headerHeight) {
+    } else if (scrollTop < this.lastScrollTop || scrollTop <= headerHeight) {
       // if scrolled up
       console.info('[App.handleWindowScrolled] Scrolled up!');
       if (scrollTop + window.innerHeight < window.document.body.clientHeight) {
