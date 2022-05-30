@@ -26,6 +26,7 @@
   }
 
   header {
+    // fixed-position in 'xs'
     background-color: black;
     position: fixed;
     min-width: 100%;
@@ -39,7 +40,7 @@
     }
 
     &.header-up {
-      // hide when not scrolled in 'xs'
+      // hide when not scrolled-down in 'xs'
       top: -$headerHeight;
 
       @include media-breakpoint-up(sm) {
@@ -49,6 +50,7 @@
   }
 
   main {
+    // accommodate header fixed-position in 'xs'
     padding-top: $headerHeight;
 
     @include media-breakpoint-up(sm) {
