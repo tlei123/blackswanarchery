@@ -195,7 +195,7 @@ export class AppComponent implements OnInit, OnDestroy {
     const headerHeight = 58;
     const scrollTop = window.scrollY;
 
-    if (this.currentBreakpoint !== 'xs') {
+    if (!['xs', 'sm'].includes(this.currentBreakpoint)) {
       this.lastScrollTop = scrollTop;
       return;
     }

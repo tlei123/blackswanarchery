@@ -7,24 +7,16 @@
 // this stylesheet controls most page-layout
 $headerHeight: 58px;
 
-header {
-  // fixed-position in 'xs'
-  background-color: black;
-  position: fixed;
-  min-width: 100%;
-  top: 0;
-  transition: top 0.5s;
+:host {
   z-index: 10;
+}
 
-  @include media-breakpoint-up(sm) {
-    position: static;
-    z-index: initial;
-  }
+.app-wrapper {
+  max-width: 100%;
 
   @include media-breakpoint-up(md) {
     margin: 0 auto;
     max-width: 720px;
-    min-width: initial;
   }
 
   @include media-breakpoint-up(lg) {
@@ -34,12 +26,27 @@ header {
   @include media-breakpoint-up(xl) {
     max-width: 1140px;
   }
+}
+
+header,
+footer {
+  background-color: black;
+  position: fixed;
+  min-width: 100%;
+  transition: top 0.5s;
+  z-index: 10;
+}
+
+header {
+  // fixed-position below 'md'
+  top: 0;
+  transition: top 0.5s;
 
   &.header-up {
-    // hide when not scrolled-down in 'xs'
+    // hide when not scrolled-down below 'md'
     top: -$headerHeight;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
       top: initial;
     }
   }
@@ -65,13 +72,12 @@ header {
   }
 
   main {
-    // accommodate header fixed-position in 'xs'
     padding-top: $headerHeight;
-
-    @include media-breakpoint-up(sm) {
-      padding-top: 0;
-    }
   }
+}
+
+footer {
+  bottom: 0;
 }
 
 .smart-figure {

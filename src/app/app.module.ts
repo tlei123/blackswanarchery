@@ -22,6 +22,7 @@ import { SmartGifComponent } from '@shared/smart-gif/smart-gif.component';
 import { ViewInstanceComponent } from '@views/view-instance/view-instance.component';
 import { HomeComponent } from './views/home/home.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HeaderComponent } from './header/header.component';
     ViewInstanceComponent,
     HomeComponent,
     HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

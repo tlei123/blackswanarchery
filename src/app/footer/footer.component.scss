@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/_functions';
+@import 'partials/bootstrap-overrides';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_mixins.scss';
+@import 'partials/variables';
+
+:host {
+  display: block;
+  font-size: 12px;
+  padding: 15px;
+}
+.footer-left,
+.footer-center,
+.footer-right {
+  display: block;
+  @include media-breakpoint-up(md) {
+    display: inline-block;
+  }
+}
