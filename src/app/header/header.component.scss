@@ -4,6 +4,10 @@
 @import '~bootstrap/scss/_mixins.scss';
 @import 'partials/variables';
 
+:host {
+  max-width: inherit;
+}
+
 .navbar {
   &.home {
     .navbar-brand {

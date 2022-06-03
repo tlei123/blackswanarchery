@@ -11,7 +11,9 @@ $headerHeight: 58px;
   z-index: 10;
 }
 
-.app-wrapper {
+.app-wrapper,
+header,
+footer {
   max-width: 100%;
 
   @include media-breakpoint-up(md) {

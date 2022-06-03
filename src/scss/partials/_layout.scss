@@ -4,9 +4,9 @@ body {
   .background {
     background-image: url('#{$appImagesDir}home/bg-home-mbl.jpg');
     background-position-x: center;
-    background-position-y: bottom;
+    background-position-y: 16em;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
     bottom: 0;
     left: 0;
     position: fixed;
