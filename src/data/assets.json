@@ -27,6 +27,7 @@
     "view-instance": [
       {
         "imageFilename": "view-instance-01.png",
+        "imageFilename2x": "view-instance-01-2x.png",
         "zoomImageFilename": "view-instance-01-zoom.png",
         "caption": "String angle the same for bows with Modular System"
       },

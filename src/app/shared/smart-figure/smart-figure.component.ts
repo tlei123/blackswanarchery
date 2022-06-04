@@ -70,6 +70,14 @@ export class SmartFigureComponent implements OnInit, OnDestroy {
     }
   }
 
+  getSrcSet(figure: Figure): string {
+    // conditionally returns resolution-switching srcset value
+    const imgDir = this.appImagesDir + this.viewImagesSubdir;
+    return figure.imageFilename2x
+      ? `${imgDir}${figure.imageFilename}, ${imgDir}${figure.imageFilename2x} 2x`
+      : null;
+  }
+
   isZoomEnabled(
     figure: Figure,
     zoomBreakpoints: string[],

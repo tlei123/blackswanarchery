@@ -5,6 +5,7 @@
   <img
     #image
     *ngIf="zoomBreakpoints$ | async as zoomBrkpts"
+    [srcset]="getSrcSet(figure)"
     [src]="appImagesDir + viewImagesSubdir + figure.imageFilename"
     [ngClass]="{
       zoomable: isZoomEnabled(figure, zoomBrkpts, currBrkpt)
