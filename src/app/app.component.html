@@ -6,7 +6,6 @@
     <app-header></app-header>
   </header>
   <div [ngClass]="'container ' + navActiveId">
-    <div class="container-background row"></div>
     <main class="row">
       <router-outlet (activate)="onOutletActivated($event)"></router-outlet>
     </main>

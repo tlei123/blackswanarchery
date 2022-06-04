@@ -11,10 +11,6 @@
 
   .view-synopsis {
     text-align: inherit;
-
-    @include media-breakpoint-up(md) {
-      background-color: transparent;
-    }
   }
 
   .view-logo {

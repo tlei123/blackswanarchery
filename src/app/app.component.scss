@@ -57,24 +57,17 @@ header {
 .container {
   position: relative;
 
-  &.home {
-    .container-background {
-      opacity: 0;
-    }
-  }
-
-  .container-background {
-    bottom: 0;
-    left: 0;
-    background-image: url('#{$appImagesDir}black-tile.png');
-    opacity: 80%;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
   main {
+    background-color: rgba(black, 65%);
     padding-top: $headerHeight;
+  }
+
+  &.home {
+    main {
+      @include media-breakpoint-down(sm) {
+        background-color: transparent;
+      }
+    }
   }
 }
 
