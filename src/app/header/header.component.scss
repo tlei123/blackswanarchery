@@ -4,11 +4,20 @@
 @import '~bootstrap/scss/_mixins.scss';
 @import 'partials/variables';
 
-:host {
-  max-width: inherit;
-}
-
 .navbar {
+  @include media-breakpoint-up(md) {
+    margin: 0 auto;
+    max-width: 720px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 960px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: 1140px;
+  }
+
   &.home {
     .navbar-brand {
       opacity: 0;
