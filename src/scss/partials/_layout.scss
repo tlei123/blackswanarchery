@@ -2,11 +2,11 @@ body {
   background-color: #000;
 
   .background {
-    background-image: url('#{$appImagesDir}home/bg-home-mbl.jpg');
+    background-image: url('#{$appImagesDir}background-sm.jpg');
     background-position-x: center;
     background-position-y: 16em;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     bottom: 0;
     left: 0;
     position: fixed;
@@ -14,13 +14,22 @@ body {
     top: 0;
 
     @include media-breakpoint-up(md) {
-      background-image: url('#{$appImagesDir}home/bg-home-md.jpg');
+      background-image: url('#{$appImagesDir}background-md.jpg');
       background-position-y: top;
-      background-size: cover;
     }
 
     @include media-breakpoint-up(lg) {
-      background-image: url('#{$appImagesDir}home/bg-home-lg.jpg');
+      background-image: url('#{$appImagesDir}background-lg.jpg');
+    }
+
+    @include media-breakpoint-up(xl) {
+      background-image: url('#{$appImagesDir}background-xl.jpg');
+    }
+  }
+
+  &[data-view='home'] .background {
+    @include media-breakpoint-down(sm) {
+      background-image: url('#{$appImagesDir}home/bg-home-mbl.jpg');
     }
   }
 

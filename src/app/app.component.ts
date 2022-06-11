@@ -85,7 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.currentRouteParams = x.state.root.params;
         this.currentQueryParams = x.state.root.queryParams;
         this.navActiveId = x.state.root.firstChild.routeConfig.path;
-        window.document.body.classList.add(this.navActiveId);
+        window.document.body.setAttribute('data-view', this.navActiveId);
       }
     },
     error: (err: Error) => {
