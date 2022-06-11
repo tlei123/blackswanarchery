@@ -23,11 +23,11 @@ describe('App component', () => {
     );
   });
 
-  it('should set current-view classhooks', () => {
-    cy.get('body').should('have.class', 'home');
+  it('should set current-view data-attribute', () => {
+    cy.get('body').invoke('attr', 'data-view').should('eq', 'home');
     cy.get('.container').should('have.class', 'home');
     cy.visit('/view-instance');
-    cy.get('body').should('have.class', 'view-instance');
+    cy.get('body').invoke('attr', 'data-view').should('eq', 'view-instance');
     cy.get('.container').should('have.class', 'view-instance');
   });
 });
