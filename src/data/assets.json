@@ -7,6 +7,7 @@
         "caption": "Arvid Danielson, Black Swan Archery Founder, President, & Bowyer"
       }
     ],
+    "handles": [],
     "view-base": [
       {
         "imageFilename": "view-base-01.png",
@@ -45,6 +46,7 @@
   },
   "gifs": {
     "home": [],
+    "handles": [],
     "view-base": [
       {
         "gifFilename": "bow-draw.gif",

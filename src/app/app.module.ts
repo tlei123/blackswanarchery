@@ -23,6 +23,7 @@ import { ViewInstanceComponent } from '@views/view-instance/view-instance.compon
 import { HomeComponent } from './views/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { HandlesComponent } from './views/handles/handles.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    HandlesComponent,
   ],
   imports: [
     BrowserModule,

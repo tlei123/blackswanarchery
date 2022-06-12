@@ -7,6 +7,12 @@ export const topNavConfig = {
       routerLink: 'home',
     },
     {
+      classhook: 'handles',
+      label: 'Handles',
+      navItem: 'handles',
+      routerLink: 'handles',
+    },
+    {
       classhook: 'view-instance',
       label: 'View-Instance',
       navItem: 'view-instance',
