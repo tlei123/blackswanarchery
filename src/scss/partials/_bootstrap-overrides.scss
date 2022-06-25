@@ -16,3 +16,57 @@ $nav-link-hover-color: $link-hover-color;
 $nav-link-transition: color 0.25s ease-in-out,
   background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 $nav-link-disabled-color: #da4;
+
+// carousel overrides
+$carousel-control-color: $link-color; // default $white
+$carousel-control-opacity: 1; // default .5
+$carousel-control-hover-opacity: 1; // default .9
+$carousel-indicator-active-bg: lighten($link-color, 15%); // default $white
+$carousel-transition-duration: 1s; // default .6s
+.carousel-inner {
+  padding-bottom: 37px;
+}
+.picsum-img-wrapper,
+.carousel-caption,
+.carousel-indicators {
+  background-color: rgba(black, 0.75);
+}
+.carousel-caption,
+.carousel-indicators {
+  margin-bottom: 0;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.carousel-caption {
+  bottom: auto;
+  line-height: 1;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: static !important;
+
+  h3,
+  p {
+    margin-bottom: 0;
+  }
+  h3 {
+    font-size: 18px;
+
+    & + p {
+      font-size: 14px;
+    }
+  }
+}
+.carousel-indicators {
+  padding-bottom: 6px;
+  padding-top: 6px;
+  > li {
+    background-color: $link-color !important;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    opacity: 1 !important;
+
+    &.active {
+      background-color: lighten($link-color, 20%) !important;
+    }
+  }
+}

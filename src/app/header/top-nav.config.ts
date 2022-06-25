@@ -8,7 +8,7 @@ export const topNavConfig = {
     },
     {
       classhook: 'handles',
-      label: 'Handles',
+      label: 'Handle System',
       navItem: 'handles',
       routerLink: 'handles',
     },

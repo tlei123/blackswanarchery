@@ -1,1 +1,47 @@
-<p>handles works!</p>
+<div
+  [ngClass]="{
+    hydrated:
+      (currentBreakpoint$ | async) &&
+      (viewFigures$ | async) &&
+      (viewGifs$ | async)
+  }"
+  class="view-wrapper handles"
+>
+  <div class="view-synopsis">
+    <h2 class="view-title">Handle System</h2>
+    <p class="d-block d-md-none mb-0">
+      Modular system with interchangeable limbs & handles. Handles have
+      low-medium & high grips for comfort & consistency. They're cut 1/4 inch
+      past center, and drilled and tapped for a plunger for easy fine-tuning.
+    </p>
+    <p class="d-none d-md-block mb-0">
+      A modular bow system with interchangeable limbs and handles, providing bow
+      sizes of 58 and 60 inches with low medium and high grips for comfort and
+      consistency. The handles are cut 1/4 inch past center, and drilled and
+      tapped for a plunger to give the added ability to fine tune the bow with
+      ease.
+    </p>
+    <p>5 Handles are available.</p>
+    <ngb-carousel
+      #carousel
+      [interval]="carouselOpts.interval"
+      [pauseOnFocus]="carouselOpts.pauseOnFocus"
+      [pauseOnHover]="carouselOpts.pauseOnHover"
+      (slide)="onCarouselSlide($event)"
+      class="carousel"
+    >
+      <ng-template *ngFor="let item of carouselItems" ngbSlide>
+        <div class="carousel-caption">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+        <div class="picsum-img-wrapper">
+          <img
+            [src]="appGifsDir + viewGifsSubdir + item.gifSrc"
+            [alt]="item.title + ' animation'"
+          />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>

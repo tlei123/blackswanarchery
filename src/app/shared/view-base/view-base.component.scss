@@ -14,7 +14,12 @@
   width: 100%;
 }
 .view-wrapper {
+  margin-bottom: 66px;
   position: relative;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 48px;
+  }
 
   &.hydrated {
     @keyframes reveal {
@@ -32,11 +37,16 @@
   .view-synopsis {
     padding-bottom: 1.5em;
     position: relative;
+    text-align: center;
+
+    .view-title {
+      margin-top: 0.5em;
+    }
 
     p {
       @include media-breakpoint-up(xl) {
-        padding-left: 5em;
-        padding-right: 5em;
+        padding-left: 6em;
+        padding-right: 6em;
       }
     }
   }

@@ -46,7 +46,14 @@
   },
   "gifs": {
     "home": [],
-    "handles": [],
+    "handles": [
+      {
+        "gifFilename": "handles-05.gif",
+        "thumbnailFilename": "handles-05-thumb.png",
+        "hoverMessagePaused": "Click Play to start rotation",
+        "hoverMessagePlaying": "Click Stop to stop rotation"
+      }
+    ],
     "view-base": [
       {
         "gifFilename": "bow-draw.gif",

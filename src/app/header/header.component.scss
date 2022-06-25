@@ -72,7 +72,7 @@
 
 .nav-link {
   &.active {
-    color: lighten(#fc6, 15%);
+    color: lighten($yellow, 20%);
     font-weight: bold;
   }
   &:not(.dropdown, [dropdown]) {
