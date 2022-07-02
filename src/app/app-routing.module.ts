@@ -5,6 +5,7 @@ import { HomeComponent } from '@views/home/home.component';
 import { HandlesComponent } from './views/handles/handles.component';
 import { ViewBaseComponent } from '@shared/view-base/view-base.component';
 import { ViewInstanceComponent } from '@views/view-instance/view-instance.component';
+import { LimbsComponent } from './views/limbs/limbs.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'handles',
     component: HandlesComponent,
+  },
+  {
+    path: 'limbs',
+    component: LimbsComponent,
   },
   {
     path: 'view-base',

@@ -13,6 +13,12 @@ export const topNavConfig = {
       routerLink: 'handles',
     },
     {
+      classhook: 'limbs',
+      label: 'Bow Limbs',
+      navItem: 'limbs',
+      routerLink: 'limbs',
+    },
+    {
       classhook: 'view-instance',
       label: 'View-Instance',
       navItem: 'view-instance',

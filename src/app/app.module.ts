@@ -24,6 +24,7 @@ import { HomeComponent } from './views/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HandlesComponent } from './views/handles/handles.component';
+import { LimbsComponent } from './views/limbs/limbs.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HandlesComponent } from './views/handles/handles.component';
     HeaderComponent,
     FooterComponent,
     HandlesComponent,
+    LimbsComponent,
   ],
   imports: [
     BrowserModule,

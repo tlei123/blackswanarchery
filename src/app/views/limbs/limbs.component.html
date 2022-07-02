@@ -1,0 +1,18 @@
+<div
+  [ngClass]="{
+    hydrated:
+      (currentBreakpoint$ | async) &&
+      (viewFigures$ | async) &&
+      (viewGifs$ | async)
+  }"
+  class="view-wrapper limbs"
+>
+  <h2 class="view-title">Bow Limbs</h2>
+  <p>
+    Designed for the modular bow system with interchangeable limbs, using
+    proprietary CAD software. Made with the most advanced materials available,
+    high modulus carbon (proprietary formula) and carbon powered core
+    (proprietary). Producing speeds over 300 FPS, with stability, accuracy, and
+    consistency.
+  </p>
+</div>
