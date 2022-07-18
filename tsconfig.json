@@ -24,7 +24,8 @@
       "@utils/*": ["src/app/utils/*"],
       "@views/*": ["src/app/views/*"],
       "@scss/*": ["src/scss/*"]
-    }
+    },
+    "types": ["cypress", "@testing-library/cypress"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
