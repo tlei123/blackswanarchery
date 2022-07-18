@@ -58,6 +58,7 @@
     "auto-changelog": "^2.4.0",
     "cachekill": "^3.0.2",
     "cypress": "^10.3.0",
+    "cypress-testrail-reporter": "^1.3.3",
     "eslint": "^7.6.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
