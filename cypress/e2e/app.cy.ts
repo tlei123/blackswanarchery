@@ -7,7 +7,7 @@ describe('App component', () => {
     cy.visit('/');
   });
 
-  it('should display Header', () => {
+  it('should display Header - C19100', () => {
     cy.get('header')
       .should('exist')
       .within(($header) => {
@@ -15,7 +15,7 @@ describe('App component', () => {
       });
   });
 
-  it('should redirect initial-visit ("/") to Home-view', () => {
+  it('should redirect initial-visit ("/") to Home-view - C19101', () => {
     cy.location('pathname').should('match', /^\/home/);
     cy.findByText('Home', { selector: '.nav-link' }).should(
       'have.class',
@@ -23,7 +23,7 @@ describe('App component', () => {
     );
   });
 
-  it('should set current-view data-attribute', () => {
+  it('should set current-view data-attribute - C19102', () => {
     cy.get('body').invoke('attr', 'data-view').should('eq', 'home');
     cy.get('.container').should('have.class', 'home');
     cy.visit('/view-instance');
