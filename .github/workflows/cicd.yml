@@ -67,9 +67,8 @@ jobs:
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 120
           browser: chrome
-          headed: false
+          headless: true
           spec: cypress/integration/**/*.cy.ts
-          record: false
       - name: Build dev
         if: ${{ github.ref != 'refs/heads/master' }}
         run: npm run build
