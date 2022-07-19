@@ -69,7 +69,7 @@ jobs:
           browser: chrome
           headed: false
           record: false
-          spec: cypress/integration/**/*.cy.ts
+          spec: cypress/e2e/**/*.cy.ts
       - name: Build dev
         if: ${{ github.ref != 'refs/heads/master' }}
         run: npm run build
