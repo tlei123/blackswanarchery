@@ -60,15 +60,16 @@ jobs:
       - name: Install Cypress
         run: npx cypress install
       - name: Run all E2E tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           install: false
           start: npm run start
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 120
           browser: chrome
-          headless: true
-          spec: cypress/integration/**/*.spec.ts
+          headed: false
+          record: false
+          spec: cypress/e2e/**/*.cy.ts
       - name: Build dev
         if: ${{ github.ref != 'refs/heads/master' }}
         run: npm run build
