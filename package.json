@@ -14,7 +14,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "cy:open": "cypress open --browser chrome",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "cy:testrail-run": "cypress run --config-file cypress-testrail.config.ts --env testRailSuiteId=722"
   },
   "private": false,
   "dependencies": {
