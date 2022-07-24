@@ -8,6 +8,28 @@
       }
     ],
     "handles": [],
+    "limbs": [
+      {
+        "imageFilename": "limbs-01.gif",
+        "zoomImageFilename": "limbs-01.gif",
+        "caption": "Wave Recurve"
+      },
+      {
+        "imageFilename": "limbs-02.gif",
+        "zoomImageFilename": "limbs-02.gif",
+        "caption": "Static Recurve"
+      },
+      {
+        "imageFilename": "limbs-03.gif",
+        "zoomImageFilename": "limbs-03.gif",
+        "caption": "Working Recurve"
+      },
+      {
+        "imageFilename": "limbs-04.gif",
+        "zoomImageFilename": "limbs-04.gif",
+        "caption": "Hybrid Longbow"
+      }
+    ],
     "view-base": [
       {
         "imageFilename": "view-base-01.png",
@@ -50,6 +72,32 @@
       {
         "gifFilename": "handles-05.gif",
         "thumbnailFilename": "handles-05-thumb.png",
+        "hoverMessagePaused": "Click Play to start rotation",
+        "hoverMessagePlaying": "Click Stop to stop rotation"
+      }
+    ],
+    "limbs": [
+      {
+        "gifFilename": "limbs-01.gif",
+        "thumbnailFilename": "limbs-01-thumb.png",
+        "hoverMessagePaused": "Click Play to start rotation",
+        "hoverMessagePlaying": "Click Stop to stop rotation"
+      },
+      {
+        "gifFilename": "limbs-02.gif",
+        "thumbnailFilename": "limbs-02-thumb.png",
+        "hoverMessagePaused": "Click Play to start rotation",
+        "hoverMessagePlaying": "Click Stop to stop rotation"
+      },
+      {
+        "gifFilename": "limbs-03.gif",
+        "thumbnailFilename": "limbs-03-thumb.png",
+        "hoverMessagePaused": "Click Play to start rotation",
+        "hoverMessagePlaying": "Click Stop to stop rotation"
+      },
+      {
+        "gifFilename": "limbs-04.gif",
+        "thumbnailFilename": "limbs-04-thumb.png",
         "hoverMessagePaused": "Click Play to start rotation",
         "hoverMessagePlaying": "Click Stop to stop rotation"
       }

@@ -33,7 +33,7 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/scss"]
             },
-            "scripts": []
+            "scripts": ["src/assets/lib/imageMapResizer.min.js"]
           },
           "configurations": {
             "production": {
