@@ -1,17 +1,85 @@
-@import '~bootstrap/scss/_functions';
-@import 'partials/bootstrap-overrides';
-@import '~bootstrap/scss/_variables';
-@import '~bootstrap/scss/_mixins';
 @import '../../shared/view-base/view-base.component.scss';
 
-.limbs-01 {
-  display: block;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+.view-wrapper.limbs {
+  .view-synopsis {
+    .click-instructions {
+      background-color: black;
+      color: lighten($yellow, 20%);
+      margin-bottom: -24px;
+      padding-bottom: 1em;
+      padding-left: 1em;
+      padding-right: 1em;
+      padding-top: 1em;
 
-  @include media-breakpoint-up(md) {
-    width: 600px;
+      @include media-breakpoint-up(md) {
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+      }
+    }
+  }
+
+  .mapped-image-wrapper {
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      width: 600px;
+    }
+
+    .mapped-image {
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+
+    .button-link {
+      background-color: transparent;
+      display: block;
+      color: $yellow0;
+      line-height: 1;
+      padding: 0;
+      position: absolute;
+      z-index: 10;
+
+      &:hover {
+        color: $yellow;
+      }
+
+      &.limbs-01 {
+        left: 2.5%;
+        top: 16.5%;
+      }
+
+      &.limbs-02 {
+        left: 17.5%;
+        top: 6%;
+      }
+
+      &.limbs-03 {
+        left: 30%;
+        top: 2%;
+      }
+
+      &.limbs-04 {
+        left: 53%;
+        top: 1.5%;
+      }
+
+      svg {
+        height: 24px;
+        width: 24px;
+
+        @include media-breakpoint-up(md) {
+          height: 36px;
+          width: 36px;
+        }
+      }
+    }
   }
 }

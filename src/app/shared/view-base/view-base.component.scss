@@ -1,7 +1,8 @@
 @import '~bootstrap/scss/_functions';
-@import 'partials/bootstrap-overrides';
+@import '../../../scss/partials/bootstrap-overrides';
 @import '~bootstrap/scss/_variables';
-@import '~bootstrap/scss/_mixins.scss';
+@import '~bootstrap/scss/_mixins';
+@import '../../../scss/partials/variables';
 
 // shared styling for all view-instances
 :host {

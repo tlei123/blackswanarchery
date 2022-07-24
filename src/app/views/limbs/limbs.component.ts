@@ -11,7 +11,6 @@ import {
 } from '@app/store/selectors/assets.selectors';
 import { VoidExpression } from 'typescript';
 
-declare function imageMapResize(): VoidExpression;
 @Component({
   selector: 'app-limbs',
   templateUrl: './limbs.component.html',
@@ -23,6 +22,24 @@ export class LimbsComponent
 {
   viewImagesSubdir = 'limbs/';
   viewGifsSubdir = 'limbs/';
+  links = [
+    {
+      label: 'Go to Wave-Recurve',
+      route: '/wave-recurve',
+    },
+    {
+      label: 'Go to Static Recurve',
+      route: '/static-recurve',
+    },
+    {
+      label: 'Go to Working Recurve',
+      route: '/working-recurve',
+    },
+    {
+      label: 'Go to Hybrid Longbow',
+      route: '/hybrid-longbow',
+    },
+  ];
 
   constructor(public store: Store<AppState>) {
     super(store);
@@ -34,26 +51,11 @@ export class LimbsComponent
     this.viewFigures$ = this.store.select(selectFiguresByView('limbs'));
     this.viewGifs$ = this.store.select(selectGifsByView('limbs'));
     this.viewFiguresSub = this.viewFigures$.subscribe(this.viewFiguresObserver);
-
-    // imageMapResize();
   }
 
   ngOnDestroy(): void {
     if (this.viewFiguresSub) {
       this.viewFiguresSub.unsubscribe();
     }
-  }
-
-  resizeImageMap(): void {
-    imageMapResize();
-    console.info('Image map resized!');
-  }
-
-  openGif(gifFilename: string): void {
-    console.info(`[LimbsComponent.openGif] Gif to open: ${gifFilename}`);
-    this.onZoomableImageClick({
-      currentZoomImageFilename: `${gifFilename}.gif`,
-      currentViewImagesSubdir: this.viewImagesSubdir,
-    });
   }
 }
